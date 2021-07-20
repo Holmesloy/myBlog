@@ -6,9 +6,12 @@ categories:
 tags:  
  - tools  
 ---  
+## git设置
+* 下载git后，使用  生成git公钥和私钥，将公钥添加到github，gitlab等，即可识别出你的身份
+* 设置全局name和email：`git config --global user.name/user.email "xxx"`
 
 ## 常用git命令  
-* git init ： 将一个文件夹初始化为git文件夹g'f'd  
+* git init ： 将一个文件夹初始化为git文件夹  
 * git add.  ：添加新文件或者修改的所有文件添加到git  
 * git checkout xxx ：xxx文件撤回修改（.是全部修改撤销）  
 * git commit -m ""：提交到本地仓库  
@@ -18,6 +21,8 @@ tags:
 * git checkout -b xx / git checkout xx：切换到xx分支上  
 * git merge xxx：合并文件到当前分支  
 * git push origin 分支名 ：将该分支提交到远程仓库  
+
+**git
 
 **将远程分支合并到master**  
 1. 首先切换到master  

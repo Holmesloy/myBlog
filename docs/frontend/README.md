@@ -16,7 +16,7 @@ JS共7种数据类型：基本数据类型和一种引用数据类型（Object�
 `Undefined`：唯一值，即undefined，当**变量声明但未初始化**时，变量值即为undefined。  
 `Null`：唯一值，即null，表示一个空对象指针。`typeof(null)`返回"object"。  
 `Boolean`：true or false，以下值类型转换为false：`"", 0和NaN, null, undefined`。**注意：`"0"`会转化为true**。    
-`Number`：最大值**Number.MAX_VALUE**，其中NaN与任何值都不相等，包括自己，使用`isNaN()`判断是否可以转换为数子类型。数值转换方法：`Number()`, `parseInt()`, `parseFloat()`。**注：任意值与布尔值比较，都会将两边的值先转化为Number。**   
+`Number`：最大值**Number.MAX_VALUE**，其中NaN与任何值都不相等，包括自己，使用`isNaN()`判断是否可以转换为数字类型。数值转换方法：`Number()`, `parseInt()`, `parseFloat()`。**注：任意值与布尔值比较，都会将两边的值先转化为Number。**   
 `String`：可以用单引号和双引号，转换为字符串：`toString()` 或者 + "" 。  
 `Symbol`：表示唯一值，使用Symbol()创建：`const s = Symbol('hi')`，参数可选，常用作对象的唯一属性名  
 

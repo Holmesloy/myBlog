@@ -936,6 +936,35 @@ updateChildren：
 * to B的系统推荐用hash，简单易用，对url规范不敏感  
 * to C的系统，可以考虑选择H5 history，但需要服务端支持  
 
+### Vue class（类组件）
+* 初始化的data可以被声明为类属性
+* methods可以直接被声明为类的成员方法
+* 
+**vue-property-decorator**
+* @Component装饰器可以使类成为Vue组件
+```js
+import Vue from 'vue'
+import Componnet from 'vue-class-component'    // 推荐vue-property-decorator
+
+// App class will be a Vue component
+@Component
+export default class App extends Vue {}
+```
+
+**基本使用**
+```js
+// 使用js的vue组件
+export default { data, props, methods, created, ..}
+
+// 使用TS的vue组件
+<script lang="ts">
+export default class XXX extends Vue{
+    name: string = 'z';      // 直接声明data变量
+    printName(type: string){...}   // 直接写methods方法
+    @Prop(Number) num: number | undefined;   // @Prop表示不是data，而是prop，运行时是个Number类型
+
+}
+```
 
 ## Vue3  
 * 全部使用TS重写（响应式、v-dom、模板编译等）  

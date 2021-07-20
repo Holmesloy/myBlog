@@ -35,7 +35,7 @@
 * 配置本地服务：本地服务器、跨域代理
 * 处理ES6：babel
 * 处理CSS：postcss、css-loader、style-loader
-* 处理图片：小图片使用base64格式输出（较少一次http请求）
+* 处理图片：小图片使用base64格式输出（减少一次http请求）
 
 
 ### webpack配置  
@@ -56,7 +56,7 @@ module.exports = {
     },  
     plugins: [ // 插件配置  
         new HtmlWebpackPlugin({  // 刚引入的插件  
-            tmplate: path.join(__dirname, 'src', 'index.html'), // 模板，找到文件  
+            template: path.join(__dirname, 'src', 'index.html'), // 模板，找到文件  
             filename: 'index.html' // 根据模板插入代码产出的文件，到dist目录下  
         })  
     ],  
@@ -204,3 +204,11 @@ Ctrl + z    // 挂起任务，任务仍然在进程中
    `npm config set registry http://www.npmjs.org`  
 3. 切换淘宝源  
    `npm config set registry http://registry.npm.taobao.org`  
+
+## yarn命令
+1. 查看镜像源
+   `yarn config get registry`
+2. 切换为官方源
+   `yarn config set https://registry.yarnpkg.com`
+3. 切换为淘宝源
+   `yarn config set https://registry.npm.taobao.org`

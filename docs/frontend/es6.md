@@ -97,7 +97,7 @@ let obj2 = { ...obj, a: 3 };  // {a:3, b:2}，后面的a重新赋值了，覆盖
 展开操作符进行的是**对属性的浅拷贝，只拷贝了第一层**，常用于项目开发实际开发中：  
 ```js  
 let obj = { a:1, b: 2 };  
-let copy = {...obj};  // 深拷贝  
+let copy = {...obj};  // 浅拷贝  
 copy.a = 3;  
 console.log(copy.a);  // 3  
 console.log(obj.a);   // 1  
@@ -223,7 +223,7 @@ import{ name, age } from './example';
 export defalt App;  
 
 // 部分导出  
-export class App extend Componnet {};  
+export class App extend Component {};  
 ```  
 导入时对于大括号{}的使用：  
 ```js  
