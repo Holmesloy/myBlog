@@ -1,3 +1,11 @@
+<!--  
+ * @Author: your name  
+ * @Date: 2021-07-09 15:14:59  
+ * @LastEditTime: 2021-07-28 16:48:48
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit  
+ * @FilePath: /myBlog/docs/blog/git学习.md  
+-->  
 ---  
 title: Git，再学亿遍  
 date: 2020-12-10  
@@ -6,9 +14,9 @@ categories:
 tags:  
  - tools  
 ---  
-## git设置
-* 下载git后，使用  生成git公钥和私钥，将公钥添加到github，gitlab等，即可识别出你的身份
-* 设置全局name和email：`git config --global user.name/user.email "xxx"`
+## git设置  
+* 下载git后，使用  生成git公钥和私钥，将公钥添加到github，gitlab等，即可识别出你的身份  
+* 设置全局name和email：`git config --global user.name/user.email "xxx"`  
 
 ## 常用git命令  
 * git init ： 将一个文件夹初始化为git文件夹  
@@ -22,7 +30,24 @@ tags:
 * git merge xxx：合并文件到当前分支  
 * git push origin 分支名 ：将该分支提交到远程仓库  
 
-**git
+**新建分支开发**  
+新建分支两种方式：  
+1. 远程建好分支，本地直接拉下来  
+`git checkout -b feature/zxz origin/feature zxz   // 远程分支feature/zxz拉到本地`  
+
+2. 本地建好分支，推送到远程  
+```js  
+git checkout -b feature/zxz    // 创建并切换到改分支  
+git push origin feature/zxz: feature/zxz   
+// 推送本地分支feature/zxz（冒号前）到远程origin的分支feature/zxz(冒号后)，若远程没有该分支，可省略冒号后分支，直接推送  
+```  
+新建完成后，可以在gitlab或者github上提交merge request。  
+
+**commit撤回**
+`git reset --soft HEAD^`
+只是撤回commit，代码不会丢失
+
+
 
 **将远程分支合并到master**  
 1. 首先切换到master  
