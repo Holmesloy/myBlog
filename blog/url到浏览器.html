@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>url输入浏览器运行过程 | 进阶</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/myBlog/cc.png">
+    <meta name="description" content="学习笔记">
+    
+    <link rel="preload" href="/myBlog/assets/css/0.styles.fa17e6ff.css" as="style"><link rel="preload" href="/myBlog/assets/js/app.ccbc697b.js" as="script"><link rel="preload" href="/myBlog/assets/js/3.e86685a7.js" as="script"><link rel="preload" href="/myBlog/assets/js/1.1fd939bf.js" as="script"><link rel="preload" href="/myBlog/assets/js/12.5df5c2b5.js" as="script"><link rel="prefetch" href="/myBlog/assets/js/10.238fcb1d.js"><link rel="prefetch" href="/myBlog/assets/js/11.6fde3c7a.js"><link rel="prefetch" href="/myBlog/assets/js/13.dd6ee989.js"><link rel="prefetch" href="/myBlog/assets/js/14.0c799c7d.js"><link rel="prefetch" href="/myBlog/assets/js/15.3e7759cb.js"><link rel="prefetch" href="/myBlog/assets/js/16.5c0c6989.js"><link rel="prefetch" href="/myBlog/assets/js/17.73babba5.js"><link rel="prefetch" href="/myBlog/assets/js/18.ed7c8a2c.js"><link rel="prefetch" href="/myBlog/assets/js/19.c00efbe3.js"><link rel="prefetch" href="/myBlog/assets/js/20.13096d54.js"><link rel="prefetch" href="/myBlog/assets/js/21.9e59a694.js"><link rel="prefetch" href="/myBlog/assets/js/22.9587eedf.js"><link rel="prefetch" href="/myBlog/assets/js/23.164019d7.js"><link rel="prefetch" href="/myBlog/assets/js/24.2cee2bad.js"><link rel="prefetch" href="/myBlog/assets/js/25.6eed7ca4.js"><link rel="prefetch" href="/myBlog/assets/js/26.cc088b2e.js"><link rel="prefetch" href="/myBlog/assets/js/27.7c7c6512.js"><link rel="prefetch" href="/myBlog/assets/js/28.3fe56f10.js"><link rel="prefetch" href="/myBlog/assets/js/29.39042ff1.js"><link rel="prefetch" href="/myBlog/assets/js/30.7f841600.js"><link rel="prefetch" href="/myBlog/assets/js/31.e340d258.js"><link rel="prefetch" href="/myBlog/assets/js/32.76199cff.js"><link rel="prefetch" href="/myBlog/assets/js/33.7260c06c.js"><link rel="prefetch" href="/myBlog/assets/js/34.2df83e00.js"><link rel="prefetch" href="/myBlog/assets/js/35.ceb3d5b9.js"><link rel="prefetch" href="/myBlog/assets/js/36.deac1716.js"><link rel="prefetch" href="/myBlog/assets/js/37.a3b3f635.js"><link rel="prefetch" href="/myBlog/assets/js/38.1adaf077.js"><link rel="prefetch" href="/myBlog/assets/js/39.3a57966c.js"><link rel="prefetch" href="/myBlog/assets/js/4.abaf6129.js"><link rel="prefetch" href="/myBlog/assets/js/40.edeb6560.js"><link rel="prefetch" href="/myBlog/assets/js/41.3a081599.js"><link rel="prefetch" href="/myBlog/assets/js/42.fdf0940c.js"><link rel="prefetch" href="/myBlog/assets/js/43.f357d794.js"><link rel="prefetch" href="/myBlog/assets/js/44.c181c0c4.js"><link rel="prefetch" href="/myBlog/assets/js/45.c931d0a3.js"><link rel="prefetch" href="/myBlog/assets/js/46.fd2a9a69.js"><link rel="prefetch" href="/myBlog/assets/js/47.d0757c62.js"><link rel="prefetch" href="/myBlog/assets/js/48.a1a9a7aa.js"><link rel="prefetch" href="/myBlog/assets/js/49.d9e3093b.js"><link rel="prefetch" href="/myBlog/assets/js/5.8c6e3345.js"><link rel="prefetch" href="/myBlog/assets/js/50.574112ba.js"><link rel="prefetch" href="/myBlog/assets/js/51.58b889b8.js"><link rel="prefetch" href="/myBlog/assets/js/52.7daf901d.js"><link rel="prefetch" href="/myBlog/assets/js/53.6d5d0b3a.js"><link rel="prefetch" href="/myBlog/assets/js/54.dadb79dc.js"><link rel="prefetch" href="/myBlog/assets/js/55.6e0b6cd2.js"><link rel="prefetch" href="/myBlog/assets/js/56.f21b56cc.js"><link rel="prefetch" href="/myBlog/assets/js/57.af4d11aa.js"><link rel="prefetch" href="/myBlog/assets/js/58.6700bf87.js"><link rel="prefetch" href="/myBlog/assets/js/59.af67814e.js"><link rel="prefetch" href="/myBlog/assets/js/6.3995cc2e.js"><link rel="prefetch" href="/myBlog/assets/js/60.6ce7829f.js"><link rel="prefetch" href="/myBlog/assets/js/61.1c060356.js"><link rel="prefetch" href="/myBlog/assets/js/62.460a1bcd.js"><link rel="prefetch" href="/myBlog/assets/js/63.2db6f757.js"><link rel="prefetch" href="/myBlog/assets/js/64.3eb1eeb2.js"><link rel="prefetch" href="/myBlog/assets/js/65.a2290d25.js"><link rel="prefetch" href="/myBlog/assets/js/66.ea3bdb6b.js"><link rel="prefetch" href="/myBlog/assets/js/7.0087ca1c.js"><link rel="prefetch" href="/myBlog/assets/js/8.6263861c.js"><link rel="prefetch" href="/myBlog/assets/js/9.47d3ec89.js">
+    <link rel="stylesheet" href="/myBlog/assets/css/0.styles.fa17e6ff.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-9f1e2f90><div data-v-9f1e2f90><div id="loader-wrapper" class="loading-wrapper" data-v-d48f4d20 data-v-9f1e2f90 data-v-9f1e2f90><div class="loader-main" data-v-d48f4d20><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div></div> <!----> <!----></div> <div class="password-shadow password-wrapper-out" style="display:none;" data-v-58d5ab76 data-v-9f1e2f90 data-v-9f1e2f90><h3 class="title" style="display:none;" data-v-58d5ab76 data-v-58d5ab76>进阶</h3> <!----> <label id="box" class="inputBox" style="display:none;" data-v-58d5ab76 data-v-58d5ab76><input type="password" value="" data-v-58d5ab76> <span data-v-58d5ab76>Konck! Knock!</span> <button data-v-58d5ab76>OK</button></label> <div class="footer" style="display:none;" data-v-58d5ab76 data-v-58d5ab76><span data-v-58d5ab76><i class="iconfont reco-theme" data-v-58d5ab76></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-58d5ab76>vuePress-theme-reco</a></span> <span data-v-58d5ab76><i class="iconfont reco-copyright" data-v-58d5ab76></i> <a data-v-58d5ab76><span data-v-58d5ab76>R-Z</span>
+            
+          <!---->
+          2021
+        </a></span></div></div> <div class="hide" data-v-9f1e2f90><header class="navbar" data-v-9f1e2f90><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/myBlog/" class="home-link router-link-active"><img src="/myBlog/cc.png" alt="进阶" class="logo"> <span class="site-name">进阶</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/myBlog/" class="nav-link"><i class="iconfont undefined"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      Category
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myBlog/categories/网络/" class="nav-link"><i class="iconfont undefined"></i>
+  网络
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/frontEnd/" class="nav-link"><i class="iconfont undefined"></i>
+  frontEnd
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/布局/" class="nav-link"><i class="iconfont undefined"></i>
+  布局
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/Tools/" class="nav-link"><i class="iconfont undefined"></i>
+  Tools
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/tools/" class="nav-link"><i class="iconfont undefined"></i>
+  tools
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/工具/" class="nav-link"><i class="iconfont undefined"></i>
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/面试/" class="nav-link"><i class="iconfont undefined"></i>
+  面试
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/智能/" class="nav-link"><i class="iconfont undefined"></i>
+  智能
+</a></li></ul></div></div><div class="nav-item"><a href="/myBlog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/myBlog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><a href="/myBlog/frontend/" class="nav-link"><i class="iconfont undefined"></i>
+  前端知识
+</a></div><div class="nav-item"><a href="/myBlog/algorithm/" class="nav-link"><i class="iconfont undefined"></i>
+  算法
+</a></div><div class="nav-item"><a href="/myBlog/project/" class="nav-link"><i class="iconfont undefined"></i>
+  项目
+</a></div><div class="nav-item"><a href="/myBlog/notes/" class="nav-link"><i class="iconfont undefined"></i>
+  笔记
+</a></div><div class="nav-item"><a href="/myBlog/blog/" class="nav-link router-link-active"><i class="iconfont undefined"></i>
+  文章
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont undefined"></i>
+      Languages
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myBlog/language/chinese.html" class="nav-link"><i class="iconfont undefined"></i>
+  Chinese
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/language/English.html" class="nav-link"><i class="iconfont undefined"></i>
+  English
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-9f1e2f90></div> <aside class="sidebar" data-v-9f1e2f90><div class="personal-info-wrapper" data-v-3eba7259 data-v-9f1e2f90><!----> <h3 class="name" data-v-3eba7259>
+    R-Z
+  </h3> <div class="num" data-v-3eba7259><div data-v-3eba7259><h3 data-v-3eba7259>26</h3> <h6 data-v-3eba7259>Article</h6></div> <div data-v-3eba7259><h3 data-v-3eba7259>15</h3> <h6 data-v-3eba7259>Tag</h6></div></div> <hr data-v-3eba7259></div> <nav class="nav-links"><div class="nav-item"><a href="/myBlog/" class="nav-link"><i class="iconfont undefined"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      Category
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myBlog/categories/网络/" class="nav-link"><i class="iconfont undefined"></i>
+  网络
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/frontEnd/" class="nav-link"><i class="iconfont undefined"></i>
+  frontEnd
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/布局/" class="nav-link"><i class="iconfont undefined"></i>
+  布局
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/Tools/" class="nav-link"><i class="iconfont undefined"></i>
+  Tools
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/tools/" class="nav-link"><i class="iconfont undefined"></i>
+  tools
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/工具/" class="nav-link"><i class="iconfont undefined"></i>
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/面试/" class="nav-link"><i class="iconfont undefined"></i>
+  面试
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/智能/" class="nav-link"><i class="iconfont undefined"></i>
+  智能
+</a></li></ul></div></div><div class="nav-item"><a href="/myBlog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/myBlog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><a href="/myBlog/frontend/" class="nav-link"><i class="iconfont undefined"></i>
+  前端知识
+</a></div><div class="nav-item"><a href="/myBlog/algorithm/" class="nav-link"><i class="iconfont undefined"></i>
+  算法
+</a></div><div class="nav-item"><a href="/myBlog/project/" class="nav-link"><i class="iconfont undefined"></i>
+  项目
+</a></div><div class="nav-item"><a href="/myBlog/notes/" class="nav-link"><i class="iconfont undefined"></i>
+  笔记
+</a></div><div class="nav-item"><a href="/myBlog/blog/" class="nav-link router-link-active"><i class="iconfont undefined"></i>
+  文章
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont undefined"></i>
+      Languages
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myBlog/language/chinese.html" class="nav-link"><i class="iconfont undefined"></i>
+  Chinese
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/language/English.html" class="nav-link"><i class="iconfont undefined"></i>
+  English
+</a></li></ul></div></div> <!----></nav> <ul class="sidebar-links"><li><a href="/myBlog/blog/" aria-current="page" class="sidebar-link">文章</a></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-58d5ab76 data-v-9f1e2f90><h3 class="title" style="display:none;" data-v-58d5ab76 data-v-58d5ab76>url输入浏览器运行过程</h3> <!----> <label id="box" class="inputBox" style="display:none;" data-v-58d5ab76 data-v-58d5ab76><input type="password" value="" data-v-58d5ab76> <span data-v-58d5ab76>Konck! Knock!</span> <button data-v-58d5ab76>OK</button></label> <div class="footer" style="display:none;" data-v-58d5ab76 data-v-58d5ab76><span data-v-58d5ab76><i class="iconfont reco-theme" data-v-58d5ab76></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-58d5ab76>vuePress-theme-reco</a></span> <span data-v-58d5ab76><i class="iconfont reco-copyright" data-v-58d5ab76></i> <a data-v-58d5ab76><span data-v-58d5ab76>R-Z</span>
+            
+          <!---->
+          2021
+        </a></span></div></div> <div data-v-9f1e2f90><main class="page"><div class="page-title" style="display:none;"><h1 class="title">url输入浏览器运行过程</h1> <div data-v-42458482><i class="iconfont reco-account" data-v-42458482><span data-v-42458482>R-Z</span></i> <i class="iconfont reco-date" data-v-42458482><span data-v-42458482>2020-12-06</span></i> <!----> <i class="iconfont reco-tag tags" data-v-42458482><span class="tag-item" data-v-42458482>http</span><span class="tag-item" data-v-42458482>浏览器</span></i></div></div> <div class="theme-reco-content content__default" style="display:none;"><h2 id="主体流程"><a href="#主体流程" class="header-anchor">#</a> 主体流程</h2> <ul><li>DNS解析（域名转化为ip地址）</li> <li>TCP连接（三次握手）</li> <li>浏览器发送http请求</li> <li>服务器处理请求</li> <li>浏览器解析并渲染页面</li> <li>断开连接（四次挥手）</li></ul> <h2 id="dns解析"><a href="#dns解析" class="header-anchor">#</a> DNS解析</h2> <p>在DNS解析前，浏览器会首先进行url合法性和安全性检查，然后去查找缓存（这里可以扩展缓存知识）。<br>
+DNS解析：域名转化为ip地址<br> <strong>DNS缓存查找顺序：</strong><br> <img src="/myBlog/assets/img/dns.1c33fac0.png" alt="dns1"><br> <strong>DNS域名解析过程</strong><br> <img src="/myBlog/assets/img/dns1.0e8d3473.png" alt="dns"><br> <strong>网址解析过程</strong></p> <ul><li>高级域名到低级域名：. -&gt; .com -&gt; google.com. -&gt; www.google.com.</li></ul> <p><strong>DNS负载均衡技术</strong><br>
+在DNS服务器中，为一个主机名配置多个ip地址，按需返回不同的解析结果，使不同的客户端访问不同的服务器。<br>
+扩展：DNS解析过程中，还可能会发生DNS劫持问题，然后还有前端的dns-prefetch优化。</p> <h2 id="建立tcp连接"><a href="#建立tcp连接" class="header-anchor">#</a> 建立TCP连接</h2> <h3 id="三次握手"><a href="#三次握手" class="header-anchor">#</a> 三次握手</h3> <img src="/myBlog/assets/img/tcp1.d6e8cbde.png" style="zoom:36%;"> <p>SYN（Synchronize Sequence Numbers）：同步序列编号<br>
+ACK（Acknowledge character）：确认字符</p> <p><strong>过程：</strong></p> <ol><li>客户端给服务器发送一个SYN报文，并确定初始化序列号seq=x，此时SYN=1，报文段不能携带数据</li> <li>服务器返回确认SYN报文，SYN=1，并缺点初始化序列号seq=y，并返回确认帧ACK=1，ACK确认号的值ack=x+1</li> <li>客户端收到后返回确认帧ACK=1，确认号ack=y+1，序列号seq=x+1，此时ACK报文段可以携带数据，数据会消耗序号</li></ol> <p><strong>1. 为什么需要三次握手，两次不行吗？</strong></p> <ul><li>三次握手的目的是确认双方的接收与发送能力都正常。</li> <li>第三次为了防止已经失效的连接请求到达服务端，让服务器错误打开连接。</li> <li>如果只是两次握手就建立连接的话，若客户端之前发送的一些失效请求又到达了服务端，那么服务器就会发送确认，直接建立连接，然后等待客户端发送数据，实际上这时候客户端并没有要发送数据，浪费了资源。</li></ul> <p><strong>2. SYN-ACK重传次数</strong><br>
+服务器发送回SYN-ACK包，若未收到客户端确认包，则服务器进行重传，每次重传间隔时间一般是指数增长。<br>
+若超过最大重传次数，则系统将该连接信息从半连接队列中删除。</p> <p><strong>3. ISN（Initial Sequence Number）是固定的吗？</strong><br>
+客户端和服务端需要交换ISN，因为接收数据时要按照序列号组装数据，保证可靠传输。如果ISN固定，则攻击者容易猜出后序的确认号，因此ISN是动态生成的。</p> <p><strong>4. 三次握手过程中可以携带数据吗?</strong></p> <ul><li>第三次握手可以携带数据，第一次、第二次不可以。</li> <li>如果第一次可以携带数据，那么服务器会比较容易受到恶意攻击，攻击者会发送很多数据给服务器，造成服务器响应缓慢。</li> <li>第三次握手客户端已经知道服务器的接收和发送能力，因此可以携带数据。</li></ul> <p><strong>5. SYN洪泛攻击</strong><br>
+一种典型的Dos/DDos攻击：</p> <ul><li>服务器端资源是在第二次握手时分配，客户端资源是三次握手时分配，因此服务器容易受到SYN攻击</li> <li>客户端短时间内伪造大量不存在IP地址，向服务器不断发送SYN包，服务器发送回复但接收不到确认包，因此不断重发至超时</li> <li>伪造SYN包长时间占用队列，使正常SYN包被丢弃，使网络阻塞甚至瘫痪</li></ul> <p><strong>防御SYN攻击的方法：</strong></p> <ul><li>缩短超时（SYN Timeout）时间</li> <li>增加最大半连接数</li> <li>过滤网关防护</li></ul> <p><strong>6. 第三次握手失败怎么办？</strong><br>
+服务器不会重传ack报文，而是发送RST报文段，进入CLOSED状态，防止SYN洪泛攻击。</p> <p><strong>总结</strong></p> <ul><li>三次握手建立连接的主要目的是同步序列号，保证可靠传输。</li> <li>TCP很多特性如流量控制、消息重发等依赖于序列号</li> <li>因此，三次握手中的报文被称为SYN</li></ul> <h2 id="发送http请求"><a href="#发送http请求" class="header-anchor">#</a> 发送HTTP请求</h2> <p>客户端向服务器发送HTTP请求（应用层），请求信息包括：<br>
+请求头（Request Header）：请求方法、目标地址、遵循协议等<br>
+请求主体（其他参数）<br>
+注：可以扩充http字段知识</p> <h2 id="服务器处理请求"><a href="#服务器处理请求" class="header-anchor">#</a> 服务器处理请求</h2> <p>HTTP响应报文由以下部分构成：<br>
+状态行<br>
+响应头（Response Header）<br>
+响应正文</p> <h2 id="浏览器解析并渲染页面"><a href="#浏览器解析并渲染页面" class="header-anchor">#</a> 浏览器解析并渲染页面</h2> <p>整体过程：<br>
+构建DOM树 -&gt; 构建CSSOM树 -&gt; 构建render树 -&gt; 绘制render树<br>
+详细过程如下：</p> <ul><li>解析HTML形成DOM树</li> <li>解析CSS形成CSSOM（CSS规则）树</li> <li>合并DOM树和CSSOM树形成布局树（Layout Tree）</li> <li>渲染并绘制页面</li></ul> <p><strong>页面绘制过程：</strong></p> <ul><li>回流：当页面中的一部分（或全部）因为元素的规模尺寸、布局，隐藏等属性改变而需要重新构建（也可以称为重布局或者重排）。每个页面至少产生一次回流，即第一次加载时。</li> <li>重绘：当页面中的一些元素需要更新属性，而这些属性只影响元素的外观，诸如背景颜色、文字颜色等，而不会影响布局时，页面的更新就叫做重绘。</li> <li>因此，回流一定会发生重绘，重绘不一定会发生回流。</li></ul> <p><strong>针对回流和重绘的优化</strong><br>
+CSS：</p> <ul><li>避免使用table布局</li> <li>尽量在DOM树的最末端改变class</li> <li>避免设置多层内联样式</li> <li>将动画效果应用到position属性为absolute或fixed的元素上</li></ul> <p>Javascript：</p> <ul><li>避免频繁操作样式，可以将样式写在class中然后统一改写class</li> <li>避免频繁操作DOM，可以创建一个documentFragment，在其中书写DOM操作，最后添加到文档中</li> <li>也可以先将元素设置display:none，操作结束后再显示，none元素上进行DOM操作不会引发回流和重绘</li></ul> <p>扩展：<br>
+为什么CSS放在head中，js放在body最后？<br>
+因为js会阻塞DOM渲染，为了用户体验需要优先加载显示页面。</p> <h2 id="断开连接"><a href="#断开连接" class="header-anchor">#</a> 断开连接</h2> <p>现在的页面为了优化请求耗时，默认都会开启持久连接，所以TCP连接断开的时间一般是这个tab页关闭时。</p> <h3 id="四次挥手"><a href="#四次挥手" class="header-anchor">#</a> 四次挥手</h3> <img src="/myBlog/assets/img/tcp2.6cb4769c.png" style="zoom:80%;"> <p>TCP半关闭：连接端在结束数据发送后还能接收另一端的数据。<br>
+客户端或服务器均可发起主动挥手过程。</p> <p><strong>过程：</strong><br>
+（1）主机A数据发送完毕时，向主机B发送带有FIN标记的报文段，FIN=1，序列号seq=u<br>
+（2）主机B收到后，向主机A发送一个确认序号ACK，ACK=1,ack=u+1,序列号seq=v（先发送ACK的目的是为了防止在这段时间内，对方重传FIN报文段）<br>
+（3）主机B应用程序处理完请求后，向主机A发送FIN报文段，FIN=1，ACK=1，seq=w，ack=u+1。<br>
+（4）主机A受到FIN报文段后，向主机B发送一个ACK表示连接彻底释放，ACK=1，seq=u+1，ack=w+1。<br>
+注意：如果是客户端收到连接释放报文段，则发送完确认报文段后主动关闭并进入TIME_WAIT状态，等待设置的计时器时间2MSL后，再进入CLOSED状态。<br>
+整个过程中，主机A首先停止发送，然后主机B发送完成之后也停止发送，两者断开。<br> <strong>1. 为什么需要四次挥手？</strong></p> <ul><li>TCP是全双工通信，断开时需要确定客户端和服务器都不再发送数据</li> <li>另外，服务端收到连接断开请求后，可能其中程序还没有处理完请求响应，所以先发送一个ACK告诉客户端“你发的FIN报文段我收到了”。等到程序处理完之后，服务端再发送一个FIN报文段，我发送完成了，可以断开了，所以需要四次挥手。</li></ul> <p><strong>2. 2MSL等待状态</strong></p> <ul><li>TIME_WAIT状态也称为2MSL等待状态。MSL表示TCP报文段最大生存时间。</li> <li>当TCP执行一个主动关闭，并发回最后一个ACK，该连接必须在TIME_WAIT状态停留时间为2倍的MSL。若服务器没收到该ACK，则会超时重传FIN-ACK，然后客户端再次发送ACK，保证服务器能够收到。</li> <li>还可以防止已失效的连接请求报文段出现再本连接中，因为经过2MSL，本连接的所有报文段会从网络上消失，不影响下一个新的连接。</li></ul></div> <footer class="page-edit" style="display:none;"><!----> <!----></footer> <!----> <!----> <!----></main> <!----></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="/myBlog/assets/js/app.ccbc697b.js" defer></script><script src="/myBlog/assets/js/3.e86685a7.js" defer></script><script src="/myBlog/assets/js/1.1fd939bf.js" defer></script><script src="/myBlog/assets/js/12.5df5c2b5.js" defer></script>
+  </body>
+</html>
