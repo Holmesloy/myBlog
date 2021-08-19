@@ -30,7 +30,9 @@ tags:
 * git merge xxx：合并文件到当前分支  
 * git push origin 分支名 ：将该分支提交到远程仓库  
 
-**新建分支开发**  
+## git场景
+
+## 1. 新建分支开发
 新建分支两种方式：  
 1. 远程建好分支，本地直接拉下来  
 `git checkout -b feature/zxz origin/feature zxz   // 远程分支feature/zxz拉到本地`  
@@ -43,13 +45,13 @@ git push origin feature/zxz: feature/zxz
 ```  
 新建完成后，可以在gitlab或者github上提交merge request。  
 
-**commit撤回**
+## 2. commit撤回
 `git reset --soft HEAD^`
 只是撤回commit，代码不会丢失
 
 
 
-**将远程分支合并到master**  
+## 3. 将远程分支合并到master**  
 1. 首先切换到master  
 2. 然后使用git fetch  
 3. git merge 分支名 ：将该分支合并到master  
@@ -63,3 +65,18 @@ git两个分支互不影响，切换分支后另一分支的修改不会出现�
 当修改代码时，发现不小心在主分支上修改了，但是这不符合要求，可不能全删除吧，这时候使用：  
 git stash：将刚修改的内容放入栈中，然后就可以切换到其他分支  
 然后在该分支使用git stash pop，将修改的内容添加到当前分支上  
+
+## 4. git重命名分支
+**本地分支重命名**
+语法：`git branch -m old new`  将old分支重命名为new
+**远程分支重命名**
+远程分支不可直接重命名，只能重新推送本地分支：
+* 将本地分支重命名
+* 将本地分支推送到远程
+* 将远程分支删除
+如将远程的old重命名为new：
+```js
+git branch -m old new
+git push origin new
+git push --delete origin old
+```

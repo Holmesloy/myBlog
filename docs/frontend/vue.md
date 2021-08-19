@@ -528,6 +528,27 @@ const router = new VueRouter({
 })  
 ```  
 
+**路由跳转**
+1. name跳转页面
+`this.$router.push({ name: 'anotherPage', params: {id: 1} } )`
+另一页面接收该参数的方式：
+`this.$route.params.id`
+```js
+getData() {
+    const data = this.$route.params;
+    console.log(data);
+}
+```
+2. path跳转页面
+`this.$router.push({ path: '/anotherPage', query: {id:1} } );`
+另一页面接收该参数的方式：
+`this.$route.query.id`
+
+3. 区别：
+* path的query传参会显示在url后边的地址栏中（/anotherPage?id=1），name的params传递参数不会展示到地址栏
+* 由于动态路由也是使用params传递，所以push中path和params不能一起使用，否则params无效，需要使用name来指定页面
+
+
 **路由懒加载**  
 * 和异步加载组件相同，在routes中设置`component: () => import(组件路径)`  
 
@@ -563,6 +584,8 @@ router.push({path:'regester', query:{ plan: 'private' }})
 **注意：路径中加不加`/`?**  
 * 以`/`开头的嵌套路径会被当作根路径，不会嵌套之前的路径  
 * 不加`/`的路径会链接到之前的路径后面去  
+
+
 
 ### axios封装  
 * 请求之前：一般接口都有鉴权认证(token)，因此在接口的请求头中，需要加入token。而如果每次请求再去添加，则会加大工作量且容易出错。所以，使用axios拦截器可以在请求的拦截器中添加token  

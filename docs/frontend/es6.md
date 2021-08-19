@@ -496,6 +496,9 @@ for(let i of nums){
 // 结果：每隔1s打出一个结果  
 // 原因：for...of特性，一个接一个执行  
 ```  
+# ES6可选链
+
+
 ## CommonJS模块与ES6模块
 ### CommonJS模块
 * 动态引入，执行时引入，即代码中可以使用`require(..)`引入
