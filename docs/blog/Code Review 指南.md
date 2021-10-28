@@ -1,0 +1,128 @@
+---  
+title: Code Review 指南  
+date: 2021-9-28  
+categories:  
+ - frontEnd  
+tags:  
+ - blog  
+---  
+
+Javascript（TypeScript）  
+1、嵌套层级不超过 4 层 (if\else、循环、回调);   - 代码写法  
+2、新增文件路径是否放置合理？  ——  
+3、方法的实现细节上是否存在问题？能否精简优化；  
+4、尽可能少的使用 anyScript；  
+5、精简（重构）大段的 if、else 代码;  
+6、复杂逻辑补充必要注释，不写无谓注释；  
+7、使用有意义且易读的变量名;  
+👎 const yyyymmdstr = moment().format("YYYY/MM/DD");  
+👍 const currentDate = moment().format("YYYY/MM/DD");  
+8、消除魔术字符串  
+👎 setTimeout(blastOff, 86400000);  
+👍 const MILLISECONDS_PER_DAY = 60 * 60 * 24 * 1000; //86400000;  
+setTimeout(blastOff, MILLISECONDS_PER_DAY);  
+9、使用默认参数替代短路运算符;  
+👎  
+function createMicrobrewery(name) {  
+  const breweryName = name || "Hipster Brew Co.";  
+  // ...  
+}  
+👍  
+function createMicrobrewery(name = "Hipster Brew Co.") {  
+  // ...  
+}  
+9、函数名应该直接反映函数的作用;  
+10、尽可能保持一个函数的单一职责原则，单个函数不宜超过 80 行;  
+11、函数参数不多于 2 个，如果有很多参数就利用 object 传递，并使用解构;  
+12、该函数（方法）是否存在现成方法？是否重复实现？多个函数是否存在重复代码;  
+13、工具函数剥离业务逻辑，避免工具函数与业务逻辑的耦合;  
+14、避免内存泄露;  
+释放不再使用的全局变量  
+及时销毁闭包内变量  
+及时清除定时器  
+解绑不再需要的事件监听  
+
+Vue  
+1、注意 Vue template 标签的 props 顺序（按照 静态 props -> v-if -> v-for -> v-bind -> v-on ）;  
+2、剔除没用到的方法和变量，剔除没用到的 import;  
+3、控制单个 Vue 页面行数，超过 500 行考虑分治拆分;  
+CSS  
+1、预处理器层级是否嵌套过深？为什么要这样写？能否精简;  
+2、属性书写顺序，建议顺序：  
+content 如果是伪元素，conteng 放置在最上  
+display 信息 （display \ flex 相关 \ grid 相关）  
+positioning 定位信息（position \ top \ left \ bottom \ right \ z-index）  
+box-model 盒子信息 （width \ height \ margin \ padding \ background \ border \ overflow）  
+typography 字体相关 ( font \ color )  
+manipulation 操纵信息 （transform \ filter \ opacity）  
+animation 动画及过渡 (animation \ transition)	
+misc 其他项 (cursor \ box-shadow )  
+3、选择器的命名规范；  
+4、避免使用 !important 提升选择器权重；  
+
+其他  
+1、当 package.json 发生变化，是否存在依赖一致（依赖项+依赖版本）但是顺序发生变化，此类 MR 应该不予通过；  
+2、当 package.json 发生变化，新增/减少依赖，新增/减少依赖是否在代码中体现；  
+3、不提交调试数据，不提交个人配置信息；  
+
+附录: Code Review 常用术语  
+CR: Code Review. 请求代码审查。  
+PR： pull request. 拉取请求，给其他项目提交代码。  
+MR： merge request. 合并请求。  
+LGTM： Looks Good To Me.对我来说，还不错。表示认可这次 PR，同意 merge 合并代码到远程仓库。  
+WIP: Work In Progress. 进展中，主要针对改动较多的 PR，可以先提交部分，标题或 Tag 加上 WIP，表示尚未完成，这样别人可以先 review 已提交的部分。  
+PTAL: Please Take A Look. 请帮我看下, 邀请别人 review 自己的代码。  
+ACK: Acknowledgement. 承认，同意。表示接受代码的改动。  
+NACK/NAK: Negative acknowledgement. 不同意，不接受这次的改动。  
+RFC: Request For Comment. 请求进行讨论，表示认为某个想法很好，邀请大家一起讨论一下。  
+ASAP: As Soon As Possible. 请尽快完成。  
+IIRC: If I Recall Correctly. 如果我没有记错的话。  
+IMO: In My Opinion. 在我看来。  
+TBD: To Be Done. 未完成，待续。  
+TL;DR: Too Long; Didn't Read. 太长懒得看。常见于 README 文档。  
+参考链接  
+1、前端 Code Review 指北 - https://mp.weixin.qq.com/s/yyqGipUGMbfcLmXcQ2QBcA  
+2、代码整洁之道 - https://mp.weixin.qq.com/s/jkYp_Ss9OOh3rgJNpDWZqQ  
+
+
+
+1. 使用有意义且易读的变量名  
+```js  
+// bad  
+const xyz = moment().format("YYYY/MM/DD");  
+
+// good  
+const currentDate = moment().format("YYYY/MM/DD");  
+```  
+
+2. 从对象 obj 中取值  
+```js  
+// 使用解构  
+const {a, b} = obj;  
+
+// 若创建的对象名和对象属性名不一致  
+const { a: a1, b: b1 } = obj;   // 其中，a1，b1可以是后端返回的对象属性名  
+```  
+
+3. 合并两个数组和对象  
+```js  
+const a = [1, 2, 3];  
+const b = [1, 5, 6];  
+const c = [...new Set([...a, ...b])];   // [1, 2, 3, 5, 6]  
+
+const obj1 = { a: 1 };  
+const obj2 = { b: 2};  
+const obj = {...obj1, obj2};  // {a:1, b:2};  
+```  
+
+4. 输入框非空的判断  
+```js  
+if(value !== null && value !== undefined && value !== ''){  
+  // ...  
+}  
+
+// ES6 空值合并运算符  
+if(value??'' !== ''){  
+  // ...  
+}  
+```  

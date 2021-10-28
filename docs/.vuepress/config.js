@@ -81,7 +81,9 @@ module.exports = {
     configureWebpack: {
       resolve: {
         alias: {
-          '@alias': '../.vuepress/image'
+          '@': '../.vuepress',
+          '@alias': '../.vuepress/image',
+          '@paper': '../.vuepress/paperImage'
         }
       }
     }

@@ -495,6 +495,20 @@ computed: {
 * 解决：给element元素父级添加一个class，然后在其中修改样式，不会影响到其他页面的样式  
 * 为了提高代码可读性，建议建一个scss文件专门自定义element-ui的各种样式  
 
+**组件内覆盖其样式——deep**
+* 首先需要知道组件在实际渲染时在DOM中的位置
+* 然后使用/deep/加在样式前面
+* 注意：如果scss中层级嵌套错误，deep不会生效（实际DOM）
+```css
+/* 改变dialog-body中的样式，需要正确的层级和嵌套 */
+/deep/ .ssc-dialog .ssc-dialog-wrapper .ssc-dialog-body {
+  overflow-y: overlay;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+}
+```
 
 ## 项目优化  
 ### 网络请求优化  

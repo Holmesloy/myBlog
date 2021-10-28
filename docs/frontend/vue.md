@@ -149,7 +149,9 @@ methods:{
 * vuex  
 
 **父传子**  
+* 父组件声明一个属性表示要传递的数据
 * 子组件使用props接收父组件传递的数据  
+* 可以通过点击时间或者计算属性进行赋值操作
 ```js  
 // 父组件中  
 <Child myData = '传递的数据'/>  
@@ -171,6 +173,15 @@ export default{
     }  
 }  
 ```  
+动态传值：实时更新父组件的值，子组件动态更新，使用 Watch
+```js
+// 子组件
+watch: {
+    myData(val) {    // myData 即为父组件的值，val 参数为值
+        this.testData = val;   // 将父组件的值赋给子组件中的 testData
+    }
+}
+```
 **子传父**  
 * 父组件中给子组件绑定一个自定义的事件，子组件通过$emit()触发该事件并传值  
 ```js  
@@ -544,8 +555,8 @@ getData() {
 另一页面接收该参数的方式：
 `this.$route.query.id`
 
-3. 区别：
-* path的query传参会显示在url后边的地址栏中（/anotherPage?id=1），name的params传递参数不会展示到地址栏
+3. 参数接收区别：
+* path的query传参会显示在url后边的地址栏中（/anotherPage?id=1），可以直接获取，name的params传递参数不会展示到地址栏
 * 由于动态路由也是使用params传递，所以push中path和params不能一起使用，否则params无效，需要使用name来指定页面
 
 
@@ -908,6 +919,8 @@ updateChildren：
 * 使用key可以将相同的节点保留，移动位置，只需要创建不同的节点插入  
 * 更加快速高效  
 
+**vue key**
+
 
 ### 模板编译  
 * 模板编译为render函数，执行render函数返回vnode  
@@ -1122,6 +1135,147 @@ const proxyData = reactive(data)
 * 可监听数组变化  
 
 
+## Vue + TS
+### 基于类的组件
+* 为了使用ts，先设置`<script>`标签的lang属性为ts
+* vue-property-decorator使用了Vue的类组件包，包含了各种装饰器，默认使用类名作为name
+```js
+// vue component-ts
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
+import project from '@/components/Project.vue'
+@Component({
+    components: {
+        project
+    }
+})
+export default class HelloWorld extends Vue {
+}
+</script>
+```
+### Vue属性和方法
+**data属性**
+直接声明为变量即可
+```js
+@Component
+export default class HelloWorld extends Vue {
+    msg = "hi";
+    list = [
+        {
+            name: 'z',
+            age: '26'
+        }
+    ];
+    obj = {};
+}
+```
+**props属性**
+使用`@Prop`装饰器在Vue组件中使用props。
+```js
+import { Component, Prop, Vue } from 'vue-property-decorator'
+@Component
+export default class HelloWord extends Vue {
+    @Prop() readonly msg!: string;   // readonly表示不能改变
+    @Prop({ required: true, default: 'z' }) readolny name: string;  // required和default
+}
+```
+**Computed属性**
+以get关键字作为前缀
+```js
+export default class HelloWorld extends Vue {
+    get fullName(): string {
+        return this.firstName + '' + this.lastName;
+    }
+}
+```
+**Methods**
+和data属性一样，直接在类中写方法即为methods
+```js
+export default class HelloWorld extends Vue {
+    addNum(num1: number, num2: number) {
+        return num1 + num2;
+    }
+}
+```
+**Watcher监听**
+使用`@Watch`装饰器并传递需要监视的变量的名称
+```js
+@Watch('name')
+nameChanged(newVal: string) {
+    this.name = newVal;
+}
+// 使用immediate和deep
+@Watch('project', {
+    immediate: true, deep: true
+})
+projectChanged(newVal: Person, oldVal: Person){
+    // do something
+}
+```
+**Emit**
+从子组件emit一个方法到父组件，使用`@Emit`装饰器
+```js
+@Emit()
+addToCount(n: number) {  // 注：使用时函数名会被转换为短横线分割（add-to-count)
+    this.count += N;
+}
+@Emit('resetData')  // resetData为显式名称
+resetCount() {
+    this.count = 0;
+}
+<some-component reset-data="someMethod"/>
+```
+**生命周期**
+被声明为普通类方法，直接使用即可
+```js
+export default class HelloWorld extends Vue {
+    created() {
+        // 1
+    }
+    mounted() {
+        // 2
+    }
+}
+```
+**Mixins**
+首先创建一个mixin文件，包含我们与其他组件共享的数据
+如创建一个ProjectMixin.ts的文件，其中共享了projectName和更新ProjectName的方法：
+```js
+import { Component, Vue } from 'vue-property-decorator'
+@Component
+class ProjectMixin extends Vue {
+    projectName = "my project"
+    setProjectName(newVal: string) {
+        this.projectName = newVal;
+    }
+}
+export default ProjectMixin
+```
+引入mixin文件：
+```js
+// Project.vue
+<template>
+  <div class="project-detail">
+    {{ projectDetail }}
+  </div>
+</template>
+<script lang="ts">
+import { Component, Vue, Mixins } from 'vue-property-decorator'
+import ProjectMixin from '@/mixins/ProjectMixin'
+@Component
+export default class project extends Mixins(ProjectMixin) {
+  get projectDetail(): string {
+    return this.projName + ' ' + 'Preetish HS'
+  }
+}
+</script>
+```
+### Vuex
+首先，需要安装两个流行的第三方库：
+```js
+npm install vuex-module-decorators -D
+npm install vuex-class -D
+```
 
 
 
@@ -1129,7 +1283,7 @@ const proxyData = reactive(data)
    * v-if是Vue控制的真正的的渲染和销毁，v-show是css切换控制的  
    * v-if具有较大的切换开销，v-show具有较大的初始渲染开销  
    * 若频繁切换则用v-show，若条件一般不变则用v-if  
-2. $route和$router的区别是什么？  
+2. `$route`和`$router`的区别是什么？  
 3. Vue中几种常用的指令  
 4. Vue中常用的修饰符  
 5. v-on跨域绑定多个方法吗  
