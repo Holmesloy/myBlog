@@ -1,39 +1,39 @@
 # JavaScript  
 
-## defer和async  
+## defer 和 async  
 一般来说，当浏览器遇到`<script>`标签时，会暂停HTML文档解析，然后去下载并立即执行脚本，脚本执行完成再继续HTML文档解析。  
 `defer`和`async`都是`<script>`标签属性，都用于外部脚本文件。  
-`async`：异步加载脚本，即脚本下载和HTML解析是并行的，脚本一旦下载完成会立即执行，暂停文档解析，脚本执行顺序不能保证按序执行，不一定在DOMContentLoaded事件触发之前完成，但一定在load事件之前执行。  
-`defer`：延迟执行脚本，下载和HTML解析并行完成，但是等到页面文档解析完成之后执行，即全程不阻塞文档解析，脚本执行顺序与位置一致，在DOMContentLoaded事件触发之前完成。  
-**总结：**`defer`和`async`下载都是异步进行的，只是执行时间和顺序有区别，其实最佳实践是将脚本放到body最下面，保证其他元素能以最快速度进行加载和解析。  
+`defer`：延迟执行脚本，下载和 HTML 解析并行完成，但是等到页面文档解析完成之后执行，即全程不阻塞文档解析，脚本执行顺序与位置一致，在 DOMContentLoaded 事件触发之前完成。  
+`async`：异步加载脚本，即脚本下载和 HTML 解析是并行的，脚本一旦下载完成会立即执行，暂停文档解析，脚本执行顺序不能保证按序执行，不一定在 DOMContentLoaded 事件触发之前完成，但一定在 load 事件之前执行。  
+**总结：**`defer`和`async`下载都是异步进行的，只是执行时间和顺序有区别，其实最佳实践是将脚本放到 body 最下面，保证其他元素能以最快速度进行加载和解析。  
 
 
 ## 数据类型  
-JS共7种数据类型：基本数据类型和一种引用数据类型（Object）。  
-6种基本数据类型：`Undefined`，`Null`，`Boolean`，`Number`，`String`，`Symbol`。  
-其中，`Null`比较特殊，可以看作一个特殊的引用类型，它保存一个空对象指针null。  
+JS 共 7 种数据类型：基本数据类型和一种引用数据类型（Object）。  
+6 种基本数据类型：`Undefined`，`Null`，`Boolean`，`Number`，`String`，`Symbol`。  
+其中，`Null`比较特殊，可以看作一个特殊的引用类型，它保存一个空对象指针 null。  
 
-`Undefined`：唯一值，即undefined，当**变量声明但未初始化**时，变量值即为undefined。  
-`Null`：唯一值，即null，表示一个空对象指针。`typeof(null)`返回"object"。  
-`Boolean`：true or false，以下值类型转换为false：`"", 0和NaN, null, undefined`。**注意：`"0"`会转化为true**。    
-`Number`：最大值**Number.MAX_VALUE**，其中NaN与任何值都不相等，包括自己，使用`isNaN()`判断是否可以转换为数字类型。数值转换方法：`Number()`, `parseInt()`, `parseFloat()`。**注：任意值与布尔值比较，都会将两边的值先转化为Number。**   
-`String`：可以用单引号和双引号，转换为字符串：`toString()` 或者 + "" 。  
-`Symbol`：表示唯一值，使用Symbol()创建：`const s = Symbol('hi')`，参数可选，常用作对象的唯一属性名  
+`Undefined`：唯一值，即 undefined，当**变量声明但未初始化**时，变量值即为 undefined。  
+`Null`：唯一值，即 null，表示一个空对象指针。`typeof(null)`返回 "object"。  
+`Boolean`：true or false，以下值类型转换为false：`"", 0 和 NaN, null, undefined`。**注意：`"0"`会转化为 true**。    
+`Number`：最大值 **Number.MAX_VALUE**，其中 NaN 与任何值都不相等，包括自己，使用`isNaN()`判断是否可以转换为数字类型。数值转换方法：`Number()`, `parseInt()`, `parseFloat()`。**注：任意值与布尔值比较，都会将两边的值先转化为 Number。**   
+`String`：可以用单引号和双引号，转换为字符串：`toString()` 或者 `+ ""` 。  
+`Symbol`：表示唯一值，使用 Symbol() 创建：`const s = Symbol('hi')`，参数可选，常用作对象的唯一属性名  
 
-`Object类型`：`var o = new Object()`  
-Object的每个实例（原型链中）都具有下列属性和方法：  
+`Object 类型`：`var o = new Object()`  
+Object 的每个实例（原型链中）都具有下列属性和方法：  
 * constructor：构造函数，保存用于创建当前对象的函数。  
-* hasOwnProperty(param)：用于检查给定的**属性**是否在当前对象实例中（不去原型中找），param为字符串形式。  
+* hasOwnProperty(param)：用于检查给定的**属性**是否在当前对象实例中（不去原型中找），param 为字符串形式。  
 * toString()：返回对象的字符串表示。  
-* valueOf()：返回对象的字符串、数值或布尔值表示，通常与toString()相同。  
+* valueOf()：返回对象的字符串、数值或布尔值表示，通常与 toString() 相同。  
 
-### typeof和instanceof  
-typeof用来判断基本数据类型的类型。如typeof(5)，结果为'number'（小写）。  
+### typeof 和 instanceof  
+typeof 用来判断基本数据类型的类型。如 typeof(5)，结果为 'number'（小写）。  
 特殊情况：  
 * typeof(null) ：'object'  
 * typeof(函数) : 'function'  
 
-instanceof用来判断引用类型或者自定义类型，会去原型链中查找，直到Object的原型，返回一个布尔值。    
+instanceof 用来判断引用类型或者自定义类型，会去原型链中查找，直到 Object 的原型，返回一个布尔值。    
 
 ### == 运算符  
 除了 == null 之外，其他一律用 ===，如：  
@@ -44,9 +44,9 @@ if(obj.a == null){ }
 if(obj.a === null || obj.a === undefined){ }  
 ```  
 
-### eval()函数  
-* 相当于解析器，接收一个参数，即要执行的**js字符串**  
-* eval()中创建的任何变量或函数都不会提升，只在eval()执行时创建  
+### eval() 函数  
+* 相当于解析器，接收一个参数，即要执行的 **js 字符串**  
+* eval() 中创建的任何变量或函数都不会提升，只在 eval() 执行时创建  
 ```js  
 eval("alert('i')");   // 等价于alert('i')  
 
@@ -72,8 +72,8 @@ alert(person.name)   // z
 ```  
 **访问器属性**  
 * 访问器属性是对象中的一个隐藏属性，但不包含数据值  
-* 拥有getter和setter函数，读取属性会调用getter，写入会调用setter  
-* 不可直接定义，必须使用Object.defineProperty()来定义  
+* 拥有 getter 和 setter 函数，读取属性会调用 getter，写入会调用 setter  
+* 不可直接定义，必须使用 Object.defineProperty() 来定义  
 * 常见使用方式：设置对象中一个属性的值会导致其他属性发生变化  
 ```js  
 var book = {  
@@ -85,7 +85,7 @@ Object.defineProperty(book, "year", {
     get: function(){  
         return this._year;   // _是一种记号，表示只能通过对象方法访问的属性  
     },  
-    set: function(newVal){  // newVal就是year新值，因为这里就是针对year的defineProperty  
+    set: function(newVal){  // newVal 就是 year 新值，因为这里就是针对 year 的 defineProperty  
         if(newVal > 2008){  
             this._year = newVal;  
             this.edition = 2;  
@@ -93,19 +93,19 @@ Object.defineProperty(book, "year", {
     }  
 })  
 
-book.year = 2009;   // 设置新值  
-alert(book.edition);   // 2，设置了year的值结果导致edition发生变化  
+book.year = 2009;      // 设置新值  
+alert(book.edition);   // 2，设置了 year 的值结果导致 edition 发生变化  
 ```  
 
-## this指针和原型  
-### this指针  
-解析器在调用函数时，每次会传递进去一个隐含的参数，即this，this指向的是一个对象，这个对象称为函数执行时的上下文对象。根据函数调用方式的不同，this会指向不同的对象。  
-注意：**this的值是在函数执行的时候确定的**，不是定义的时候确定的。   
-1. 以函数形式调用时，this永远都是window。如：fun（），this为window  
-2. 以方法形式调用时，this是调用方法的那个对象。如：obj.show（），this为obj。即谁调用函数，this就指向谁，window也是一个对象。  
-3. 以构造函数形式调用时，this为新创建的对象。  
-4. 使用call（）和apply（）时，this是第一个参数指向的那个对象  
-5. 箭头函数中的this根据上下文得到，取上级作用域的值  
+## this 指针和原型  
+### this 指针  
+解析器在调用函数时，每次会传递进去一个隐含的参数，即 this，this 指向的是一个对象，这个对象称为函数执行时的上下文对象。根据函数调用方式的不同，this 会指向不同的对象。  
+注意：**this 的值是在函数执行的时候确定的**，不是定义的时候确定的。   
+1. 以函数形式调用时，this 永远都是 window。如：fun（），this为window  
+2. 以方法形式调用时，this 是调用方法的那个对象。如：obj.show（），this 为 obj。即谁调用函数，this就指向谁，window 也是一个对象。  
+3. 以构造函数形式调用时，this 为新创建的对象。  
+4. 使用 call（）和 apply（）时，this 是第一个参数指向的那个对象  
+5. 箭头函数中的 this 根据上下文得到，取上级作用域的值  
 ```js  
 const person = {  
     name: "z",  
@@ -133,28 +133,29 @@ const person = {
 ### 原型  
 **原型和原型链**  
 实例、构造函数和原型对象三者关系：  
-* 每个构造函数都有一个原型对象，通过prototype指针指向原型对象  
+* 每个构造函数都有一个原型对象，通过 prototype 指针指向原型对象  
 * 原型对象内部有一个指针（constructor）指向构造函数  
-* 每个实例有一个指针（`__proto__`)指向原型对象，注意实例中没有指针指向构造函数  
+* 每个实例有一个指针（`__proto__`)指向原型对象，注意实例中没有指针指向构造函数 
+<img alt="proto" src="../.vuepress/image/proto.png" style="zoom:70%"> 
 
 **原型规则**  
 获取实例属性或实例方法时，  
 先从实例自身寻找，若没有，则去原型中查找（`__proto__`）  
-然后原型对象中也存在一个隐式原型（`__proto__`），直到找到Object的原型，即`Object.protytype`。（注：Object.prototype的__proto__指向null）    
+然后原型对象中也存在一个隐式原型（`__proto__`），直到找到 Object 的原型，即`Object.protytype`。（注：Object.prototype 的 __proto__ 指向 **null**）    
 
 **相关方法：**    
 1. `isPrototypeOf `：判断对象是否是某实例的原型对象   
 `Person.protoype.isPrototypeOf(person) // true`  
-2. `hasOwnProperty`：检测一个属性是否在实例中，不去原型中找  
+1. `hasOwnProperty`：检测一个属性是否在实例中，不去原型中找  
 `person.hasOwnProperty(name)  // true`  
-3. `in`：检测一个属性是否在实例或者原型中  
+1. `in`：检测一个属性是否在实例或者原型中  
 `"name" in Person`  
-4. `Object.keys()`：获得对象上所有可枚举的实例属性，返回数组,不去原型中找  
+1. `Object.keys()`：获得对象上所有可枚举的实例属性，**返回数组**,不去原型中找  
 `var keys = Object.keys(person)`  
-5. **Object.create()：创建一个新的空对象**  
-   * const obj2 = new Object(obj1)，则obj1 === obj2  
-   * Object.create(null)没有原型，也没有其他属性  
-   * Object.create({...})可指定原型，即参数放在原型中  
+1. **Object.create()：创建一个新的空对象**  
+   * const obj2 = new Object(obj1)，则 obj1 === obj2  
+   * Object.create(null) 没有原型，也没有其他属性  
+   * Object.create({...}) 可指定原型，即参数放在原型中  
    ```js  
    const obj1 = {  
        a: 10,  
@@ -164,7 +165,7 @@ const person = {
    const obj2 = new Object({  
        a: 10,  
        b: 20  
-   })// 此时obj1 != obj2，若使用obj2=new Object(obj1)，则obj1===obj2  
+   }) // 此时obj1 != obj2，若使用obj2=new Object(obj1)，则obj1===obj2  
    
 
    const obj3 = Object.create(null);  // obj3没有属性和原型  
@@ -199,10 +200,10 @@ const person = {
 
 ### var let const  
 * 建议使用优先级：const > let > var  
-* 声明const常量，则变量不能被修改，防止意外修改错误，另外js编译器对const也作了优化，可以提高代码执行效率  
-* let和var相比，先声明后使用更加规范，同时产生块级作用域  
-* let一般用于基础数据类型，const一般用于引用数据类型，像函数对象和数组等  
-* 注：const用于引用数据类型保存的是变量地址，所以引用类型中的值是可以改变的  
+* 声明 const 常量，则变量不能被修改，防止意外修改错误，另外 js 编译器对 const 也作了优化，可以提高代码执行效率  
+* let 和 var 相比，先声明后使用更加规范，同时产生块级作用域  
+* let 一般用于基础数据类型，const 一般用于引用数据类型，像函数对象和数组等  
+* 注：const 用于引用数据类型保存的是变量地址，所以引用类型中的值是可以改变的  
 
 ## 创建对象与设计模式  
 ### 工厂模式  
@@ -225,7 +226,7 @@ var person = createObject("z", 25, "superman");
 缺点：无法知道一个对象的类型  
 
 ### 构造函数模式  
-像Object属于原生构造函数，还可以自定义函数作为构造函数，其中自定义对象类型的属性和方法。  
+像 Object 属于原生构造函数，还可以自定义函数作为构造函数，其中自定义对象类型的属性和方法。  
 ```javascript  
 function Person(name, age, job){  
     this.name = name;  
@@ -240,14 +241,14 @@ var person = new Person("z", 25, "superman");
 ```  
 **特征：**    
 （1）构造函数函数名大写  
-（2）直接将属性和方法赋值给了this对象  
-（3）需要使用 new 操作符，同时不需要return语句  
-**new操作符调用构造函数创建实例步骤：**  
+（2）直接将属性和方法赋值给了 this 对象  
+（3）需要使用 new 操作符，同时不需要 return 语句  
+**new 操作符调用构造函数创建实例步骤：**  
 （1）创造一个新的对象   
 （2）将该对象链接到构造函数的原型（变成原型的实例对象）    
-（3）this指针指向该对象，并执行构造函数，添加属性和方法  
+（3）this 指针指向该对象，并执行构造函数，添加属性和方法  
 （4）返回该对象  
-使用构造函数可以将一个对象标识成一种特定的类型（优于工厂模式），而且对象的constuctor（构造函数）属性指向该构造函数，例如：  
+使用构造函数可以将一个对象标识成一种特定的类型（优于工厂模式），而且对象的 constuctor（构造函数）属性指向该构造函数，例如：  
 ```javascript  
 person.constructor == Person;  // true  
 person.constructor == Object;  // true  
@@ -269,7 +270,7 @@ Person.prototype = {
     }  
 }  
 ```  
-注：重写了原型之后constructor属性不再指向Person，指向Object，要想指向Person可以手动设置该属性。  
+注：重写了原型之后 constructor 属性不再指向 Person，指向 Object，要想指向 Person 可以手动设置该属性。  
 问题：共享的引用类型值可以被所有的实例对象同步修改  
 
 ### 组合构造函数和原型模式  
@@ -289,10 +290,10 @@ Person.prototype = {
 ```  
 
 ## 继承  
-子类继承父类的属性和方法，ES5中没有类的概念，因此主要通过原型链实现，这里简单称为子类和父类。  
+子类继承父类的属性和方法，ES5 中没有类的概念，因此主要通过原型链实现，这里简单称为子类和父类。  
 默认的原型：`Object.prototype`  
 ### 原型链继承  
-核心在于**让子类的原型对象成为父类的一个实例对象**，这时该原型对象的prototype指针就指向了父类的原型对象，也可以称为原型链链接  
+核心在于**让子类的原型对象成为父类的一个实例对象**，这时该原型对象的 prototype 指针就指向了父类的原型对象，也可以称为原型链链接  
 ```javascript  
 function Parent(){  
     this.property = true;  
@@ -306,14 +307,14 @@ Child.prototype = new Parent();
 问题：包含引用类型的原型属性会被所有实例共享  
     创建子类时不能向父类的构造函数传递参数  
 ### 构造函数继承  
-子类构造函数中调用父类构造函数，请记住：**函数只是在特定环境中执行代码的对象，使用call()和apply()在新对象中执行构造函数**。  
+子类构造函数中调用父类构造函数，请记住：**函数只是在特定环境中执行代码的对象，使用 call() 和 apply() 在新对象中执行构造函数**。  
 ```javascript  
 function Parent(name){  
     this.colors = ["red", "pink"];  
     this.name = name  
 }  
 function Child(age){  
-    // 继承父类，而且还能传递name参数  
+    // 继承父类，而且还能传递 name 参数  
     Parent.call(this, "z");  
     this.age = age;  
 }  
@@ -345,7 +346,7 @@ Child.prototype.constructor = Child;
 注：经过以上继承，**子类继承了父类的实例属性，继承了原型对象的方法**。  
 
 ### 原型式继承  
-给定一个对象，将其作为原型，然后生成新的对象，使用Object.create()实现：  
+给定一个对象，将其作为原型，然后生成新的对象，使用 Object.create() 实现：  
 ```javascript  
 var person = {  
     name : 'z',  
@@ -358,7 +359,7 @@ var obj = Object.create(person);
 obj.__proto__ === person;   // true，此时obj为{}  
 obj.colors.push("yellow");  // "red","green","yellow"，person中colors也会改变  
 ```  
-如上所示，person为给定的一个对象，作为原型对象，然后使用`Object.create()`生成一个新的对象赋给obj，obj的__proto__指针即指向person  
+如上所示，person 为给定的一个对象，作为原型对象，然后使用`Object.create()`生成一个新的对象赋给 obj，obj 的 __proto__ 指针即指向 person  
 ### 寄生式继承  
 在原型式继承的基础上，封装一个函数，在函数内部增强对象再返回  
 ```js  
@@ -393,7 +394,7 @@ function inheritProto(child, parent){
 高效、只调用一次构造函数，也可以使用引用类型。  
 
 ### ES6继承  
-ES6引入了class，使用extends实现继承，super()执行父类构造方法。  
+ES6 引入了 class，使用 extends 实现继承，super() 执行父类构造方法。  
 ```js  
 class Animal{  
     // 构造方法  
@@ -424,13 +425,13 @@ const cat = new Cat(10, "fish")
 cat.print("small")  // 调用的是父类方法  
 cat.newPrint()  // 子类新方法  
 ```  
-以上代码中，使用class关键字定义了一个Animal类，其中有一个`constructor()` 方法即为构造方法。  
+以上代码中，使用 class 关键字定义了一个 Animal 类，其中有一个`constructor()` 方法即为构造方法。  
 然后再定义一个**Cat**类，  
 `extends`用来实现继承，  
 `super()`用来执行父类构造方法，  
 然后子类中可以自己重写父类方法或扩展新方法。  
 
-## 数据API  
+## 数据 API  
 **纯函数**  
 1. 不改变原数组  
 2. 返回一个数组  
@@ -453,8 +454,8 @@ const nums = Array.protytype.slice.call(arguments)
 
 ## 高级技巧  
 ### 安全的类型检测  
-很多类型检测并不准确，会存在各种各样的问题。这里使用Object原生的toString()方法实现类型检测。  
-任何值上调用Object原生toString()方法都会返回一个[Object NativeConstructorName]。使用这一特性可封装检测函数。  
+很多类型检测并不准确，会存在各种各样的问题。这里使用 Object 原生的 toString() 方法实现类型检测。  
+任何值上调用 Object 原生 toString() 方法都会返回一个 [Object NativeConstructorName]。使用这一特性可封装检测函数。  
 ```js  
 // 检测数组  
 function isArray(value){  
@@ -493,7 +494,7 @@ function curry(fn){
     }  
 }  
 ```  
-以上实现中apply的参数为null，因为没有考虑到执行环境，调用如下：  
+以上实现中 apply 的参数为 null，因为没有考虑到执行环境，调用如下：  
 ```js  
 function add(num1, num2){  
     return num1 + num2;  
@@ -502,7 +503,7 @@ function add(num1, num2){
 var curryAdd = curry(add, 5); // 这里的5就是实现中得到的args  
 curryAdd(3);  // 8，这里的3即是传入的新的参数newArgs  
 ```  
-由以上代码可以看出，当curryAdd函数参数达到两个时，参数拼接后可以执行。因此，函数柯里化本质就是**创建一个闭包，保存参数，当参数数量达到函数执行要求时，执行函数**。  
+由以上代码可以看出，当 curryAdd 函数参数达到两个时，参数拼接后可以执行。因此，函数柯里化本质就是**创建一个闭包，保存参数，当参数数量达到函数执行要求时，执行函数**。  
 **bind()函数：**  
 
 ```js  
@@ -525,8 +526,8 @@ fn2();
 ```  
 
 ## DOM  
-DOM的本质是一棵树，是浏览器根据HTML进行解析得到的一棵树。  
-### 获取DOM结点  
+DOM 的本质是一棵树，是浏览器根据 HTML 进行解析得到的一棵树。  
+### 获取 DOM 结点  
 ```js  
 const div1 = document.getElementById('div1');  // 元素  
 const divList = document.getElementsByTagName('div');  // 集合  
@@ -536,10 +537,10 @@ console.log(divList[0]);
 const containerList = document.getElementsByClassName('container');  // 集合  
 const pList = document.querySelectorAll('p');  // 集合，根据css选择器格式选择  
 ```  
-### property和attribute  
+### property 和 attribute  
 * property：修改对象属性，如宽度，颜色等，不会体现到HTML结构中  
-* attribute：修改HTML属性，会改变HTML结构  
-* 两者都可能引起DOM重新渲染，一般修改property  
+* attribute：修改 HTML 属性，会改变 HTML 结构  
+* 两者都可能引起 DOM 重新渲染，一般修改 property  
 ```js  
 const pList = document.querySelectorAll('p');  
 const p1 = pList[0];  
@@ -589,12 +590,12 @@ console.log(res)
 div.removeChild(pList[0]);  
 ```  
 
-### DOM性能  
-* DOM操作非常耗时，避免频繁进行DOM操作  
-* 对DOM查询做缓存  
+### DOM 性能  
+* DOM 操作非常耗时，避免频繁进行 DOM 操作  
+* 对 DOM 查询做缓存  
 * 将频繁操作（如插入节点）合并为一次性操作  
 
-DOM查询做缓存：  
+DOM 查询做缓存：  
 ```js  
 // 每次循环都要进行length计算  
 for(let i = 0; i < document.getElementsByTagName('p').length; i++){  
@@ -625,18 +626,18 @@ for(let i = 0; i < 10; i++){
 // 一次性插入到DOM  
 listNode.appendChild(frag);  
 ```  
-### window对象和document对象  
-* window对象：表示浏览器中打开的窗口  
-* document对象：代表给定浏览器窗口中的HTML文档  
-* document对象可以通过window对象的document属性引用，其他还有location对象等  
-* 所以，document中的事件可以冒泡到window  
+### window 对象和 document 对象  
+* window 对象：表示浏览器中打开的窗口  
+* document 对象：代表给定浏览器窗口中的 HTML 文档  
+* document 对象可以通过 window 对象的 document 属性引用，其他还有 location 对象等  
+* 所以，document 中的事件可以冒泡到 window  
 
-### load事件与DOMContentLoaded事件  
-* 当DOM加载完成，形成完整DOM树时触发DOMContentLoaded事件，不包括样式表、图片或者引入的外部脚本等。  
-* 页面中的所有DOM、样式表、图片、脚本都加载完成后，load事件触发。  
-* 一般在DOMContentLoaded事件完成后添加事件处理程序，用户可以更早与页面进行交互  
+### load 事件与 DOMContentLoaded 事件  
+* 当 DOM 加载完成，形成完整 DOM 树时触发 DOMContentLoaded 事件，不包括样式表、图片或者引入的外部脚本等。  
+* 页面中的所有 DOM、样式表、图片、脚本都加载完成后，load 事件触发。  
+* 一般在 DOMContentLoaded 事件完成后添加事件处理程序，用户可以更早与页面进行交互  
 ```js  
-// 在DOMContentLoaded事件完成后添加事件处理程序，用户可以更早与页面进行交互  
+// 在 DOMContentLoaded 事件完成后添加事件处理程序，用户可以更早与页面进行交互  
 document.addEventListener('DOMContentLoaded', function(e){  
     // 事件处理  
     alert("COMContentLoaded");  
@@ -650,7 +651,7 @@ window.addEventListener('load', function(e){
 ## BOM  
 **1. navigator**  
 ```js  
-const ua = navigator.userAgent  
+const ua = navigator.userAgent   
 const isChrome = ua.indexOf('Chrome')  
 console.log(isChrome)  
 ```  
@@ -673,9 +674,9 @@ history.forward()  // 后退
 
 ## 事件机制
 ### 事件触发
-* window往事件触发处传播，称为事件捕获，直到遇到注册的事件层
+* window 往事件触发处传播，称为事件捕获，直到遇到注册的事件层
 * 执行注册的事件
-* 从事件触发处向window传播，称为事件冒泡，遇到注册的冒泡事件会触发
+* 从事件触发处向 window 传播，称为事件冒泡，遇到注册的冒泡事件会触发
 ### 事件绑定  
 ```js  
 const btn = document.getElementById('btn1')  
@@ -697,8 +698,8 @@ bindEvent(a, 'click', e => {
 ```  
 
 ### 事件冒泡  
-事件冒泡指事件在DOM中一层一层向外触发，外层DOM都可以监听到该事件，一直到body。  
-* 基于DOM树形结构  
+事件冒泡指事件在 DOM 中一层一层向外触发，外层 DOM 都可以监听到该事件，一直到 body。  
+* 基于 DOM 树形结构  
 * 事件会顺着触发元素往上冒泡  
 * 应用：事件代理  
 
@@ -731,7 +732,7 @@ bindEvent(body, 'click', e => {
     <button>点击加载更多</button>  
 </div>  
 <button>  
-    点击增加一个a标签  
+    点击增加一个 a 标签  
 </button>  
 ```  
 ```js  
@@ -780,11 +781,11 @@ bindEvent(div1, 'clicked', 'a', function(e) {  // 直接写参数a
 ```  
 应用举例：如何监听图片列表中各个图片的点击？  
 * 事件代理  
-* 使用e.target获取触发元素  
-* 使用matches来判断是否是图片，再处理  
+* 使用 e.target 获取触发元素  
+* 使用 matches 来判断是否是图片，再处理  
 
 ## 垃圾回收机制  
-首先，Javascript会周期性找出那些不再用到的变量，然后释放其内存。  
+首先，Javascript 会周期性找出那些不再用到的变量，然后释放其内存。  
 各大浏览器通常采用的垃圾回收机制有两种方法：标记清除、引用计数。  
 ### 标记清除  
 * 声明变量，则变量标记为“进入环境”，变量离开环境时，如函数执行完成，标记为“离开环境”  
@@ -800,8 +801,8 @@ test();    //执行完毕后之后，a和b又被标记"离开环境"，被回收
 
 ### 引用计数  
 * 语言引擎中有一张“引用表”，保存了内存中的资源引用次数  
-* 若一个值的引用次数为0，表示不再用到，则将其内存释放  
-* 如果一个值不需要了，但引用数不为0，则无法释放，从而导致内存泄漏，这时候要手动解除引用  
+* 若一个值的引用次数为 0，表示不再用到，则将其内存释放  
+* 如果一个值不需要了，但引用数不为 0，则无法释放，从而导致内存泄漏，这时候要手动解除引用  
 ```js  
 let arr = [1,2,3,4];  // 这里[1,2,3,4]会占用内存，arr引用它，次数为1  
 console.log("hello world");  // 未使用arr，但数组被arr引用，无法释放  
@@ -812,21 +813,21 @@ arr = null;  // 手动解除引用
 ### 内存泄漏  
 * 持续运行的服务进程，必须及时释放内存，否则内存占用持续升高，影响系统性能甚至崩溃  
 * 不再用到的内存，若没有及时释放，就叫做内存泄漏  
-* 大多数语言提供自动内存管理，但有些如c语言需要手动释放内存  
+* 大多数语言提供自动内存管理，但有些如 c 语言需要手动释放内存  
 
 **识别内存泄漏**  
 经验：若连续五次垃圾回收后，内存占用一次比一次大，则出现内存泄漏，这时候要实时查看内存占用。  
-使用Chrome浏览器查看内存占用：  
-* 开发者工具，选择performance面板  
-* 顶部的Capture字段中勾选Memory  
+使用 Chrome 浏览器查看内存占用：  
+* 开发者工具，选择 performance 面板  
+* 顶部的 Capture 字段中勾选 Memory  
 * 点击左上角的录制按钮  
 * 页面中进行各种操作，模拟用户的使用情况，还可以点击回收内存  
-* 一段时间后，点击stop按钮，面板上就会显示这段时间内存占用情况  
+* 一段时间后，点击 stop 按钮，面板上就会显示这段时间内存占用情况  
 * 若内存占用基本平稳，接近水平，说明不存在内存泄露，否则需要检查代码排查问题  
 
-### WeakMap和WeakSet  
+### WeakMap 和 WeakSet  
 * 我们经常忽略一些引用的清除，如果有一种方法，让我们只需要清除主要引用，次要引用会自动忽略就好了  
-* ES6推出WeakSet和WeakMap，它们对值的引用都是不计入垃圾回收机制的，weak就表示弱引用  
+* ES6 推出 WeakSet 和 WeakMap，它们对值的引用都是不计入垃圾回收机制的，weak 就表示弱引用  
 ```js  
 const wm = new WeakMap();  // 新建WeakMap实例  
 const ele = document.getElementById('example')  
@@ -834,4 +835,4 @@ const ele = document.getElementById('example')
 wm.set(ele, 'value')  // 这里的引用即为弱引用，不会被计入垃圾回收机制  
 wm.get(ele)  // 'value'，一旦消除对ele的引用，则wm中的键值对也会被回收  
 ```  
-因此，如果想向map中添加数据，又不想干扰垃圾回收机制，就可以使用WeakMap。  
+因此，如果想向 map 中添加数据，又不想干扰垃圾回收机制，就可以使用 WeakMap。  

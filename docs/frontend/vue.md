@@ -1,51 +1,51 @@
 # Vue  
 
-## Vue基本使用  
-### Vue组成  
-一个Vue实例一般由  
+## Vue 基本使用  
+### Vue 组成  
+一个 Vue 实例一般由  
 * `<template></template>`视图模板  
-* `<script></script>`中的data数据和相关方法  
+* `<script></script>`中的 data 数据和相关方法  
 * `<style></style>`中的页面样式组成。  
 
 **优点**  
 * 轻量、快速，数据双向绑定，数据驱动视图，操作简单  
 * 组件化，组件可封装并复用  
-* 使用虚拟DOM，优化性能表现  
+* 使用虚拟 DOM，优化性能表现  
 
-**Vue指令**  
+**Vue 指令**  
 * v-bind：简写为`:`，用于动态绑定标签属性  
 * v-on：简写为`@`，用于绑定事件，可以监听多个方法  
 * `<input type="text" v-on="{input: onInput, blur: onBlur}"/>`  
 
 
 **双向数据绑定：v-model**  
-* 用于input、select、textarea等表单元素中，绑定表单数据  
+* 用于 input、select、textarea 等表单元素中，绑定表单数据  
 * `<input v-model="变量"/>`，表单值和变量值会同步变化  
 
-**v-if和v-show的区别**  
-* v-if切换会创建和销毁标签，v-show只是切换标签的display属性  
-* v-if是在显示的时候才进行渲染，v-show只是简单的基于css切换  
-* v-if有更高的切换消耗，v-show有更高的初始渲染消耗  
-* 运行时条件一般不改变使用v-if，频繁切换使用v-show  
+**v-if 和 v-show 的区别**  
+* v-if 切换会创建和销毁标签，v-show 只是切换标签的 display 属性  
+* v-if 是在显示的时候才进行渲染，v-show 只是简单的基于 css 切换  
+* v-if 有更高的切换消耗，v-show 有更高的初始渲染消耗  
+* 运行时条件一般不改变使用 v-if，频繁切换使用 v-show  
 
 **vue常用修饰符**  
-* 以`.名称`的形式添加到vue指令后，实现相应的功能  
-* `v-model.lazy`：添加lazy后则数据与change事件同步，而不是每次input事件，相当于防抖  
+* 以`.名称`的形式添加到 vue 指令后，实现相应的功能  
+* `v-model.lazy`：添加 lazy 后则数据与 change 事件同步，而不是每次 input 事件，相当于防抖  
 * `v-model.number`：将输入的值转换为数值类型，不能转换的则不可输入  
 * `v-model.trim`：自动过滤用户输入前后空格  
 * `v-on:click.stop`：阻止单击事件继续传播  
 * `@click.stop.prevent`：修饰符可连接，阻止传播+阻止默认事件（注意顺序，会有不同的影响）  
 
 
-**为什么组件中的data是一个函数？**  
-* 对象为引用类型，复用组件时，数据对象会共享一个data对象  
-* 则一个组件修改了data中数据会影响其他组件数据  
+**为什么组件中的 data 是一个函数？**  
+* 复用组件时，对象为引用类型，数据对象会共享一个 data 对象  
+* 则如果一个组件修改了 data 中数据会影响其他组件数据  
 * 使用函数每次都会返回一个新的对象，引用地址不同  
 
-### computed和watch  
+### computed 和 watch  
 **计算属性**  
 * 用于变量存在复杂逻辑时的计算，依赖其他属性算出来得到的值（也可以是数组和对象等）  
-* computed有缓存，只有其依赖的属性改变时，才会重新计算  
+* computed 有缓存，只有其依赖的属性改变时，才会重新计算  
 * 不支持异步，其中的异步操作无效  
 ```js  
 var var vm = new Vue({  
@@ -66,8 +66,8 @@ var var vm = new Vue({
 **侦听器**  
 * 用来侦听一个特定的值，当该值变化时执行特定的函数  
 * 监听的值变化时，都会执行回调  
-* 支持异步，接收两个参数，一个newVal，一个oldVal  
-* watch监听引用类型，拿不到oldVal，添加deep:true后可以深度监听  
+* 支持异步，接收两个参数，一个 newVal，一个 oldVal  
+* watch 监听引用类型，拿不到 oldVal，添加 deep:true 后可以深度监听  
 ```js  
 var var vm = new Vue({  
   el: '#demo',  
@@ -90,38 +90,38 @@ var var vm = new Vue({
 ```  
 
 ### 生命周期  
-* 创建阶段：**beforeCreate**中vue实例中的挂载元素el和数据对象data都未初始化，为undefined；**created**中data初始化，可以获取到data、coomputed、watch。而el还未初始化。  
-* 载入阶段：**beforeMount**中，el和data都已初始化，但此时还是虚拟DOM节点；**mounted**中DOM和data数据渲染完成。  
-* 更新阶段：data变化时，会依次触发**beforeUpdate**和**updated**方法。  
-* 销毁阶段：**beforeDestroy**中还可以获取到数据和事件；执行**destroyed**后，vue已经解除了事件监听和DOM绑定，只是DOM结构还存在。  
-![cycle](https://cn.vuejs.org/images/lifecycle.png)  
+* 创建阶段：**beforeCreate** 中 vue 实例中的挂载元素 el 和数据对象 data 都未初始化，为 undefined；**created** 中 data 初始化，可以获取到 data、coomputed、watch。而 el 还未初始化。  
+* 载入阶段：**beforeMount** 中，el 和 data 都已初始化，但此时还是虚拟 DOM 节点；**mounted** 中 DOM 和 data 数据渲染完成。  
+* 更新阶段：data 变化时，会依次触发 **beforeUpdate** 和 **updated** 方法。  
+* 销毁阶段：**beforeDestroy** 中还可以获取到数据和事件；执行 **destroyed** 后，vue 已经解除了事件监听和 DOM 绑定，只是 DOM 结构还存在。  
+<img alt="cycle" src="https://cn.vuejs.org/assets/lifecycle.16e4c08e.png" style="zoom:50%">
 
 **父子组件生命周期**  
 * 创建阶段首先创建父组件，再创建子组件  
 * 渲染时首先渲染子组件，再渲染父组件  
 
-### class和style  
+### class 和 style  
 * 使用动态属性绑定：`:class`和`:style`  
-* 使用驼峰式写法+字符串值  
+* 使用驼峰式写法 + 字符串值  
 
 ### 循环（列表）渲染  
 遍历数组：  
 `<li v-for="(item, key) in listArr" :key="item.id> {{ item }} </li>"`  
 遍历对象：  
 `v-for="(val, key, index) in listObj" :key="key"`  
-注意：v-if和v-for不在一个标签内使用  
-**v-for中为什么使用key？**  
-* key为string或number类型  
-* key值唯一，用于Vue跟踪每个节点的身份，也可以按照key值渲染元素  
-* 原理在于diff算法中，辨别新旧Vnode  
-* 不使用key则更新时需要将旧节点全部删除，再插入新节点  
-* 使用key可以将相同的节点保留，移动位置排序，只需要创建不同的节点插入，更加快速高效  
+注意：v-if 和 v-for 不在一个标签内使用  
+**v-for 中为什么使用 key？**  
+* key 为 string 或 number 类型  
+* key 值唯一，用于 Vue 跟踪每个节点的身份，也可以按照 key 值渲染元素  
+* 原理在于 diff 算法中，辨别新旧 Vnode  
+* 不使用 key 则更新时需要将旧节点全部删除，再插入新节点  
+* 使用 key 可以将相同的节点保留，移动位置排序，只需要创建不同的节点插入，更加快速高效  
 
 ### 事件  
-event参数如何传递：  
-* 当函数中无其他参数时，event可以默认传过去  
-* 当函数中有其他参数时，使用$event传入事件参数  
-* 注：event是原生的，且被挂载到当前元素  
+event 参数如何传递：  
+* 当函数中无其他参数时，event 可以默认传过去  
+* 当函数中有其他参数时，使用 $event 传入事件参数  
+* 注：event 是原生的，且被挂载到当前元素  
 ```js  
 <button @click="add1()">+1</button>  
 <button @click="add2(2, $event)">+2</button>  
@@ -140,17 +140,17 @@ methods:{
 ### 表单  
 * v-model  
 * 常见表单项：textarea checkbox radio select  
-* 修饰符lazy number trim  
+* 修饰符 lazy number trim  
 
 
 ### 组件通讯  
-* props和$emit  
+* props 和 $emit  
 * 组件间通讯-自定义事件  
 * vuex  
 
 **父传子**  
 * 父组件声明一个属性表示要传递的数据
-* 子组件使用props接收父组件传递的数据  
+* 子组件使用 props 接收父组件传递的数据  
 * 可以通过点击时间或者计算属性进行赋值操作
 ```js  
 // 父组件中  
@@ -183,7 +183,7 @@ watch: {
 }
 ```
 **子传父**  
-* 父组件中给子组件绑定一个自定义的事件，子组件通过$emit()触发该事件并传值  
+* 父组件中给子组件绑定一个自定义的事件，子组件通过 $emit() 触发该事件并传值  
 ```js  
 // 父组件  
 <Child @myEvent = 'process'/>   // 这里传参不用加括号了  
@@ -194,16 +194,16 @@ methods:{
     }  
 }  
 
-// 子组件中，可以在某一方法中触发$emit  
+// 子组件中，可以在某一方法中触发 $emit  
 this.$emit('myEvent', '传递的数据')  
 ```  
 
 **兄弟组件通讯**  
 1. 先子传父，再父传子  
-2. 使用中央总线通信bus，创建自定义事件触发和接收  
+2. 使用中央总线通信 bus，创建自定义事件触发和接收  
 
 ## Vue高级特性  
-* 自定义v-model  
+* 自定义 v-model  
 * $nextTick  
 * slot  
 * 动态、异步组件  
@@ -214,11 +214,11 @@ this.$emit('myEvent', '传递的数据')
 ![v-model](@alias/v-model.png)
 
 ### $nextTick  
-* Vue响应式中，data变化后DOM不是立即变化，而是异步渲染  
-* $nextTick是执行延迟回调，会在DOM渲染之后被触发，所以修改数据之后使用它可以在回调中获取更新后的DOM  
+* Vue 响应式中，data 变化后 DOM 不是立即变化，而是异步渲染  
+* $nextTick 是执行延迟回调，会在 DOM 渲染之后被触发，所以修改数据之后使用它可以在回调中获取更新后的 DOM  
 
-**ref用来获取DOM元素**  
-先给标签设置一个ref值，再通过`this.$refs.domName`来获取，配合`$nextTick`来使用，如：  
+**ref 用来获取 DOM 元素**  
+先给标签设置一个 ref 值，再通过`this.$refs.domName`来获取，配合`$nextTick`来使用，如：  
 ```js  
 <ul ref='ul1'></ul>  // 标签中添加ref   
 
@@ -234,7 +234,7 @@ this.$nextTick(() => {
 ### slot  
 * 可以看成组件的扩展，用于向组件中我们想要的位置添加一些内容  
 
-**slot的理解**  
+**slot 的理解**  
 ```html 
 1. 首先考虑父组件向子组件中传递数据  
 <!-- 父组件   -->
@@ -246,22 +246,22 @@ this.$nextTick(() => {
 <!-- 子组件   -->
 <template>  
     <div>  
-    <a>我是一个a标签</a>  
-    <slot>我是slot默认内容</slot>   // 注意这里的slot  
+    <a>我是一个 a 标签</a>  
+    <slot>我是 slot 默认内容</slot>   // 注意这里的slot  
     </div>  
 </template>  
-3. 子组件中的slot会被完全替代为父组件中“我想添加的内容”  
+3. 子组件中的 slot 会被完全替代为父组件中“我想添加的内容”  
 <!-- 如果父组件中不添加内容，则子组件显示slot的默认内容，也可以不设置   -->
 <!-- 另外，slot可以设置style属性   -->
 ```  
 
 **基本使用**  
-很多时候，我们封装了一个子组件之后，在父组件使用的时候，想添加一些dom元素，这个时候就可以使用slot插槽了，但是这些dom是否显示以及在哪里显示，则是看子组件中slot组件的位置了。  
+很多时候，我们封装了一个子组件之后，在父组件使用的时候，想添加一些 DOM 元素，这个时候就可以使用 slot 插槽了，但是这些 DOM 是否显示以及在哪里显示，则是看子组件中 slot 组件的位置了。  
 插槽从父组件获取值：  
 ```html 
 <!-- 父组件中   -->
 <SlotDemo :url="website.url">  
-    {{website.title}}    // 传入了父组件中的title变量  
+    {{website.title}}    // 传入了父组件中的 title 变量  
 </SlotDemo>  
 
 <!-- 子组件中   -->
@@ -280,7 +280,7 @@ export default{
 
 **作用域插槽**  
 * 父组件从子组件插槽中获取数据  
-* 子组件将要传递的内容绑定到slot上，父组件中用v-slot定义一个值接收插槽的名字  
+* 子组件将要传递的内容绑定到 slot 上，父组件中用 v-slot 定义一个值接收插槽的名字  
 ```js  
 <SlotDemo :url="website.url">  
     <template v-slot:default="slotProps">  // slotProps就代表了子组件中的插槽  
@@ -308,17 +308,17 @@ export default{
 }  
 ```  
 **具名插槽**  
-* 一个组件中需要多个插槽时，在slot中添加name属性  
-* 父组件中使用v-slot绑定name属性，即可正确按顺序插入  
+* 一个组件中需要多个插槽时，在 slot 中添加name属性  
+* 父组件中使用 v-slot 绑定 name 属性，即可正确按顺序插入  
 
 ### 动态组件  
 * :is="comonentName"  
 * 根据数据，动态渲染组件，即要加载的组件类型不确定，如新闻流。  
-* 如v-for遍历中，首先得到组件的类型数据，然后再得到其他数据渲染出来。  
+* 如 v-for 遍历中，首先得到组件的类型数据，然后再得到其他数据渲染出来。  
 
 ### 异步组件  
 * 异步加载组件，意思是什么时候用到，什么时候再加载组件  
-* 主要用到import()函数，一般用于较大组件的加载  
+* 主要用到 import() 函数，一般用于较大组件的加载  
 ```js  
 // 在coponents属性中引入属性时，用import()  
 components:{  
@@ -329,11 +329,11 @@ components:{
 ### 缓存组件:keep-alive  
 * 频繁切换时，不需要重复渲染  
 * 将需要缓存的组件使用`<keey-alive><component></component></keey-alive>`包裹  
-* 框架层级，Vue控制js对象（跟v-show区别）  
+* 框架层级，Vue 控制 js 对象（跟 v-show 区别）  
 
 ### mixin  
 * 多个组件有相同的逻辑，抽离出来  
-* Vue3使用Composition API解决这些问题  
+* Vue3 使用 Composition API 解决这些问题  
 * 混合，用来存放公共数据和逻辑，然后引入到某个页面后会将数据和方法合并到当前页面  
 ```js  
 // 引入  
@@ -344,16 +344,16 @@ export default{
 ```  
 问题：  
 * 变量来源不明确，代码可读性差  
-* 多个mixin可能会造成命名冲突  
-* mixin和组件可能出现多对多关系，复杂度较高  
+* 多个 mixin 可能会造成命名冲突  
+* mixin 和组件可能出现多对多关系，复杂度较高  
 
 ### Vuex  
 组成：  
 * state：全部组件公共状态  
-* getters：相当于store的计算属性。使用$store.getters.  
-* mutations：修改状态的方法。使用$store.commit('', params)  
-* actions：异步操作。使用$store.dispatch('')  
-* modules：store分割得到的模块，每个模块都有自己的state、getters等。  
+* getters：相当于 store 的计算属性。使用 $store.getters.  
+* mutations：修改状态的方法。使用 $store.commit('', params)  
+* actions：异步操作。使用 $store.dispatch('')  
+* modules：store 分割得到的模块，每个模块都有自己的 state、getters 等。  
 
 ![vuex](@alias/vuex.png)  
 ```js  
@@ -397,7 +397,7 @@ store.commit('increment')   // 触发了increment方法，count++
 // actions触发  
 this.store.dispatch('increment', data)  
 ```  
-**module**：Vuex允许将Store切分为不同的module，提高代码可读性  
+**module**：Vuex 允许将 Store 切分为不同的 module，提高代码可读性  
 ```js  
 const moduleA = {  
     state: () => ({}),  
@@ -423,13 +423,13 @@ store.state.a   // moduleA的状态
 store.state.b   // moduleB的状态  
 ```  
 **场景**  
-* 当ajax请求数据为组件公用时，可以将代码放在action中，不是共用则放在某一组件的methods中。  
-* 注：vuex中获取的数据，不能直接更改，需要浅拷贝对象后更改，否则报错。  
-* vuex中的数据再页面刷新后数据会消失，因此可以使用sessionStorage或localStorage存储数据  
+* 当 ajax 请求数据为组件公用时，可以将代码放在 action 中，不是共用则放在某一组件的 methods 中。  
+* 注：vuex 中获取的数据，不能直接更改，需要浅拷贝对象后更改，否则报错。  
+* vuex 中的数据再页面刷新后数据会消失，因此可以使用 sessionStorage 或 localStorage 存储数据  
 
 **mapGetters**  
-* 用于组件中批量使用vuex中的getter属性  
-* 在组件中引入mapGetters，将其展开混入computed对象中  
+* 用于组件中批量使用 vuex 中的 getter 属性  
+* 在组件中引入 mapGetters，将其展开混入 computed 对象中  
 ```js  
 import { mapGetters } form 'vuex'  
 export default{  
@@ -439,8 +439,8 @@ export default{
 }  
 ```  
 **mapMutations**  
-* 在组件中重复使用mutation  
-* 使用mapMutations辅助函数  
+* 在组件中重复使用 mutation  
+* 使用 mapMutations 辅助函数  
 ```js  
 import { mapMutations } from 'vuex'  
 methods:{  
@@ -449,9 +449,9 @@ methods:{
     })  
 }  
 ```  
-其中，SET_NUMBER为mutations中方法，调用this.$store.commit('SET_NUMBER', 10)就可以使用this.setNumber(10)代替。  
+其中，SET_NUMBER 为 mutations 中方法，调用 this.$store.commit('SET_NUMBER', 10) 就可以使用 this.setNumber(10) 代替。  
 
-**mutations和actions区别**  
+**mutations 和 actions 区别**  
 * action提交的是mutation，而不是直接变更状态，可以使用异步  
 * mutation直接变更状态，只能使用同步  
 * 提交方式不同  

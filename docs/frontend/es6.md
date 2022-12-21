@@ -1,44 +1,44 @@
 # ES6
 
-## let和const  
+## let 和 const  
 用于变量声明，支持块级作用域  
 **let：添加一个块级作用域**  
 **const：声明一个只读的常量，声明后不可改变**（注：定义的基本类型不能改变，但是引用类型可变，因为变量保存的是引用类型的内存地址）  
 
-**和var的区别：**    
-* var存在变量提升，let和const必须先声明后使用 
-* var和let是变量，const是常量，不可修改  
-* var没有块级作用域  
-* const定义的基本类型不能改变，但是引用类型可变，因为变量保存的是引用类型的内存地址 
-* var不受限于块级，而且使用var声明的变量也是window的一个属性  
+**和 var 的区别：**    
+* var 存在变量提升，let 和 const 必须先声明后使用 
+* var 和 let 是变量，const 是常量，不可修改  
+* var 没有块级作用域  
+* const 定义的基本类型不能改变，但是引用类型可变，因为变量保存的是引用类型的内存地址 
+* var 不受限于块级，而且使用 var 声明的变量也是 window 的一个属性  
 
 **JS变量提升：**    
 * 变量可以在使用后声明，也就是变量可以先使用再声明。  
 * 变量提升优先级：**函数声明 > arguments > 变量声明**。    
-* 注意，let和const存在暂存性死区，在声明之前使用会报错。   
+* 注意，let 和 const 存在暂存性死区，在声明之前使用会报错。   
 
 **函数提升：**  
-* 函数声明function(){}也会提升，可以在声明前使用，  
+* 函数声明 function(){} 也会提升，可以在声明前使用，  
 * 函数表达式`const fn = function(){}`不能提升，提前使用会提示`TypeError`  
 
-## Map和Set
+## Map 和 Set
 ### Map
 * 键值对结构，查找速度较快
-* 构造函数与Map()可以接收一个数组作为参数
+* 构造函数与 Map() 可以接收一个数组作为参数
 ```js
 初始化：
 var m = new Map();
 var m1 = new Map([['x1', 10], ['x2', 20]]);
 
 常用方法：
-m.set(key, value) ：添加key-value，添加新值或覆盖原值
-m.get(key) ：获取key对应的value，不存在为undefined
-m.has(key) ：查找是否存在某key
+m.set(key, value) ：添加 key-value，添加新值或覆盖原值
+m.get(key) ：获取 key 对应的 value，不存在为 undefined
+m.has(key) ：查找是否存在某 key
 m.delete(key) ：删除某项
 ```
 ### Set
 * 存储元素不重复，插入重复值会被过滤
-* 构造函数Set()可以接收一个数组作为参数
+* 构造函数 Set() 可以接收一个数组作为参数
 ```js
 初始化：
 var s = new Set();
@@ -48,7 +48,7 @@ var s1 = new Set([1, 2, 3]);
 s.add(key) ：插入某值
 s.delete(key) ： 删除某值
 ```
-注：Map和Set都是iterable类型，通常使用for...of循环或者forEach进行遍历。
+注：Map 和 Set 都是 iterable 类型，通常使用 for...of 循环或者 forEach 进行遍历。
 
 ## 模板字符串  
 `${ 字符串变量 }`：将字符串作为变量进行拼接，使用`${}`  
@@ -59,7 +59,7 @@ console.log(`hello ${name}`);  // hello z，注意反引号
 ```  
 
 ## 箭头函数  
-函数的简单写法，不需要写function，不需要写return  
+函数的简单写法，不需要写 function，不需要写 return  
 ```js  
 function(x, y){  
     return x + y;  
@@ -70,10 +70,10 @@ function(x, y){
 // 单个参数可以不要括号
 x => x + 1;
 ```  
-与普通函数最大区别：箭头函数的this继承上下文，不会改变，取上级作用域的值，而普通函数谁调用它，this就指向谁。  
+与普通函数最大区别：箭头函数的 this 继承上下文，不会改变，取上级作用域的值，而普通函数谁调用它，this 就指向谁。  
 
 ## 函数的默认值  
-ES6允许函数在声明时设置默认值，直接写在参数后面  
+ES6 允许函数在声明时设置默认值，直接写在参数后面  
 ```js  
 function print(x, y = "z"){    // y设置默认值  
     console.log(x + ' ' + y);  
@@ -85,14 +85,14 @@ print("hello");  // hello z
 ## 三点操作符：...  
 含义分为两种，一种是展开运算符，一种是剩余操作符。  
 ### 展开运算符（spread operator）  
-作用于Array和Object上，将元素展开  
+作用于 Array 和 Object 上，将元素展开  
 ```js  
 let a = [1, 2, 3];  
-let b = [0, ...a, 4];  // [0,1,2,3,4]，将a展开，再进行解构赋值  
+let b = [0, ...a, 4];  // [0,1,2,3,4]，将 a 展开，再进行解构赋值  
 
 let obj = { a: 1, b: 2 };  
 let obj1 = { ...obj, c: 3 };  // {a:1, b:2, c:3}  
-let obj2 = { ...obj, a: 3 };  // {a:3, b:2}，后面的a重新赋值了，覆盖了之前a的值  
+let obj2 = { ...obj, a: 3 };  // {a:3, b:2}，后面的 a 重新赋值了，覆盖了之前 a 的值  
 ```  
 展开操作符进行的是**对属性的浅拷贝，只拷贝了第一层**，常用于项目开发实际开发中：  
 ```js  
@@ -117,7 +117,7 @@ let result = add(...arr);  // result == 3
 ### 剩余操作符（rest operator）  
 作用于谁身上就表示将剩余元素塞进一个数组中，再赋予它，常用于数组的解构。  
 ```js  
-let [a, ...b] = [1, 2, 3];  // 将剩余元素2，3放在一个数组中给b  
+let [a, ...b] = [1, 2, 3];  // 将剩余元素 2，3 放在一个数组中给 b  
 // a = 1, b = [2, 3]  
 
 let a = [1, 2, 3];  
@@ -133,7 +133,7 @@ test(1, 3, 2);   // 参数序列
 ```  
 
 ## 对象的扩展  
-1. 对象中都是使用键值对进行书写，而键和值是有可能重名的，ES6提供简写形式。  
+1. 对象中都是使用键值对进行书写，而键和值是有可能重名的，ES6 提供简写形式。  
 ```js  
 // ES5  
 function person(name, age){  
@@ -151,7 +151,7 @@ function person(name, age){
     };  
 }  
 ```  
-2. ES6也简化了对象字面量的赋值语法  
+2. ES6 也简化了对象字面量的赋值语法  
 ```js  
 // ES5  
 var person = {  
@@ -205,8 +205,8 @@ const color = ['red', 'green']
 const [first, second] = color  
 console.log(first, second)   // red green(中间空格)  
 ```  
-## import和export  
-import导入模块，export导出模块  
+## import 和 export  
+import 导入模块，export 导出模块  
 ```js  
 // 全部导入  
 import people from './example';   // 原导出模块名称为people
@@ -225,7 +225,7 @@ export defalt App;
 // 部分导出  
 export class App extend Component {};  
 ```  
-导入时对于大括号{}的使用：  
+导入时对于大括号 {} 的使用：  
 ```js  
 1. 默认导出时，导入不需要使用大括号  
 export default person;  
@@ -235,29 +235,29 @@ import person from './example';  // 不用大括号
 export name;  
 import { name } from './example';  // 名称不变  
 
-3. 当一个文件存在多个export时，导入时以逗号分开  
+3. 当一个文件存在多个 export 时，导入时以逗号分开  
 export default person;  
 export age;  
 import person, {name, age} from './example';  // 分别导入  
 
-4. 当一个文件导出很多模块时，可以使用import * as 变量 形式导入  
+4. 当一个文件导出很多模块时，可以使用 import * as 变量 形式导入  
 import * as example from './example';  // example作为新命名的变量  
 ```  
 
 ## Promise  
 回调地狱：
 * 回调函数以函数为参数，它依赖其中传入参数返回的值，所以需要等待传入的函数执行完成
-* 比如http请求中请求函数作为处理函数的参数，这个过程是异步调用的，当功能比较复杂时，就需要连续调用
+* 比如 http 请求中请求函数作为处理函数的参数，这个过程是异步调用的，当功能比较复杂时，就需要连续调用
 * 因此会出现一个函数嵌套另一个函数的情况，不仅造成代码可读性低，而且容易出错，即回调地狱。  
 
 **Promise**
-* 异步编程的一种解决方案，是ES6的一个对象
-* Promise也作为一个构造函数
+* 异步编程的一种解决方案，是 ES6 的一个对象
+* Promise 也作为一个构造函数
 * 从它可以获取异步操作的消息
 
-**Promise**的三种状态：**pending（等待态）**，**resolved（成功态）**和**rejected（失败态）**。  
-创建Promise实例后，它会立即执行。    
-注：此时会作为同步代码立即执行，直到Promise中遇到异步任务或者状态改变调用.then()方法才会变成异步任务。 
+**Promise** 的三种状态： **pending（等待态）**，**resolved（成功态)** 和 **rejected（失败态）**。  
+创建 Promise 实例后，它会立即执行。    
+注：此时会作为同步代码立即执行，直到 Promise 中遇到异步任务或者状态改变调用 .then() 方法才会变成异步任务。 
 ```js  
 const p = new Promise((resolve, reject) => {  
     // 做一些异步操作，如  
@@ -267,15 +267,15 @@ const p = new Promise((resolve, reject) => {
     }, 2000);  
 });  
 ```  
-Promise的构造函数接收一个函数作为参数，该函数中还需要传入两个参数：  
-* 第一个参数表示异步操作执行成功后的回调函数，如以上的resolve  
-* 第二个参数表示异步操作失败后执行的回调函数，如以上的reject  
-* 也可直接使用Promise.resolve()和Promise.reject()  
+Promise 的构造函数接收一个函数作为参数，该函数中还需要传入两个参数：  
+* 第一个参数表示异步操作执行成功后的回调函数，如以上的 resolve  
+* 第二个参数表示异步操作失败后执行的回调函数，如以上的 reject  
+* 也可直接使用 Promise.resolve()和 Promise.reject()  
 注：Promise.resolve(x) 可以看作是 new Promise(resolve => resolve(x)) 的简写，可以用于快速封装字面量对象或其他对象，将其封装成 Promise 实例，Promise.reject()用法相似。  
 
-### then链式操作  
-Promise的重点在于“状态”，使用传递状态的方式来使得回调函数能够及时调用，then就是用来传递状态的函数。  
-then方法接收两个函数作为参数，第一个对应成功状态的回调，第二个对应失败状态的回调。  
+### then 链式操作  
+Promise 的重点在于“状态”，使用传递状态的方式来使得回调函数能够及时调用，then 就是用来传递状态的函数。  
+then 方法接收两个函数作为参数，第一个对应成功状态的回调，第二个对应失败状态的回调。  
 ```js  
 // 声明p为一个Promise变量  
 const p = new Promise((resolve, reject) => {  
@@ -293,10 +293,10 @@ p.then((data) => {    // 对于then，我们一般只使用第一个参数，第
     console.log("rejected", err);  
 });  
 ```  
-以上代码中，根据生成的num大小设置成功或失败状态并传递参数。then中成功状态的回调函数参数data为resolve中传过来的num，失败状态的回调函数参数err为reject中传过来的"数字太大了"；  
-### catch的用法  
-catch方法和then的第二个参数一样，用来执行失败情况下的回调。另外，当执行回调过程中（不管是哪种状态的回调）抛出异常，则同样进入catch方法中执行代码，不会卡死js。  
-我们一般使用then只传递一个参数，用以执行成功情况下回调，然后使用catch执行失败情况下的回调，不过如果then中设置了失败情况下的回调并执行，同样也会进入catch。  
+以上代码中，根据生成的 num 大小设置成功或失败状态并传递参数。then 中成功状态的回调函数参数 data 为 resolve 中传过来的 num，失败状态的回调函数参数 err 为 reject 中传过来的"数字太大了"；  
+### catch 的用法  
+catch 方法和 then 的第二个参数一样，用来执行失败情况下的回调。另外，当执行回调过程中（不管是哪种状态的回调）抛出异常，则同样进入 catch 方法中执行代码，不会卡死 js。  
+我们一般使用 then 只传递一个参数，用以执行成功情况下回调，然后使用 catch 执行失败情况下的回调，不过如果 then 中设置了失败情况下的回调并执行，同样也会进入 catch。  
 ```js  
 p.then((data) => {  
     console.log("resovled", data);  
@@ -304,14 +304,14 @@ p.then((data) => {
     console.log("catch reject", err);  
 })  
 ```  
-### then和catch状态  
-pending->resolved或rejected都不可逆，但resolved和rejected可以互相转换  
-* then正常返回resolved，里面发生错误则返回rejected  
-* catch正常返回resolved，里面发生错误则返回rejected  
+### then 和 catch 状态  
+pending->resolved 或 rejected 都不可逆，但 resolved 和 rejected 可以互相转换  
+* then 正常返回 resolved，里面发生错误则返回 rejected  
+* catch 正常返回 resolved，里面发生错误则返回 rejected  
 ### Promise.all用法  
-Promise.all接收一个iterable类型（Array,Map,Set）作为参数，数组中每项都是都是Promise的实例。当数组中每个Promise的最终状态都是成功态时，Promise.all的状态也是成功态，然后可以执行相应回调。有一个失败则执行失败回调。  
-注：执行成功回调的数据是一个数组，包含其中每个Promise的状态数据  
-执行失败回调的数据为最先进入失败状态的Promise返回的数据  
+Promise.all 接收一个 iterable 类型（Array,Map,Set）作为参数，数组中每项都是都是 Promise 的实例。当数组中每个 Promise 的最终状态都是成功态时，Promise.all 的状态也是成功态，然后可以执行相应回调。有一个失败则执行失败回调。  
+注：执行成功回调的数据是一个数组，包含其中每个 Promise 的状态数据  
+执行失败回调的数据为最先进入失败状态的 Promise 返回的数据  
 ```js  
 let p1 = new Promise((resolve, reject) => {});  
 let p2 = new Promise((resolve, reject) => {});  
@@ -325,10 +325,10 @@ p.then((res) => {   // res为一个数组
     // 出错或者p1,p2,p3出现失败回调则p执行失败回调  
 })  
 ```  
-使用Promise.all，可以并行进行多个异步操作，然后在一个回调中处理所有的返回数据。  
+使用 Promise.all，可以并行进行多个异步操作，然后在一个回调中处理所有的返回数据。  
 ### Promise.race用法  
-Promise.race同样接收一个iterable类型（Array,Map,Set）作为参数，与all不同的是，其中哪个Promise的实例率先执行完成，race就返回该结果，而且状态跟先执行完成的实例状态一致。  
-注：执行回调的数据为先执行的Promise返回数据
+Promise.race 同样接收一个 iterable 类型（Array,Map,Set）作为参数，与 all 不同的是，其中哪个 Promise 的实例率先执行完成，race 就返回该结果，而且状态跟先执行完成的实例状态一致。  
+注：执行回调的数据为先执行的 Promise 返回数据
 ```js  
 let p1 = new Promise((resolve, reject) => {});  
 let p2 = new Promise((resolve, reject) => {});  
@@ -340,21 +340,21 @@ Promise.race([p1, p2, p3]).then((data) => {
     // 若第一个执行完成的实例为失败状态，则race也执行失败状态  
 })  
 ```  
-## async和await  
-基于Promise的Generaotr函数语法糖，用来实现异步编程，异步的本质还是回调函数。  
-async用来声明一个异步函数，返回的是一个Promise对象。await用来等待一个异步方法完成，得到一个Promise结果。  
-async和await用于解决Promise传递参数较为复杂的问题，使代码结构看起来更加清晰。  
+## async 和 await  
+基于 Promise 的 Generaotr 函数语法糖，用来实现异步编程，异步的本质还是回调函数。  
+async 用来声明一个异步函数，返回的是一个 Promise对象。await 用来等待一个异步方法完成，得到一个 Promise 结果。  
+async 和 await 用于解决 Promise 传递参数较为复杂的问题，使代码结构看起来更加清晰。  
 * 解决回调地狱  
-* Promise链式调用同样基于回调函数  
-* async/await是同步语法，彻底消灭回调函数  
-* 和Promise并不互斥，经常结合使用，如async函数和then()配合使用  
+* Promise 链式调用同样基于回调函数  
+* async/await 是同步语法，彻底消灭回调函数  
+* 和 Promise 并不互斥，经常结合使用，如 async 函数和 then() 配合使用  
 
-**async/await和Promise**  
-* 执行async函数，返回的是Promise对象，一般我们主动返回Promise  
-* await相当于Promise的then，所以await下面的代码都是作为异步任务  
-* try...catch用于捕获异常，代替Promise中的catch  
+**async/await 和 Promise**  
+* 执行 async 函数，返回的是 Promise 对象，一般我们主动返回 Promise  
+* await 相当于 Promise 的 then，所以 await 下面的代码都是作为异步任务  
+* try...catch 用于捕获异常，代替 Promise 中的 catch  
 
-async函数：  
+async 函数：  
 ```js  
 // async函数  
 async function fn1(){  
@@ -409,7 +409,7 @@ try/catch：
     }  
 })()  
 ```  
-await行下面的内容，都可以看作callback中的内容，即异步。  
+await 行下面的内容，都可以看作 callback 中的内容，即异步。  
 ```js  
 async function async1(){  
     console.log('async1 start')   // 2  
@@ -427,7 +427,7 @@ console.log('script end')   // 4，同步代码执行完成
 ```  
 
 ## class, extends, super  
-ES6引进类（class）的概念，更方便进行实例创建和继承。  
+ES6 引进类（class）的概念，更方便进行实例创建和继承。  
 ```js  
 class Animal{  
     // 构造方法  
@@ -498,26 +498,26 @@ for(let i of nums){
 ```  
 
 
-## CommonJS模块与ES6模块
-### CommonJS模块
+## CommonJS 模块与 ES6 模块
+### CommonJS 模块
 * 动态引入，执行时引入，即代码中可以使用`require(..)`引入
 * 引用属于值的拷贝，所以模块中的值不会改变已经加载的值
-* 使用require命令加载模块时，会加载整个模块，只会加载一次，用到值时使用加载的缓存值
-* this指向当前模块
+* 使用 require 命令加载模块时，会加载整个模块，只会加载一次，用到值时使用加载的缓存值
+* this 指向当前模块
 
-### ES6模块
-* 静态引入，即在文件头部使用import，编译时引用，可以静态分析，实现Tree-Shaking
-* ES6模块中的值属于“动态只读引用”，即不允许修改引入变量的值，原始值变化时，import加载的值也会发生变化
+### ES6 模块
+* 静态引入，即在文件头部使用 import，编译时引用，可以静态分析，实现 Tree-Shaking
+* ES6 模块中的值属于“动态只读引用”，即不允许修改引入变量的值，原始值变化时，import 加载的值也会发生变化
 * 运行时加载，依然是动态引用，只要两个模块之前存在引用，代码就能执行
-* this指向undefined
+* this 指向 undefined
 
-### AMD和CMD规范
-* AMD推崇依赖前置，在定义模块的时候就要声明其依赖的模块
-* CMD推崇就近依赖，只有在用到某个模块的时候再去require
-* AMD用户体验好，因为没有延迟，依赖模块提前执行了，CMD性能好，因为只有用户需要的时候才执行
+### AMD 和 CMD 规范
+* AMD 推崇依赖前置，在定义模块的时候就要声明其依赖的模块
+* CMD 推崇就近依赖，只有在用到某个模块的时候再去 require
+* AMD 用户体验好，因为没有延迟，依赖模块提前执行了，CMD 性能好，因为只有用户需要的时候才执行
 
-## ES6可选链
-* 开发过程中拿到一个内嵌比较深的值需要做很多判断，保证不会因为没有数据而报undefined错误，如：
+## ES6 可选链
+* 开发过程中拿到一个内嵌比较深的值需要做很多判断，保证不会因为没有数据而报 undefined 错误，如：
 ```js
 const obj = {
     a: {
@@ -526,7 +526,7 @@ const obj = {
         }
     }
 } 
-如果要取c，则通常使用：
+如果要取 c，则通常使用：
 const c = (obj && obj.a && obj.a.b && obj.a.b.c) || '';  // 判断了4次
 可选链写法：
 const c = obj?.a?.b?.c || '';  // ?可以表示是否存在，后面的.即是取下一层级
