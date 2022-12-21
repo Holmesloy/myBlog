@@ -112,12 +112,12 @@ md链接和图片语法类似，图片只是在开头多了一个英文感叹号
 ```
 ![图题](路径或网址 "图片描述")，其中文字全部不显示，当图片加载失败会显示图题，例：
 
-![logo](../.vuepress/dist/cc.png "logo")
+![logo](@/cc.png "logo")
 
 <img alt="logo" src="../.vuepress/dist/cc.png" style="zoom:50%">
 ```
-![logo](/cc.png "logo")
-<img alt="logo" src="/cc.png" style="zoom:50%">
+![logo](@/public/cc.png "logo")
+<img alt="logo" src="@/public/cc.png" style="zoom:50%">
 
 ## 目录
 语法与链接类似，`[目录名](#id)`，点击可以滚动到相应章节

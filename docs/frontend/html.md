@@ -1,9 +1,9 @@
 # HTML  
 
-## HTML5的新特性  
+## HTML5 的新特性  
 （1）语义化标签：header、footer、nav、aside  
-（2）增强型表单：input的多个type（color、data、email、url）  
-（3）新增表单属性：placeholder、required、min和max、step、height和width  
+（2）增强型表单：input 的多个 type（color、data、email、url）  
+（3）新增表单属性：placeholder、required、min 和 max、step、height 和 width  
 （4）音频视频：audio、video  
 （5）canvas  
 （6）本地存储：localStorage、sessionStorage  
@@ -12,14 +12,14 @@
 
 ## 语义化标签的作用  
 * 贴合实际语义，易于理解和记忆，增强可读性  
-* 样式丢失时可以使页面呈现较为清晰的结构（如若全是div则结构会混乱）  
+* 样式丢失时可以使页面呈现较为清晰的结构（如若全是 div 则结构会混乱）  
 * 方便其他设备解析，渲染网页  
-* 有利于SEO（让搜索引擎更容易读懂）  
-* 便于团队开发和维护，遵循W3C标准，减少差异化  
-注：W3C（万维网联盟），致力于发展Web规范，制定标准，解决Web应用中不同平台、技术的不兼容等问题  
+* 有利于 SEO（让搜索引擎更容易读懂）  
+* 便于团队开发和维护，遵循 W3C 标准，减少差异化  
+注：W3C（万维网联盟），致力于发展 Web 规范，制定标准，解决 Web 应用中不同平台、技术的不兼容等问题  
 
-## link和@import的区别  
-* link是HTML提供的标签，不仅可以加载样式，还可以加载其他资源，如图片、脚本等。而@import只能用于加载CSS文件  
+## link 和 @import 的区别  
+* link 是 HTML 提供的标签，不仅可以加载样式，还可以加载其他资源，如图片、脚本等。而@import只能用于加载CSS文件  
 * 多个link引入的文件可以并行解析，而@import要等到页面加载完成之后才开始加载  
 * 可以使用js操作DOM动态引入link，@import只能用于CSS  
 * link引入的样式权重大于@import  

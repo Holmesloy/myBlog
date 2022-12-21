@@ -6,7 +6,7 @@
 首先判断是否还有输入：`sc.hasNext()` 、`sc.hasNextInt()`等  
 输入赋值：  
 `nextInt()`：获取整数  
-`next()`：获取字符串（以空格或换行作为分隔符）  x  
+`next()`：获取字符串（以空格或换行作为分隔符）   
 `nextLine()`：获取字符串（以换行为间隔）  
 `nextDouble()`：获取双精度数  
 注：使用`hasNextxx()`需要与`Nextxx()`相对应。另外，如果使用了`nextInt()`，需要加上`sc.nextLine()`才能获取下一行，否则报错。  
@@ -45,7 +45,7 @@ import java.util.Scanner;
 public class Main{  
     public static void main(String[] args){  
         Scanner sc = new Scanner(System.in); 
-        int n = sc.nextInt();  // n = 5 
+        int n = sc.nextInt();  // n = 5  
         sc.nextLine();  // 注意这里要加nextLine()，以获取下一行
         String[] s = new String[n];
         int[] nums = new int[n];

@@ -1,0 +1,58 @@
+---  
+title: npx 使用  
+date: 2021-9-23  
+categories:  
+ - frontEnd  
+tags:  
+ - blog  
+---  
+
+## npx  
+### 基本介绍  
+* npm 5.2后发布的一个命令，用以执行 npm 依赖包的二进制文件  
+* 使用 npx 可以直接执行本地已安装的依赖包命令，而不用在 script 脚本中写入命令  
+
+一般来说，我们运行命令方式有以下几种：  
+1. 使用 package.json 的 script 脚本  
+```js  
+// package.json  
+"scripts": {  
+  "findmocha": "mocha --version"  
+}  
+
+// 然后在命令行运行：  
+npm run findmocha  
+```  
+2. 在命令行中直接找到模块的二进制文件运行  
+3. 全局安装模块  
+
+而使用 npx ，我们可以直接在命令行执行我们需要的命令：  
+```js  
+npm i -D mocha  
+npx mocha --version  
+```  
+
+### npx 原理  
+执行 npx 命令时，背后流程如下：  
+1. 去 node_modules/.bin 路径下检查 npx 后的命令是否存在，找到之后执行；  
+2. 找不到，就去环境变量 $PATH 里面，检查 npx 后的命令是否存在，找到之后执行；  
+3. 若还是找不到，则自动下载一个临时的依赖包最新版本在一个临时目录，然后再运行，运行完成之后删除，不污染全局环境  
+
+### 使用场景  
+* 使用 npx 执行本地命令  
+* 只需执行一次的命令，但是却需要全局安装，这时使用 npx 运行完自动删除  
+* 当运行的命令不兼容当前 nodejs 版本时，使用 npx 切换版本，运行命令，同样执行完删除  
+* 使用 npx 开启一个静态服务器： npx http-server  
+
+### npx 使用  
+```js  
+// 安装  
+npm install -g npx  
+
+// -p 参数：用于指定 npx 所要安装的模块  
+npx -p node@6 node -v  
+
+// --no-install 参数：强制使用本地模块，不下载远程模块  
+
+// --ignore-existing 参数：忽略本地的同名模块，强制安装使用远程模块  
+```  
