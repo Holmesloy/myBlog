@@ -1184,5 +1184,15 @@ function defineReactive(target, key, value) {
     }
   })
 }
+const proxyData = new Proxy(data, {
+  get(target, key, receiver) {
+    const ownKyes = Reflect.keys(target)
+    if(ownKeys = Reflect.OwnKeys(target)) {
+      console.log(key)
+    }
+    const result = Reflect.get(target, key, reciever)
+    return result
+  }
+})
 ```
 

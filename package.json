@@ -11,12 +11,13 @@
   "scripts": {
     "dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "deploy": "./deploy.sh"
+    "deploy": "deploy.sh"
   },
   "dependencies": {
     "vue": "^2.6.11",
     "vue-server-renderer": "^2.6.11",
     "vue-template-compiler": "^2.6.11",
-    "vuepress-theme-reco": "^1.5.7"
+    "vuepress-theme-reco": "^1.5.7",
+    "yarn": "^1.22.19"
   }
 }
