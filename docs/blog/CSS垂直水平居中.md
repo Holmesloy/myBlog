@@ -1,5 +1,5 @@
 ---
-title: CSS垂直水平居中
+title: CSS 垂直水平居中
 date: 2020-12-10
 categories:
  - 布局
@@ -16,10 +16,10 @@ tags:
 }
 <div class="parent"><a>hello</a></div>
 ```
-同时适用于文字、链接以及其他inline或者inline-block元素。  
+同时适用于文字、链接以及其他 inline 或者 inline-block 元素。  
 
 **（2）块级元素水平居中**    
-块级元素（dispaly:block）的水平居中，直接设置`margin: 0 auto`，注意，这里div的宽度width必须存在，可以由元素撑开，也可以自己设置。
+块级元素（dispaly:block）的水平居中，直接设置`margin: 0 auto`，注意，这里 div 的宽度 width 必须存在，可以由元素撑开，也可以自己设置。
 ```css
 .center{
     margin: 0 auto;
@@ -42,7 +42,7 @@ tags:
     <div class="center">hao</div>
 </div>
 ```
-现今更常用的方法是使用flexbox。将父元素设置为一个flexbox，再设置对齐方式为center。
+现今更常用的方法是使用 flexbox。将父元素设置为一个 flexbox，再设置对齐方式为 center。
 ```css
 .parent{
     display: flex;
@@ -78,12 +78,12 @@ tags:
 ```
 注：如果要实现水平垂直居中，只需要加入`text-align: center`。  
 **（3）块级元素垂直居中**  
-**方法1：flex布局**  
-父元素设置`display: flex; align-items: center;`，注意，父元素的高度height必须存在。  
+**方法 1：flex 布局**   
+父元素设置`display: flex; align-items: center;`，注意，父元素的高度 height 必须存在。  
 注：如果要实现水平垂直居中，只需要加入`justify-content: center`，这时父元素的宽度必须存在。
 
-**方法2：绝对定位和负边距**（已知宽高）  
-使用绝对定位，将元素top设为50%，再将margin边距设为元素高度的负一半，即可垂直居中  
+**方法 2：绝对定位和负边距**（已知宽高）  
+使用绝对定位，将元素 top 设为 50%，再将 margin 边距设为元素高度的负一半，即可垂直居中  
 ```css
 .parent{
     position: relative;
@@ -98,10 +98,10 @@ tags:
     margin-top: -50px;  /* 再向上移动子元素高度的一半 */
 }
 ```
-注：如果要实现水平垂直居中，加入left设为50%，再将margin-left设置为元素宽度的负一半既可。
+注：如果要实现水平垂直居中，加入 left 设为 50%，再将 margin-left 设置为元素宽度的负一半既可。
 
-**方法3：绝对定位+transform**（和2相似，但不需要知道宽高）  
-transform中的translate偏移的百分比相对于元素自身的尺寸。元素设置为绝对定位，top设置为50%，然后将transform中y轴设置为-50%即可，与负边距类似。  
+**方法3：绝对定位 + transform**（和 2 相似，但不需要知道宽高）  
+transform 中的 translate 偏移的百分比相对于元素自身的尺寸。元素设置为绝对定位，top 设置为 50%，然后将 transform 中 y 轴设置为 -50% 即可，与负边距类似。  
 ```css
 .parent{
     position: relative;
@@ -116,8 +116,8 @@ transform中的translate偏移的百分比相对于元素自身的尺寸。元�
 ```
 注：如果要实现水平垂直居中，则加入`left:50%; transform:(-50%, -50%);`即可。
 
-**方法4：绝对定位与margin**（已知父元素宽高）  
-使用绝对定位，将元素top和bottom设为0，再将margin设为auto即可。
+**方法4：绝对定位与 margin**（已知父元素宽高）  
+使用绝对定位，将元素 top 和 bottom 设为 0，再将 margin 设为 auto 即可。
 ```css
 .parent{
     position: relative;

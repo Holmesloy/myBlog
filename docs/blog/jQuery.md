@@ -8,14 +8,14 @@ tags:
 ---  
 
 ## 常用基础语法
-**1. $(document)：将document对象转换为jQuery**
+**1. $(document)：将 document 对象转换为 jQuery**
 ```js
 $(document).ready(function(){
     alert("hi")
 })
 ```
 
-**2. 获取超链接对象，并增加onclick事件**
+**2. 获取超链接对象，并增加 onclick 事件**
 ```js
 $(document).ready(function(){
     $("a").click(function(){
@@ -24,7 +24,7 @@ $(document).ready(function(){
 })
 ```
 
-**3. jQuery对象与dom对象的转换**
+**3. jQuery 对象与 dom 对象的转换**
 ```js
 $(document).ready(function(){
     var jsElem = document.getElementById("a1")
@@ -38,7 +38,7 @@ $(document).ready(function(){
 })
 ```
 
-**4. jQuery解决id值不存在问题**
+**4. jQuery 解决 id 值不存在问题**
 ```js
 // 传统dom中需要加判断，再去调用，而jQuery处理如下
 $("#a1")[0].style.color = "red"  

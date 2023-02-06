@@ -53,8 +53,9 @@ module.exports = {
           ["browser", "浏览器"],
           ["webpack", "Webpack"],
           ["vue", "Vue"],
+          ["vue3", "Vue3"],
           ["react", "React"],
-          ["mobile", "移动Web开发"]
+          ["mobile", "移动 Web 开发"]
         
         ],
         "/algorithm/":[

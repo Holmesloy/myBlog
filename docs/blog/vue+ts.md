@@ -1,27 +1,27 @@
 ---  
-title: 在vue中使用ts开发
+title: 在 vue 中使用 ts 开发
 date: 2020-7-22
 categories:  
  - frontEnd  
 tags:  
  - ts  
 ---  
-## 更改webpack配置
-1. 修改入口文件为ts
+## 更改 webpack 配置
+1. 修改入口文件为 ts
 ```js
 entry:{
     app: '.src/main.ts'
 }
 ```
-2. 根路径下添加tsconfig.js配置文件，参考配置：
+2. 根路径下添加 tsconfig.js 配置文件，参考配置：
 ```js
 
 ```
-3. 根目录下添加tslint.json文件，规范书写ts，参考配置：
+3. 根目录下添加 tslint.json 文件，规范书写 ts，参考配置：
 ```js
 
 ```
-4. 要让ts认识vue文件，在src路径下添加vue-shim-d.ts
+4. 要让 ts 认识 vue 文件，在 src 路径下添加 vue-shim-d.ts
 ```js
 // vue-shim-d.ts
 import router from '@/config/router';
@@ -42,16 +42,16 @@ declare module 'vue/types/vue' {
 }}
 ```
 
-## vue文件改造
-1. 安装vue-property-decorator插件：
+## vue 文件改造
+1. 安装 vue-property-decorator 插件：
 `npm i -s vue-property-decorator`
-2. vue文件改造
+2. vue 文件改造
 ```js
 // App.vue
 <template>
     <router-view></router-view>
 </template>
-<script lang="ts">  // 让webpack将代码识别为ts
+<script lang="ts">  // 让 webpack 将代码识别为 ts
 import { Component, Vue } from 'vue-property-decorator'  // 装饰器导入
 
 @Component
