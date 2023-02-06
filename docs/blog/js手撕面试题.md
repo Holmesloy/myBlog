@@ -13,7 +13,7 @@ tags:
 使用 new 操作符创建实例，进行了以下步骤：  
 （1）创造一个新的对象   
 （2）将该对象链接到构造函数的原型（变成原型的实例对象）    
-（3）this指针指向该对象，并执行构造函数，添加属性和方法  
+（3）this 指针指向该对象，并执行构造函数，添加属性和方法  
 （4）返回该对象  
 ```javascript  
 /**  
@@ -44,8 +44,8 @@ var obj = _new(Func, 1, 2);
 ```  
 
 ## 2. 实现 instanceof 机制  
-instanceof用来判断引用类型的类型，用法：`obj instanceof Object`  
-使用instanceof会沿着实例对象的原型链上寻找，只要是原型链中存在该类型，则返回true，一直找到基类`Object.prototype.__proto__`  
+instanceof 用来判断引用类型的类型，用法：`obj instanceof Object`  
+使用 instanceof 会沿着实例对象的原型链上寻找，只要是原型链中存在该类型，则返回true，一直找到基类`Object.prototype.__proto__`  
 ```javascript  
 /**  
 * obj：待检测的数据  
@@ -53,7 +53,7 @@ instanceof用来判断引用类型的类型，用法：`obj instanceof Object`
 */  
 function _instanceof(obj, Func){  
     // 获取 Func的原型对象  
-    let Proto = Func.prototype;  
+    const Proto = Func.prototype;  
     // 获取实例对象的原型链对象  
     let proto = obj.__proto__;  
 
@@ -73,7 +73,7 @@ _instanceof(car, Car);
 ```  
 
 ## 3. 实现 call() 方法  
-`call()`用来改变函数执行的作用域，即this指向，简单来说就是执行原函数，但是作用域改变，后面的参数逐个传入，并立即执行。  
+`call()`用来改变函数执行的作用域，即 this 指向，简单来说就是执行原函数，但是作用域改变，后面的参数逐个传入，并立即执行。  
 实现：  
 * 给新对象内部添加一个方法属性，该函数即为原函数  
 * 根据传入的参数执行原函数方法，得到结果后再删除该属性，返回结果。  
@@ -84,44 +84,44 @@ _instanceof(car, Car);
  */  
 Function.prototype.call = function(context, ...args){  
     // context为空时作用域指向window  
-    var context = context || window;  
+    const context = context || window;  
     // 给指向的对象添加一个新属性fn，this为原函数  
     context.fn = this;  
 
     // 传入参数执行原函数，此时this指向context，result为在该作用域中的执行结果  
-    var result = context.fn(...args);  
+    const result = context.fn(...args);  
     delete context.fn;  // 设置完成员属性后，删除fn属性  
     return result;  // 返回执行结果  
 }  
 ```  
 
 ## 4. 实现 apply() 方法  
-实现和call()非常接近，只是传入的参数形式是数组形式，而不是逗号分隔的参数序列。  
+实现和 call() 非常接近，只是传入的参数形式是数组形式，而不是逗号分隔的参数序列。  
 ```javascript  
 Function.prototype.apply = function(context, args){  
-    var context = context || window;  
+    const context = context || window;  
     context.fn = this;  
 
-    var result = context.fn(...args);  // 数组转化为参数序列执行  
+    const result = context.fn(...args);  // 数组转化为参数序列执行  
     delete context.fn;  
     return result;  
 }  
 ```  
 
 ## 5. 实现 bind() 方法  
-bind()同样用于改变函数执行的this指针，区别在于bind()会创建一个新的函数，只有经过调用才会执行。第一个参数同样是要指向的对象，后面的参数依次传入bind，不管是调用bind还是后续调用新函数。  
+bind() 同样用于改变函数执行的 this 指针，区别在于 bind() 会创建一个新的函数，只有经过调用才会执行。第一个参数同样是要指向的对象，后面的参数依次传入 bind，不管是调用 bind 还是后续调用新函数。  
 先看一个例子：  
 ```js  
 var obj = {name:"Smiley"};  
 var greeting = function(str, lang){  
     this.value = 'greetingValue';  
-    console.log("Welcome "+this.name+" to "+str+" in "+lang);  
+    console.log("Welcome " + this.name + " to " + str + " in " + lang);  
 };  
 var objGreeting = greeting.bind(obj, 'the world');  
 
 objGreeting('JS');  // Welcome Smiley to the world in JS  
 ```  
-以上代码中，greeting调用bind改变了this指向obj，'the world'变成greeting的第一个参数str，相当于初始化，再次调用objGreeting()时，传入的'JS'为greeting的第二个参数lang，按照顺序传入。  
+以上代码中，greeting 调用 bind 改变了 this 指向 obj，'the world' 变成 greeting 的第一个参数 str，相当于初始化，再次调用 objGreeting() 时，传入的 'JS' 为 greeting 的第二个参数 lang，按照顺序传入。  
 ```js  
 /**  
  * context：bind要绑定的对象  
@@ -132,8 +132,8 @@ Function.prototype.bind1 = function(context){
     let args = Array.prototype.slice.call(arguments, 1);  
 
     // 返回一个函数，使用apply绑定context  
-    return function(){  
-         return _this.apply(context, args)  
+    return function(...params){  
+         return _this.apply(context, args.concat(params))  
     }  
 }  
 
@@ -156,9 +156,9 @@ const fn2 = fn1.bind1({x: 1}, 10, 20)
 fn2();  
 ```  
 ## 6. 实现继承  
-使用ES6实现继承：  
-* extends方法继承父类属性  
-* super中调用父类构造方法  
+使用 ES6 实现继承：  
+* extends 方法继承父类属性  
+* super 中调用父类构造方法  
 ```js  
 class Animal{  
     constructor(number){  
@@ -187,7 +187,7 @@ class Cat extends Animal{
 
 ## 7. 实现一个防抖函数  
 函数防抖（debounce）：当事件处理函数执行后，要经过一段时间才能再次执行，在这段时间内，如果不断触发事件，每触发一次事件都会重新计时。  
-比如点击按钮触发事件，设定防抖事件1000ms，当我持续点击按钮的时候，除了第一次执行，其他如果点击间隔小于1000ms，就不会执行事件，会一直重新计时。  
+比如点击按钮触发事件，设定防抖事件 1000ms，当我持续点击按钮的时候，除了第一次执行，其他如果点击间隔小于 1000ms，就不会执行事件，会一直重新计时。  
 效果：频繁触发中只执行一次  
 ```js  
 /**  
@@ -224,7 +224,7 @@ var dprint = debounce(print(name){
 
 ## 8. 实现一个节流函数  
 函数节流（throttle）：当持续触发事件时，事件处理函数会每隔一段时间执行，这段时间内最多只会执行一次。  
-比如点击按钮触发事件，设定节流时间为1000ms，当我持续点击按钮时，每隔至少1000ms才会执行一次时间处理函数。  
+比如点击按钮触发事件，设定节流时间为 1000ms，当我持续点击按钮时，每隔至少 1000ms 才会执行一次时间处理函数。  
 效果：频繁触发中减少执行频率  
 ```js  
 function throttle(func, delay = 100){  
@@ -277,7 +277,7 @@ const copy = arr.slice()
 
 ## 11. 实现一个深拷贝  
 深拷贝是从堆内存中开辟一个新的区域存放新对象，完整拷贝原对象，修改新对象不会影响原对象。  
-**JSON方法**  
+**JSON 方法**  
 ```js  
 const copy = JSON.parse(JSON.stringify(obj))  
 ```  
@@ -287,8 +287,20 @@ function deepClone(obj){
     if(obj == null || obj !== 'object')  
         return obj;  
     
+    // Date type
+    if(obj instanceof Date) {
+        const clone = new Date()
+        clone.setTime(obj.getTime())
+        return clone
+    }
+    // RegExp
+    if(obj instanceof RegExp) {
+        const Constructor = obj.constructor
+        return new Constructor(obj)
+    }
+    // array and object
     let clone = Array.isArray(obj) ? [] : {}  
-    for(let key in obj){  
+    for(const key in obj){  
         if(obj.hasOwnProperty(key)){  
            clone[key] = typeof(obj[key]) == 'object' ? deepClone(obj[key]) : obj[key]   
         }  
@@ -546,7 +558,7 @@ Array.prototype.myFlat = function (){
     return newArr;  
 }  
 ```  
-### （3）reduce()+concat()+递归  
+### （3）reduce() + concat() + 递归  
 使用reduce()简化代码，实际还是递归调用  
 ```js  
 function myFlat(arr){  
@@ -559,19 +571,19 @@ function myFlat(arr){
 const newArr = myFlat(arr);  
 ```  
 
-## 16. 基于Promise封装Ajax  
-Promise主要使用两种状态，resolve和reject，可以根据XHR对象的状态码来设置，然后返回Promise实例，基本思路如下：  
-1. 直接返回一个新的Promise实例（以下在实例中操作）  
-2. 创建一个XMLHttpRequest对象  
-3. 调用open()方法，设置url，与服务器建立连接  
-4. 监听Ajax状态事件onreadystatechange（注意要先设置监听再发送请求，否则可能收不到响应）  
-5. 当xhr.readyState == 4（服务器响应完成，可以获取其中数据了）  
-   * xhr.status == 200：服务器响应成功，置为resolve  
-   * xhr.status == 404：服务器响应失败，置为reject  
+## 16. 基于 Promise 封装 Ajax  
+Promise 主要使用两种状态，resolve 和 reject，可以根据 XHR 对象的状态码来设置，然后返回 Promise 实例，基本思路如下：  
+1. 直接返回一个新的 Promise 实例（以下在实例中操作）  
+2. 创建一个 XMLHttpRequest 对象  
+3. 调用 open() 方法，设置 url，与服务器建立连接  
+4. 监听 Ajax 状态事件 onreadystatechange（注意要先设置监听再发送请求，否则可能收不到响应）  
+5. 当 xhr.readyState == 4（服务器响应完成，可以获取其中数据了）  
+   * xhr.status == 200：服务器响应成功，置为 resolve  
+   * xhr.status == 404：服务器响应失败，置为 reject  
 ```js  
 function ajax(url, method){  
     return new Promise((resolve, reject) => {  
-        var xhr = new XMLHttpRequest();  
+        const xhr = new XMLHttpRequest();  
         xhr.open(url, method, true);  // 异步发送  
         // 事件监听  
         xhr.onreadystatechange = function(){  
@@ -595,8 +607,8 @@ ajax(url, 'Get')
     .then(res => console.log(res))  
     .catch(err => console.log(err))  
 ```  
-## 17. 实现一个sleep函数  
-等待一段时间，就去执行某个函数，基于Promise实现  
+## 17. 实现一个 sleep 函数  
+等待一段时间，就去执行某个函数，基于 Promise 实现  
 ```js  
 function sleep(wait){  
     return new Promise((resolve, reject) => {  
@@ -616,7 +628,7 @@ async function autoRun(){
 autoRun();  
 ```  
 
-## 18. 创建10个`<a>`标签  
+## 18. 创建 10 个`<a>`标签  
 ```js  
 let a;  
 for(let i = 0; i < 10; i++){  
@@ -632,7 +644,7 @@ for(let i = 0; i < 10; i++){
 }  
 ```  
 
-## 19. 手写一个Promise加载图片  
+## 19. 手写一个 Promise 加载图片  
 ```js  
 // 手写一个Promise加载图片  
 function getPic(url){  
@@ -658,86 +670,90 @@ getPic(url).then(img => {
     console.log(err)  
 })  
 ```  
-## 20. 实现数组map方法  
-* map用于遍历数组，进行一些操作，最终返回一个新的数组，第二个参数为指定的this作用域，不指定则指向window  
+## 20. 实现数组 map 方法  
+* map 用于遍历数组，进行一些操作，最终返回一个新的数组，第二个参数为指定的 this 作用域，不指定则指向 window  
 * 首先创建一个新的数组，然后执行传入的回调函数  
-* 回调函数的执行结果依次push进新的数组中，最后返回该数组  
+* 回调函数的执行结果依次 push 进新的数组中，最后返回该数组  
 ```js  
 Array.prototype.myMap = function(fn, context){  
-    let newArr = []  
+    const res = []  
     for(let i = 0; i < this.length; i++){  
-        result.push(fn.call(context, this[i], i, this))  
+        res.push(fn.call(context, this[i], i, this))  
     }  
-    return result  
+    return res  
 }  
 ```  
 
-## 21. 实现数组filter方法  
-* filter用于遍历数组，寻找满足条件的元素，将它们塞进一个新的数组返回，第二个参数也是this指定的作用域  
+## 21. 实现数组 filter 方法  
+* filter 用于遍历数组，寻找满足条件的元素，将它们塞进一个新的数组返回，第二个参数也是 this 指定的作用域  
 * 首先创建一个新的数组，然后遍历  
 * 根据条件判断元素，满足条件则push进数组，最后返回该数组  
 ```js  
 Array.prototype.myFilter = function(fn, context){  
-    let newArr = []  
+    const res = []  
     for(let i = 0; i < this.length; i++){  
-        let res = fn.call(context, this[i], i, this)  
-        if(res === true)  
-            newArr.push(res)  
+        const flag = fn.call(context, this[i], i, this)  
+        if(flag === true)  
+            res.push(item)  
     }  
 
-    return newArr  
+    return res  
 }  
 ```  
 
-## 22. 实现数组reduce方法  
-* reduce是归并方法，每次得到的pre为上一次执行后的结果，最终返回一个值  
+## 22. 实现数组 reduce 方法  
+* reduce 是归并方法，每次得到的 pre 为上一次执行后的结果，最终返回一个值  
 * 首先判断有没有传入第二个参数，即初始值，  
-* 然后迭代执行fn，不断更新结果，最后返回  
+* 然后迭代执行 fn，不断更新结果，最后返回  
 ```js  
 Array.prototype.myReduce = function(fn, initValue){  
-    // 初始值为空或数组长度为0  
+    // 初始值为空且数组长度为0  
     if(initValue === undefined && this.length === 0){  
         throw new Error('error')  
     }  
     // 更新result  
-    let result = initValue ? initValue : this[0]  
+    let res = initValue ? initValue : this[0]  
     for(let i = initValue ? 0 : 1; i < this.length; i++){  
-        result = fn(result, this[i], i, this)  
+        res = fn(res, this[i], i, this)  
     }  
 
-    return result  
+    return res  
 }  
 ```  
-## 23. 实现一个JSONP  
+## 23. 实现一个 JSONP  
+* 创建一个 script 节点，然后将其插入到 dom 中运行
+* 定义一个执行函数，处理数据
+* 节点的 src 中传入执行函数到另一个域（另一个域中需存在该同名函数与传出数据）
 ```js  
 function handleResponse(data){  
     console.log(`response data: ${data}`)  
 }  
 
 var script = document.createElement('script')  
-script.src = 'http://..'  
+script.src = 'http://test.com?callback=handleResponse'  
 
-document.body.insertBefore(script, 某节点)  
+document.body.appendChild(script)  
+
 ```  
 
 ## 24. 实现图片的懒加载  
-* 图片src默认先加载一个预览图或者一个loading占位图  
-* 图片原图放在自定义的标签属性data-src中（使用dataset.src访问）  
-* 监听当图片进入可视区域时，给src赋值，即data-src中的图片  
+* 图片 src 默认先加载一个预览图或者一个 loading 占位图  
+* 图片原图放在自定义的标签属性 data-src 中（使用 dataset.src 访问）  
+* 监听当图片进入可视区域时，给 src 赋值，即 data-src 中的图片  
 * Element.getBoundingClientRect() 方法返回元素的大小及其相对于视口的位置  
 ```js  
 function imgLoad(){  
-    let img = document.querySelectorAll("img")  
+    const imgs = document.querySelectorAll("img")  
     for(let i = 0; i < img.length; i++){  
-        if(img[i].getBoundingClientRect().top < window.innerHeight)  
-            img[i].src = img[i].dataset.src  
+        if(imgs[i].getBoundingClientRect().top < window.innerHeight)  
+            imgs[i].src = imgs[i].dataset.src  
     }  
 }  
 
 window.onload = imgLoad  
 window.onscroll = throttle(imgLoad)  // 要做一个防抖处理  
 ```  
-## 25. 虚拟DOM的模拟  
+## 25. 虚拟 DOM 的模拟  
 ```js  
 class Element{  
     constructor(tagName, attrs, children){  
@@ -750,9 +766,9 @@ class Element{
     }  
 }  
 ```  
-## 26. CSS画三角形  
-* 宽度width为0，高度height为0  
-* 设置border长度和位置  
+## 26. CSS 画三角形  
+* 宽度 width 为 0，高度 height 为0  
+* 设置 border 长度和位置  
 ```css  
 /* 如等腰三角形，其中border-top没有值，则border会以其他长度为准进行连接 */  
 #triangle{  
@@ -780,21 +796,21 @@ function shuffle(arr){
 ```  
 ## 28. 数组与树结构的转化  
 ```js  
-let data = [  
+const data = [  
     { id: 0, parentId: null, name: '生物'},  
     { id: 3, parentId: 0, name: '微生物' },  
-    { id: 1, parentId: 0, name: '动物’ }  
+    { id: 1, parentId: 0, name: '动物' },  
     { id: 2, parentId: 1, name: '大象'}  
 ]  
 // 数组与树结构的相互转化  
-obj = {  
+const obj = {  
     "id": 0,  
     "parentId": null,  
     "name": '生物',  
     "children": [{  
         "id": 1,  
         "parentId": 0,  
-        "name": ‘动物',  
+        "name": '动物',  
         "children":[{  
             "id": 2,  
             "parentId": 1,  
@@ -802,13 +818,13 @@ obj = {
         }],  
         "id": 3,  
         "parentId": 0,  
-        name: '微生物'  
+        "name": '微生物'  
     }]  
 }  
 ```  
 **数组转化为树结构**  
-* 对象数组需要按照id值排好序，每个对象id唯一，但是parentId可以相同  
-* 根据parentId找到父元素  
+* 对象数组需要按照 id 值排好序，每个对象 id 唯一，但是 parentId 可以相同  
+* 根据 parentId 找到父元素  
 ```js  
 function transTree(data){  
     let result = []  
@@ -837,7 +853,7 @@ console.log(JSON.stringify(transTree(data)))
 bfs + 队列  
 ```js  
 function transArr(obj){  
-    let queue = [obj]  
+    let queue = [...obj]  
     let data = []   // 返回结果  
     while(queue.length !== 0){  
         let item = queue.shift()  
@@ -857,7 +873,7 @@ function transArr(obj){
 }  
 console.log(transArr(obj))  
 ```  
-## 29. 实现JSON.stringify  
+## 29. 实现 JSON.stringify  
 * 使用递归实现  
 ```js  
 function Stringify(obj){  
@@ -879,7 +895,7 @@ function Stringify(obj){
     return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");  
 }  
 ```  
-## 30. 实现url参数解析
+## 30. 实现 url 参数解析
 ```js
 var url = 'www.u.com/home?id=2&type=0&dtype=-1';
 function parseUrl(url){

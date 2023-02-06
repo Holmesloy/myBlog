@@ -191,6 +191,18 @@ const person = {
    Object.assign(obj3, obj1);  
    // obj3: {name:"z", age:25, interest:'study'}  
    ```  
+7. **Object.entries()：返回一个对象自身可枚举属性的键值对（数组）**
+   ```js
+    const obj = {
+        name: 'z',
+        age: 25
+    }
+    for(const [key, value] of Object.entries(obj)) {
+        console.log(`${key}: ${value}`)
+    }
+    // name: z
+    // age: 25
+    ```
 
 ## 作用域  
 ### 自由变量  

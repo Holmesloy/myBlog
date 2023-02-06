@@ -832,11 +832,12 @@ class Solution {
     }  
 }  
 ```  
-### 22. 最长回文子串  
+### 22. 最长回文子串(5)  
 给你一个字符串 s，找到 s 中最长的回文子串。  
 输入：s = "babad"  
 输出："bab"  
 解释："aba" 同样是符合题意的答案。  
+[leetcode](https://leetcode.cn/problems/longest-palindromic-substring/description/)   
 **方法：中心扩展法**  
 * 遍历每一个字符，然后从其向两边扩展，获取该字符的回文最大长度  
 * 由于要输出子串，所以需要记录最长时的左右位置，所以设置一个range数组记录  
@@ -856,13 +857,13 @@ class Solution {
         return s.substring(range[0], range[1] + 1);  // 这里要 + 1  
     }  
 
-    public void findLongest(String s, int left, int[] range){  
-        int right = left;  
-        // 细节，小于length-1，然后后面比较时right+1  
+    public void findLongest(String s, int k, int[] range){  
+        int right = k, right = k;  
+        // 细节，小于length-1，防止right越界，然后后面比较时right+1  
         while(right < s.length() - 1 && s.charAt(right+1) == s.charAt(left))  
             right++;  
 
-        // 细节，left不是>=0，right不是小于length，然后判断时分别-1和+1，防止溢出和漏比较  
+        // 注意，left不是>=0，right不是小于length，然后判断时分别-1和+1，防止溢出和漏比较  
         while(left > 0 && right < s.length() - 1 && s.charAt(left-1) == s.charAt(right+1)){  
             left--;  
             right++;  

@@ -1,27 +1,27 @@
 ---  
-title: CSS布局  
+title: CSS 布局  
 date: 2021-2-3  
 categories:  
  - frontEnd  
 tags:  
  - css  
 ---  
-## float布局  
+## float 布局  
 **技术点**
-* 使用float布局  
-* 两侧使用margin负值，以便和中间内容横向重叠  
-* 防止中间内容被两侧覆盖，一个使用padding，一个使用margin  
+* 使用 float 布局  
+* 两侧使用 margin 负值，以便和中间内容横向重叠  
+* 防止中间内容被两侧覆盖，一个使用 padding，一个使用 margin  
 ### 圣杯布局  
 **特点：**  
 * 经典三栏布局，中间一栏最先加载和渲染（内容优先）  
 * 两侧内容固定，中间内容随着宽度自适应  
-* 一般用于PC网页  
+* 一般用于 PC 网页  
 
 **实现细节：**  
-* 中间一栏写在HTML中最上面，宽度为100%  
-* 外层容器设置padding，分别等于左右两栏的宽度  
-* 三栏设置float:left，左栏设置margin-left，再依靠定位移动到最左边  
-* 右栏设置margin-right  
+* 中间一栏写在 HTML 中最上面，宽度为 100%  
+* 外层容器设置 padding，分别等于左右两栏的宽度  
+* 三栏设置 float:left，左栏设置 margin-left，再依靠定位移动到最左边  
+* 右栏设置 margin-right  
 
 效果图如下：  
 ![圣杯](@alias/cssshengbei.png)  
@@ -101,8 +101,8 @@ tags:
 ### 双飞翼布局  
 **特点：**  
 * 经典三栏布局，与圣杯相似  
-* 不同之处在于中间一栏套在一个div中，内部使用margin设置左右边距  
-* 左栏和右栏使用margin设置位置  
+* 不同之处在于中间一栏套在一个 div 中，内部使用 margin 设置左右边距  
+* 左栏和右栏使用 margin 设置位置  
 
 效果图如下：  
 ![圣杯](@alias/cssshengbei.png)  
@@ -178,10 +178,10 @@ tags:
 </html>  
 ```  
 
-## CSS响应式布局  
+## CSS 响应式布局  
 ### 1. media-query + rem  
 **media-query**  
-根据不同屏幕宽度设置根元素font-size  
+根据不同屏幕宽度设置根元素 font-size  
 代码举例：  
 ```html  
 <!DOCTYPE html>  
@@ -223,7 +223,7 @@ tags:
 ```  
 
 ### 2. vw/vh  
-**rem的缺陷**  
+**rem 的缺陷**  
 * 只能设置某一区间的大小，呈“阶梯性”，不能完全实现响应式  
 
 **网页视口尺寸**  
@@ -234,8 +234,8 @@ tags:
 **vw/vh**  
 * vw：网页视口宽度（innerWidth）的 1/100  
 * vh：网页视口高度（innerHeight）的 1/100  
-* vmax取vw和vh的较大值  
-* vmin取vm的vh的较小值  
+* vmax 取 vw 和 vh 的较大值  
+* vmin 取 vm 的 vh 的较小值  
   
 代码举例:  
 ```html  
