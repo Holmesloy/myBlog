@@ -179,8 +179,8 @@ export default {
   .suggestions
     background var(--background-color)
     width 20rem
-    position absolute
-    top 1.5rem
+    position absolute  
+    top 3rem
     border 1px solid darken($borderColor, 10%)
     border-radius 6px
     padding 0.4rem
@@ -188,7 +188,7 @@ export default {
     &.align-right
       right 0
   .suggestion
-    line-height 1.4
+    line-height 1.4  
     padding 0.4rem 0.6rem
     border-radius 4px
     cursor pointer

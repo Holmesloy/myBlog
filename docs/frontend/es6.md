@@ -12,7 +12,7 @@
 * const 定义的基本类型不能改变，但是引用类型可变，因为变量保存的是引用类型的内存地址 
 * var 不受限于块级，而且使用 var 声明的变量也是 window 的一个属性  
 
-**JS变量提升：**    
+**JS 变量提升：**    
 * 变量可以在使用后声明，也就是变量可以先使用再声明。  
 * 变量提升优先级：**函数声明 > arguments > 变量声明**。    
 * 注意，let 和 const 存在暂存性死区，在声明之前使用会报错。   
@@ -270,7 +270,7 @@ const p = new Promise((resolve, reject) => {
 Promise 的构造函数接收一个函数作为参数，该函数中还需要传入两个参数：  
 * 第一个参数表示异步操作执行成功后的回调函数，如以上的 resolve  
 * 第二个参数表示异步操作失败后执行的回调函数，如以上的 reject  
-* 也可直接使用 Promise.resolve()和 Promise.reject()  
+* 也可直接使用 Promise.resolve() 和 Promise.reject()  
 注：Promise.resolve(x) 可以看作是 new Promise(resolve => resolve(x)) 的简写，可以用于快速封装字面量对象或其他对象，将其封装成 Promise 实例，Promise.reject()用法相似。  
 
 ### then 链式操作  
@@ -308,7 +308,7 @@ p.then((data) => {
 pending->resolved 或 rejected 都不可逆，但 resolved 和 rejected 可以互相转换  
 * then 正常返回 resolved，里面发生错误则返回 rejected  
 * catch 正常返回 resolved，里面发生错误则返回 rejected  
-### Promise.all用法  
+### Promise.all 用法  
 Promise.all 接收一个 iterable 类型（Array,Map,Set）作为参数，数组中每项都是都是 Promise 的实例。当数组中每个 Promise 的最终状态都是成功态时，Promise.all 的状态也是成功态，然后可以执行相应回调。有一个失败则执行失败回调。  
 注：执行成功回调的数据是一个数组，包含其中每个 Promise 的状态数据  
 执行失败回调的数据为最先进入失败状态的 Promise 返回的数据  
@@ -326,7 +326,7 @@ p.then((res) => {   // res为一个数组
 })  
 ```  
 使用 Promise.all，可以并行进行多个异步操作，然后在一个回调中处理所有的返回数据。  
-### Promise.race用法  
+### Promise.race 用法  
 Promise.race 同样接收一个 iterable 类型（Array,Map,Set）作为参数，与 all 不同的是，其中哪个 Promise 的实例率先执行完成，race 就返回该结果，而且状态跟先执行完成的实例状态一致。  
 注：执行回调的数据为先执行的 Promise 返回数据
 ```js  
