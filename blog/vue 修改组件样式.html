@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>vue 修改组件样式 | 进阶</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/myBlog/cc.png">
+    <meta name="description" content="学习笔记">
+    
+    <link rel="preload" href="/myBlog/assets/css/0.styles.4d5c5372.css" as="style"><link rel="preload" href="/myBlog/assets/js/app.940a19a6.js" as="script"><link rel="preload" href="/myBlog/assets/js/3.92f17e55.js" as="script"><link rel="preload" href="/myBlog/assets/js/1.fb090512.js" as="script"><link rel="preload" href="/myBlog/assets/js/48.047367f4.js" as="script"><link rel="prefetch" href="/myBlog/assets/js/10.3cd559f0.js"><link rel="prefetch" href="/myBlog/assets/js/11.dba209a7.js"><link rel="prefetch" href="/myBlog/assets/js/12.e667cf24.js"><link rel="prefetch" href="/myBlog/assets/js/13.dcd5e38c.js"><link rel="prefetch" href="/myBlog/assets/js/14.a0972b59.js"><link rel="prefetch" href="/myBlog/assets/js/15.6269d436.js"><link rel="prefetch" href="/myBlog/assets/js/16.be6459c1.js"><link rel="prefetch" href="/myBlog/assets/js/17.80243272.js"><link rel="prefetch" href="/myBlog/assets/js/18.a9e42de3.js"><link rel="prefetch" href="/myBlog/assets/js/19.6e91205d.js"><link rel="prefetch" href="/myBlog/assets/js/20.8f018a53.js"><link rel="prefetch" href="/myBlog/assets/js/21.411c8fec.js"><link rel="prefetch" href="/myBlog/assets/js/22.06836dde.js"><link rel="prefetch" href="/myBlog/assets/js/23.a850ac2d.js"><link rel="prefetch" href="/myBlog/assets/js/24.a6ab77b9.js"><link rel="prefetch" href="/myBlog/assets/js/25.e51c3db5.js"><link rel="prefetch" href="/myBlog/assets/js/26.54424bc6.js"><link rel="prefetch" href="/myBlog/assets/js/27.c0cd6a92.js"><link rel="prefetch" href="/myBlog/assets/js/28.ed41b7c0.js"><link rel="prefetch" href="/myBlog/assets/js/29.a90faddb.js"><link rel="prefetch" href="/myBlog/assets/js/30.93959302.js"><link rel="prefetch" href="/myBlog/assets/js/31.2d69b3bf.js"><link rel="prefetch" href="/myBlog/assets/js/32.8d591d1b.js"><link rel="prefetch" href="/myBlog/assets/js/33.0df8b39c.js"><link rel="prefetch" href="/myBlog/assets/js/34.e9bf4ee2.js"><link rel="prefetch" href="/myBlog/assets/js/35.d9cd3a1e.js"><link rel="prefetch" href="/myBlog/assets/js/36.be1dd74d.js"><link rel="prefetch" href="/myBlog/assets/js/37.dc3b4787.js"><link rel="prefetch" href="/myBlog/assets/js/38.2f517de4.js"><link rel="prefetch" href="/myBlog/assets/js/39.bcc498a9.js"><link rel="prefetch" href="/myBlog/assets/js/4.20d827d9.js"><link rel="prefetch" href="/myBlog/assets/js/40.a2675ec2.js"><link rel="prefetch" href="/myBlog/assets/js/41.49a77ffa.js"><link rel="prefetch" href="/myBlog/assets/js/42.6b5bb905.js"><link rel="prefetch" href="/myBlog/assets/js/43.514eac2c.js"><link rel="prefetch" href="/myBlog/assets/js/44.aeeb8da3.js"><link rel="prefetch" href="/myBlog/assets/js/45.0b6b04ec.js"><link rel="prefetch" href="/myBlog/assets/js/46.f916029d.js"><link rel="prefetch" href="/myBlog/assets/js/47.65530fb7.js"><link rel="prefetch" href="/myBlog/assets/js/49.2cf38cf2.js"><link rel="prefetch" href="/myBlog/assets/js/5.3e1da93b.js"><link rel="prefetch" href="/myBlog/assets/js/50.6d32f4c2.js"><link rel="prefetch" href="/myBlog/assets/js/51.93d82dd6.js"><link rel="prefetch" href="/myBlog/assets/js/52.6d48b8e6.js"><link rel="prefetch" href="/myBlog/assets/js/53.2550e734.js"><link rel="prefetch" href="/myBlog/assets/js/54.66c1cfec.js"><link rel="prefetch" href="/myBlog/assets/js/55.46a3f7ab.js"><link rel="prefetch" href="/myBlog/assets/js/56.b557ca7c.js"><link rel="prefetch" href="/myBlog/assets/js/57.ebb555a0.js"><link rel="prefetch" href="/myBlog/assets/js/58.25dec79d.js"><link rel="prefetch" href="/myBlog/assets/js/59.bf876983.js"><link rel="prefetch" href="/myBlog/assets/js/6.be50992c.js"><link rel="prefetch" href="/myBlog/assets/js/60.6200a9fb.js"><link rel="prefetch" href="/myBlog/assets/js/61.ce22748f.js"><link rel="prefetch" href="/myBlog/assets/js/62.103b56df.js"><link rel="prefetch" href="/myBlog/assets/js/63.13ee4c34.js"><link rel="prefetch" href="/myBlog/assets/js/64.d30d815b.js"><link rel="prefetch" href="/myBlog/assets/js/65.bf68d759.js"><link rel="prefetch" href="/myBlog/assets/js/66.737eaca7.js"><link rel="prefetch" href="/myBlog/assets/js/67.bcf6e7e2.js"><link rel="prefetch" href="/myBlog/assets/js/68.3bf6fefd.js"><link rel="prefetch" href="/myBlog/assets/js/69.59977576.js"><link rel="prefetch" href="/myBlog/assets/js/7.1874a01a.js"><link rel="prefetch" href="/myBlog/assets/js/70.33584d1e.js"><link rel="prefetch" href="/myBlog/assets/js/71.a61a1e77.js"><link rel="prefetch" href="/myBlog/assets/js/8.1b7710be.js"><link rel="prefetch" href="/myBlog/assets/js/9.3f2d5568.js">
+    <link rel="stylesheet" href="/myBlog/assets/css/0.styles.4d5c5372.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-9f1e2f90><div data-v-9f1e2f90><div id="loader-wrapper" class="loading-wrapper" data-v-d48f4d20 data-v-9f1e2f90 data-v-9f1e2f90><div class="loader-main" data-v-d48f4d20><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div></div> <!----> <!----></div> <div class="password-shadow password-wrapper-out" style="display:none;" data-v-58d5ab76 data-v-9f1e2f90 data-v-9f1e2f90><h3 class="title" style="display:none;" data-v-58d5ab76 data-v-58d5ab76>进阶</h3> <!----> <label id="box" class="inputBox" style="display:none;" data-v-58d5ab76 data-v-58d5ab76><input type="password" value="" data-v-58d5ab76> <span data-v-58d5ab76>Konck! Knock!</span> <button data-v-58d5ab76>OK</button></label> <div class="footer" style="display:none;" data-v-58d5ab76 data-v-58d5ab76><span data-v-58d5ab76><i class="iconfont reco-theme" data-v-58d5ab76></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-58d5ab76>vuePress-theme-reco</a></span> <span data-v-58d5ab76><i class="iconfont reco-copyright" data-v-58d5ab76></i> <a data-v-58d5ab76><span data-v-58d5ab76>R-Z</span>
+            
+          <!---->
+          2023
+        </a></span></div></div> <div class="hide" data-v-9f1e2f90><header class="navbar" data-v-9f1e2f90><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/myBlog/" class="home-link router-link-active"><img src="/myBlog/cc.png" alt="进阶" class="logo"> <span class="site-name">进阶</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/myBlog/" class="nav-link"><i class="iconfont undefined"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      Category
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myBlog/categories/布局/" class="nav-link"><i class="iconfont undefined"></i>
+  布局
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/frontEnd/" class="nav-link"><i class="iconfont undefined"></i>
+  frontEnd
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/网络/" class="nav-link"><i class="iconfont undefined"></i>
+  网络
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/Tools/" class="nav-link"><i class="iconfont undefined"></i>
+  Tools
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/tools/" class="nav-link"><i class="iconfont undefined"></i>
+  tools
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/工具/" class="nav-link"><i class="iconfont undefined"></i>
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/面试/" class="nav-link"><i class="iconfont undefined"></i>
+  面试
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/智能/" class="nav-link"><i class="iconfont undefined"></i>
+  智能
+</a></li></ul></div></div><div class="nav-item"><a href="/myBlog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/myBlog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><a href="/myBlog/frontend/" class="nav-link"><i class="iconfont undefined"></i>
+  前端知识
+</a></div><div class="nav-item"><a href="/myBlog/algorithm/" class="nav-link"><i class="iconfont undefined"></i>
+  算法
+</a></div><div class="nav-item"><a href="/myBlog/project/" class="nav-link"><i class="iconfont undefined"></i>
+  项目
+</a></div><div class="nav-item"><a href="/myBlog/notes/" class="nav-link"><i class="iconfont undefined"></i>
+  笔记
+</a></div><div class="nav-item"><a href="/myBlog/blog/" class="nav-link router-link-active"><i class="iconfont undefined"></i>
+  文章
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont undefined"></i>
+      Languages
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myBlog/language/chinese.html" class="nav-link"><i class="iconfont undefined"></i>
+  Chinese
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/language/English.html" class="nav-link"><i class="iconfont undefined"></i>
+  English
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-9f1e2f90></div> <aside class="sidebar" data-v-9f1e2f90><div class="personal-info-wrapper" data-v-3eba7259 data-v-9f1e2f90><!----> <h3 class="name" data-v-3eba7259>
+    R-Z
+  </h3> <div class="num" data-v-3eba7259><div data-v-3eba7259><h3 data-v-3eba7259>31</h3> <h6 data-v-3eba7259>Article</h6></div> <div data-v-3eba7259><h3 data-v-3eba7259>17</h3> <h6 data-v-3eba7259>Tag</h6></div></div> <hr data-v-3eba7259></div> <nav class="nav-links"><div class="nav-item"><a href="/myBlog/" class="nav-link"><i class="iconfont undefined"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      Category
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myBlog/categories/布局/" class="nav-link"><i class="iconfont undefined"></i>
+  布局
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/frontEnd/" class="nav-link"><i class="iconfont undefined"></i>
+  frontEnd
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/网络/" class="nav-link"><i class="iconfont undefined"></i>
+  网络
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/Tools/" class="nav-link"><i class="iconfont undefined"></i>
+  Tools
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/tools/" class="nav-link"><i class="iconfont undefined"></i>
+  tools
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/工具/" class="nav-link"><i class="iconfont undefined"></i>
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/面试/" class="nav-link"><i class="iconfont undefined"></i>
+  面试
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/智能/" class="nav-link"><i class="iconfont undefined"></i>
+  智能
+</a></li></ul></div></div><div class="nav-item"><a href="/myBlog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/myBlog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><a href="/myBlog/frontend/" class="nav-link"><i class="iconfont undefined"></i>
+  前端知识
+</a></div><div class="nav-item"><a href="/myBlog/algorithm/" class="nav-link"><i class="iconfont undefined"></i>
+  算法
+</a></div><div class="nav-item"><a href="/myBlog/project/" class="nav-link"><i class="iconfont undefined"></i>
+  项目
+</a></div><div class="nav-item"><a href="/myBlog/notes/" class="nav-link"><i class="iconfont undefined"></i>
+  笔记
+</a></div><div class="nav-item"><a href="/myBlog/blog/" class="nav-link router-link-active"><i class="iconfont undefined"></i>
+  文章
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont undefined"></i>
+      Languages
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myBlog/language/chinese.html" class="nav-link"><i class="iconfont undefined"></i>
+  Chinese
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/language/English.html" class="nav-link"><i class="iconfont undefined"></i>
+  English
+</a></li></ul></div></div> <!----></nav> <ul class="sidebar-links"><li><a href="/myBlog/blog/" aria-current="page" class="sidebar-link">文章</a></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-58d5ab76 data-v-9f1e2f90><h3 class="title" style="display:none;" data-v-58d5ab76 data-v-58d5ab76>vue 修改组件样式</h3> <!----> <label id="box" class="inputBox" style="display:none;" data-v-58d5ab76 data-v-58d5ab76><input type="password" value="" data-v-58d5ab76> <span data-v-58d5ab76>Konck! Knock!</span> <button data-v-58d5ab76>OK</button></label> <div class="footer" style="display:none;" data-v-58d5ab76 data-v-58d5ab76><span data-v-58d5ab76><i class="iconfont reco-theme" data-v-58d5ab76></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-58d5ab76>vuePress-theme-reco</a></span> <span data-v-58d5ab76><i class="iconfont reco-copyright" data-v-58d5ab76></i> <a data-v-58d5ab76><span data-v-58d5ab76>R-Z</span>
+            
+          <!---->
+          2023
+        </a></span></div></div> <div data-v-9f1e2f90><main class="page"><div class="page-title" style="display:none;"><h1 class="title">vue 修改组件样式</h1> <div data-v-42458482><i class="iconfont reco-account" data-v-42458482><span data-v-42458482>R-Z</span></i> <i class="iconfont reco-date" data-v-42458482><span data-v-42458482>2021-09-02</span></i> <!----> <i class="iconfont reco-tag tags" data-v-42458482><span class="tag-item" data-v-42458482>blog</span></i></div></div> <div class="theme-reco-content content__default" style="display:none;"><h2 id="组件样式修改"><a href="#组件样式修改" class="header-anchor">#</a> 组件样式修改</h2> <p>通常来说，vue 中每个页面的样式一般需要加上 scoped 属性，否则可能会造成全局样式污染。<br>
+而如果加上 scoped 属性，vue 会将每个类类名进行哈希，变得独一无二，所以加上 scoped 之后再更改<br>
+组件样式的话，是不会生效的。想要自定义修改样式，以 element-ui 为例，通常有以下方法。</p> <h3 id="_1-全局样式表"><a href="#_1-全局样式表" class="header-anchor">#</a> 1. 全局样式表</h3> <p>以 SCSS 为例，新建 global.scss 文件，并在 main.js 中引入，一般目录为<code>/src/assets/style/global.scss</code>，<br>
+然后在 main.js 中引入：<code>import &quot;./assets/style/global.scss&quot;</code><br>
+在 global.scss 中写的样式，无论在哪一个 vue 页面中都会覆盖组件样式，通常用于想要固定修改组件的样式。</p> <h3 id="_2-添加新-style-标签"><a href="#_2-添加新-style-标签" class="header-anchor">#</a> 2. 添加新 style 标签</h3> <p>在当前 vue 页面中，添加一对新的 style 标签，新的 style 标签中不要添加 scoped 属性。在此 style 中修改组件样式<br>
+可以生效，一般采用 scss 嵌套的方式保证唯一性从而避免污染全局的样式。</p> <h3 id="_3-使用-deep-深度修改"><a href="#_3-使用-deep-深度修改" class="header-anchor">#</a> 3. 使用 /deep/ 深度修改</h3> <p>在需要修改的组件类名前，加上 <code>/deep/</code>，可以修改 scoped 属性中的样式</p> <div class="language-css extra-class"><pre class="language-css"><code><span class="token selector">.test /deep/ .el-dialog</span> <span class="token punctuation">{</span>  
+  <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>  
+</code></pre></div><p><strong>&gt;&gt;&gt;、/deep/ 与 ::v-deep</strong></p> <ul><li>三者都是 deep 功能，只是使用场景不同</li> <li>只有 css 中能使用 <code>&gt;&gt;&gt;</code></li> <li>scss 等预处理器中可以使用 <code>/deep/</code></li> <li>vue-cli3 编译中<code>/deep/</code>会报错，所以使用<code>::v-deep</code>（双冒号）</li></ul> <h3 id="_4-使用内联样式修改"><a href="#_4-使用内联样式修改" class="header-anchor">#</a> 4. 使用内联样式修改</h3> <div class="language-html extra-class"><pre class="language-html"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>el-button</span> <span class="token attr-name">:style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>selfStyle<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>按钮<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>el-button</span><span class="token punctuation">&gt;</span></span>  
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">  
+  <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">{</span>  
+    <span class="token function">data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>  
+      <span class="token keyword">return</span> <span class="token punctuation">{</span>  
+        selfStyle<span class="token operator">:</span> <span class="token punctuation">{</span>  
+          color<span class="token operator">:</span> <span class="token string">&quot;white&quot;</span><span class="token punctuation">,</span>  
+          marginTop<span class="token operator">:</span> <span class="token string">&quot;10px&quot;</span><span class="token punctuation">,</span>  
+          backgroundColorA<span class="token operator">:</span> <span class="token string">&quot;cadeblue&quot;</span>  
+        <span class="token punctuation">}</span>  
+      <span class="token punctuation">}</span>  
+    <span class="token punctuation">}</span>  
+  <span class="token punctuation">}</span>  
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>  
+</code></pre></div><h3 id="_5-custom-class"><a href="#_5-custom-class" class="header-anchor">#</a> 5. custom-class</h3> <p>饿了么组件库的一些组件，会提供一个自定义类名的属性，可以通过属性添加一个类名，然后修改组件样式。<br>
+缺点：不是所有组件都提供自定义类名的属性。</p> <h3 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h3> <ul><li>全局引入 css 文件的方式，适合对组件整体的修改，比如一些配色、间距大小等</li> <li>第二种添加 style 的方式，实际上修改了全局的样式，所以可能会存在冲突，需要保证唯一性</li> <li>第三种使用 /deep/ 的方式可以很方便地修改样式，但是不能解决所有样式，只对部分样式有效</li> <li>第四种方式局限性较大，不推荐使用</li> <li>所以较为推荐的是第二种、第三种和第五种，按照实际需要使用</li></ul></div> <footer class="page-edit" style="display:none;"><!----> <!----></footer> <!----> <!----> <!----></main> <!----></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="/myBlog/assets/js/app.940a19a6.js" defer></script><script src="/myBlog/assets/js/3.92f17e55.js" defer></script><script src="/myBlog/assets/js/1.fb090512.js" defer></script><script src="/myBlog/assets/js/48.047367f4.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>数据存储 | 进阶</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    <link rel="icon" href="/myBlog/cc.png">
+    <meta name="description" content="学习笔记">
+    
+    <link rel="preload" href="/myBlog/assets/css/0.styles.4d5c5372.css" as="style"><link rel="preload" href="/myBlog/assets/js/app.940a19a6.js" as="script"><link rel="preload" href="/myBlog/assets/js/3.92f17e55.js" as="script"><link rel="preload" href="/myBlog/assets/js/1.fb090512.js" as="script"><link rel="preload" href="/myBlog/assets/js/57.ebb555a0.js" as="script"><link rel="prefetch" href="/myBlog/assets/js/10.3cd559f0.js"><link rel="prefetch" href="/myBlog/assets/js/11.dba209a7.js"><link rel="prefetch" href="/myBlog/assets/js/12.e667cf24.js"><link rel="prefetch" href="/myBlog/assets/js/13.dcd5e38c.js"><link rel="prefetch" href="/myBlog/assets/js/14.a0972b59.js"><link rel="prefetch" href="/myBlog/assets/js/15.6269d436.js"><link rel="prefetch" href="/myBlog/assets/js/16.be6459c1.js"><link rel="prefetch" href="/myBlog/assets/js/17.80243272.js"><link rel="prefetch" href="/myBlog/assets/js/18.a9e42de3.js"><link rel="prefetch" href="/myBlog/assets/js/19.6e91205d.js"><link rel="prefetch" href="/myBlog/assets/js/20.8f018a53.js"><link rel="prefetch" href="/myBlog/assets/js/21.411c8fec.js"><link rel="prefetch" href="/myBlog/assets/js/22.06836dde.js"><link rel="prefetch" href="/myBlog/assets/js/23.a850ac2d.js"><link rel="prefetch" href="/myBlog/assets/js/24.a6ab77b9.js"><link rel="prefetch" href="/myBlog/assets/js/25.e51c3db5.js"><link rel="prefetch" href="/myBlog/assets/js/26.54424bc6.js"><link rel="prefetch" href="/myBlog/assets/js/27.c0cd6a92.js"><link rel="prefetch" href="/myBlog/assets/js/28.ed41b7c0.js"><link rel="prefetch" href="/myBlog/assets/js/29.a90faddb.js"><link rel="prefetch" href="/myBlog/assets/js/30.93959302.js"><link rel="prefetch" href="/myBlog/assets/js/31.2d69b3bf.js"><link rel="prefetch" href="/myBlog/assets/js/32.8d591d1b.js"><link rel="prefetch" href="/myBlog/assets/js/33.0df8b39c.js"><link rel="prefetch" href="/myBlog/assets/js/34.e9bf4ee2.js"><link rel="prefetch" href="/myBlog/assets/js/35.d9cd3a1e.js"><link rel="prefetch" href="/myBlog/assets/js/36.be1dd74d.js"><link rel="prefetch" href="/myBlog/assets/js/37.dc3b4787.js"><link rel="prefetch" href="/myBlog/assets/js/38.2f517de4.js"><link rel="prefetch" href="/myBlog/assets/js/39.bcc498a9.js"><link rel="prefetch" href="/myBlog/assets/js/4.20d827d9.js"><link rel="prefetch" href="/myBlog/assets/js/40.a2675ec2.js"><link rel="prefetch" href="/myBlog/assets/js/41.49a77ffa.js"><link rel="prefetch" href="/myBlog/assets/js/42.6b5bb905.js"><link rel="prefetch" href="/myBlog/assets/js/43.514eac2c.js"><link rel="prefetch" href="/myBlog/assets/js/44.aeeb8da3.js"><link rel="prefetch" href="/myBlog/assets/js/45.0b6b04ec.js"><link rel="prefetch" href="/myBlog/assets/js/46.f916029d.js"><link rel="prefetch" href="/myBlog/assets/js/47.65530fb7.js"><link rel="prefetch" href="/myBlog/assets/js/48.047367f4.js"><link rel="prefetch" href="/myBlog/assets/js/49.2cf38cf2.js"><link rel="prefetch" href="/myBlog/assets/js/5.3e1da93b.js"><link rel="prefetch" href="/myBlog/assets/js/50.6d32f4c2.js"><link rel="prefetch" href="/myBlog/assets/js/51.93d82dd6.js"><link rel="prefetch" href="/myBlog/assets/js/52.6d48b8e6.js"><link rel="prefetch" href="/myBlog/assets/js/53.2550e734.js"><link rel="prefetch" href="/myBlog/assets/js/54.66c1cfec.js"><link rel="prefetch" href="/myBlog/assets/js/55.46a3f7ab.js"><link rel="prefetch" href="/myBlog/assets/js/56.b557ca7c.js"><link rel="prefetch" href="/myBlog/assets/js/58.25dec79d.js"><link rel="prefetch" href="/myBlog/assets/js/59.bf876983.js"><link rel="prefetch" href="/myBlog/assets/js/6.be50992c.js"><link rel="prefetch" href="/myBlog/assets/js/60.6200a9fb.js"><link rel="prefetch" href="/myBlog/assets/js/61.ce22748f.js"><link rel="prefetch" href="/myBlog/assets/js/62.103b56df.js"><link rel="prefetch" href="/myBlog/assets/js/63.13ee4c34.js"><link rel="prefetch" href="/myBlog/assets/js/64.d30d815b.js"><link rel="prefetch" href="/myBlog/assets/js/65.bf68d759.js"><link rel="prefetch" href="/myBlog/assets/js/66.737eaca7.js"><link rel="prefetch" href="/myBlog/assets/js/67.bcf6e7e2.js"><link rel="prefetch" href="/myBlog/assets/js/68.3bf6fefd.js"><link rel="prefetch" href="/myBlog/assets/js/69.59977576.js"><link rel="prefetch" href="/myBlog/assets/js/7.1874a01a.js"><link rel="prefetch" href="/myBlog/assets/js/70.33584d1e.js"><link rel="prefetch" href="/myBlog/assets/js/71.a61a1e77.js"><link rel="prefetch" href="/myBlog/assets/js/8.1b7710be.js"><link rel="prefetch" href="/myBlog/assets/js/9.3f2d5568.js">
+    <link rel="stylesheet" href="/myBlog/assets/css/0.styles.4d5c5372.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-9f1e2f90><div data-v-9f1e2f90><div id="loader-wrapper" class="loading-wrapper" data-v-d48f4d20 data-v-9f1e2f90 data-v-9f1e2f90><div class="loader-main" data-v-d48f4d20><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div></div> <!----> <!----></div> <div class="password-shadow password-wrapper-out" style="display:none;" data-v-58d5ab76 data-v-9f1e2f90 data-v-9f1e2f90><h3 class="title" style="display:none;" data-v-58d5ab76 data-v-58d5ab76>进阶</h3> <!----> <label id="box" class="inputBox" style="display:none;" data-v-58d5ab76 data-v-58d5ab76><input type="password" value="" data-v-58d5ab76> <span data-v-58d5ab76>Konck! Knock!</span> <button data-v-58d5ab76>OK</button></label> <div class="footer" style="display:none;" data-v-58d5ab76 data-v-58d5ab76><span data-v-58d5ab76><i class="iconfont reco-theme" data-v-58d5ab76></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-58d5ab76>vuePress-theme-reco</a></span> <span data-v-58d5ab76><i class="iconfont reco-copyright" data-v-58d5ab76></i> <a data-v-58d5ab76><span data-v-58d5ab76>R-Z</span>
+            
+          <!---->
+          2023
+        </a></span></div></div> <div class="hide" data-v-9f1e2f90><header class="navbar" data-v-9f1e2f90><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/myBlog/" class="home-link router-link-active"><img src="/myBlog/cc.png" alt="进阶" class="logo"> <span class="site-name">进阶</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/myBlog/" class="nav-link"><i class="iconfont undefined"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      Category
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myBlog/categories/布局/" class="nav-link"><i class="iconfont undefined"></i>
+  布局
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/frontEnd/" class="nav-link"><i class="iconfont undefined"></i>
+  frontEnd
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/网络/" class="nav-link"><i class="iconfont undefined"></i>
+  网络
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/Tools/" class="nav-link"><i class="iconfont undefined"></i>
+  Tools
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/tools/" class="nav-link"><i class="iconfont undefined"></i>
+  tools
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/工具/" class="nav-link"><i class="iconfont undefined"></i>
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/面试/" class="nav-link"><i class="iconfont undefined"></i>
+  面试
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/智能/" class="nav-link"><i class="iconfont undefined"></i>
+  智能
+</a></li></ul></div></div><div class="nav-item"><a href="/myBlog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/myBlog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><a href="/myBlog/frontend/" class="nav-link"><i class="iconfont undefined"></i>
+  前端知识
+</a></div><div class="nav-item"><a href="/myBlog/algorithm/" class="nav-link"><i class="iconfont undefined"></i>
+  算法
+</a></div><div class="nav-item"><a href="/myBlog/project/" class="nav-link"><i class="iconfont undefined"></i>
+  项目
+</a></div><div class="nav-item"><a href="/myBlog/notes/" class="nav-link"><i class="iconfont undefined"></i>
+  笔记
+</a></div><div class="nav-item"><a href="/myBlog/blog/" class="nav-link router-link-active"><i class="iconfont undefined"></i>
+  文章
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont undefined"></i>
+      Languages
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myBlog/language/chinese.html" class="nav-link"><i class="iconfont undefined"></i>
+  Chinese
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/language/English.html" class="nav-link"><i class="iconfont undefined"></i>
+  English
+</a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-9f1e2f90></div> <aside class="sidebar" data-v-9f1e2f90><div class="personal-info-wrapper" data-v-3eba7259 data-v-9f1e2f90><!----> <h3 class="name" data-v-3eba7259>
+    R-Z
+  </h3> <div class="num" data-v-3eba7259><div data-v-3eba7259><h3 data-v-3eba7259>31</h3> <h6 data-v-3eba7259>Article</h6></div> <div data-v-3eba7259><h3 data-v-3eba7259>17</h3> <h6 data-v-3eba7259>Tag</h6></div></div> <hr data-v-3eba7259></div> <nav class="nav-links"><div class="nav-item"><a href="/myBlog/" class="nav-link"><i class="iconfont undefined"></i>
+  主页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      Category
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myBlog/categories/布局/" class="nav-link"><i class="iconfont undefined"></i>
+  布局
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/frontEnd/" class="nav-link"><i class="iconfont undefined"></i>
+  frontEnd
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/网络/" class="nav-link"><i class="iconfont undefined"></i>
+  网络
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/Tools/" class="nav-link"><i class="iconfont undefined"></i>
+  Tools
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/tools/" class="nav-link"><i class="iconfont undefined"></i>
+  tools
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/工具/" class="nav-link"><i class="iconfont undefined"></i>
+  工具
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/面试/" class="nav-link"><i class="iconfont undefined"></i>
+  面试
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/categories/智能/" class="nav-link"><i class="iconfont undefined"></i>
+  智能
+</a></li></ul></div></div><div class="nav-item"><a href="/myBlog/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  Tag
+</a></div><div class="nav-item"><a href="/myBlog/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><a href="/myBlog/frontend/" class="nav-link"><i class="iconfont undefined"></i>
+  前端知识
+</a></div><div class="nav-item"><a href="/myBlog/algorithm/" class="nav-link"><i class="iconfont undefined"></i>
+  算法
+</a></div><div class="nav-item"><a href="/myBlog/project/" class="nav-link"><i class="iconfont undefined"></i>
+  项目
+</a></div><div class="nav-item"><a href="/myBlog/notes/" class="nav-link"><i class="iconfont undefined"></i>
+  笔记
+</a></div><div class="nav-item"><a href="/myBlog/blog/" class="nav-link router-link-active"><i class="iconfont undefined"></i>
+  文章
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont undefined"></i>
+      Languages
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/myBlog/language/chinese.html" class="nav-link"><i class="iconfont undefined"></i>
+  Chinese
+</a></li><li class="dropdown-item"><!----> <a href="/myBlog/language/English.html" class="nav-link"><i class="iconfont undefined"></i>
+  English
+</a></li></ul></div></div> <!----></nav> <ul class="sidebar-links"><li><a href="/myBlog/blog/" aria-current="page" class="sidebar-link">文章</a></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-58d5ab76 data-v-9f1e2f90><h3 class="title" style="display:none;" data-v-58d5ab76 data-v-58d5ab76>数据存储</h3> <!----> <label id="box" class="inputBox" style="display:none;" data-v-58d5ab76 data-v-58d5ab76><input type="password" value="" data-v-58d5ab76> <span data-v-58d5ab76>Konck! Knock!</span> <button data-v-58d5ab76>OK</button></label> <div class="footer" style="display:none;" data-v-58d5ab76 data-v-58d5ab76><span data-v-58d5ab76><i class="iconfont reco-theme" data-v-58d5ab76></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-58d5ab76>vuePress-theme-reco</a></span> <span data-v-58d5ab76><i class="iconfont reco-copyright" data-v-58d5ab76></i> <a data-v-58d5ab76><span data-v-58d5ab76>R-Z</span>
+            
+          <!---->
+          2023
+        </a></span></div></div> <div data-v-9f1e2f90><main class="page"><div class="page-title" style="display:none;"><h1 class="title">数据存储</h1> <div data-v-42458482><i class="iconfont reco-account" data-v-42458482><span data-v-42458482>R-Z</span></i> <i class="iconfont reco-date" data-v-42458482><span data-v-42458482>2020-12-31</span></i> <!----> <i class="iconfont reco-tag tags" data-v-42458482><span class="tag-item" data-v-42458482>cookie</span></i></div></div> <div class="theme-reco-content content__default" style="display:none;"><h2 id="cookie"><a href="#cookie" class="header-anchor">#</a> Cookie</h2> <p>HTTP Cookie，指网站为了识别用户身份而存储在客户端上的数据。<br> <strong>（1）分类</strong></p> <ul><li>Cookie 总是保存在客户端中，按照存储位置可以分为内存 Cookie 和硬盘 Cookie。</li> <li>内存 Cookie 由浏览器维护，浏览器关闭后消失。硬盘 Cookie 保存在硬盘上，可长久存在。因此也可以分为非持久 Cookie 和持久 Cookie。</li></ul> <p><strong>（2）缺点</strong></p> <ul><li>Cookie 被附加在每个 HTTP 请求中，增加了流量</li> <li>HTTP 中 Cookie 明文传递，有安全性问题</li> <li>Cookie 大小限制 4kb 左右，不能用于复杂存储需求</li></ul> <p><strong>（3）构成</strong></p> <ul><li>名称：唯一名称，不区分大小写，且需要经过 URL 编码</li> <li>值：存储在 cookie 中的字符串值</li> <li>域：cookie 对于哪个域是有效的</li> <li>路径：可以指定域中的路径</li> <li>失效时间：表示 cookie 何时应该被删除的时间戳</li> <li>安全标识：添加 secure 字段后则只能使用 SSL 连接</li> <li>HttpOnly：进制 JavaScript 对 cookie 进行读取和修改</li></ul> <div class="language- extra-class"><pre class="language-text"><code>HTTP/1.1 200 OK  
+Content-Type: text/html  
+Set-Cookie: name=value,; expiress=Mon, 22-Jan-07; domain=.s.com  
+Other-header: other-header-value  
+</code></pre></div><p><strong>（4）Javascript cookie</strong><br>
+使用<code>document.cookie</code>访问当前页面可用的所有 cookie 字符串，形式如下：<br> <code>name1=value1;name2=value2;name3=value3</code><br>
+所有名字和值都是经过 URL 编码的，所有需要使用<code>decodeURIComponent()</code>来解码。<br>
+设置 document.cookie 的值可以添加新的数据，不会覆盖原数据，除非名称 key 已经存在。<br> <code>document.cooke = &quot;name=z&quot;</code></p> <h2 id="storage-类型"><a href="#storage-类型" class="header-anchor">#</a> Storage 类型</h2> <ul><li>HTML5 专门为存储数据而设计，最大可存5M</li> <li>API 简单易用 setItem getItem</li> <li>不会随着 http 请求被发送出去</li></ul> <p>Storage 类型提供最大的存储空间（因浏览器而异）来存储名值对，方法如下：</p> <ul><li>clear()：删除所有值</li> <li>getItem(name)：根据名字获取值</li> <li>key(index)：根据索引获取名字</li> <li>removeItem(name)：删除名字对应的值</li> <li>setItem(name, value)：设置名值对</li></ul> <h3 id="sessionstorage"><a href="#sessionstorage" class="header-anchor">#</a> sessionStorage()</h3> <p>用于存储某个特定对话的数据，浏览器关闭后消失。浏览器刷新之后也会存在，甚至浏览器崩溃重启也可以继续使用。<br>
+其绑定与某个服务器会话，因此文件在本地时不可用，只能由最初提供该存储数据的页面访问。<br>
+sessionStorage 是 Storage 类型的一个实例，因此可以使用 setItem 或者直接设置新的属性添加存储数据：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// setItem  </span>
+sessionStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">&quot;name&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;z&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+
+<span class="token comment">// 使用属性添加  </span>
+sessionStorage<span class="token punctuation">.</span>book <span class="token operator">=</span> <span class="token string">&quot;js&quot;</span><span class="token punctuation">;</span>  
+</code></pre></div><p>读取数据：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// getItem  </span>
+<span class="token keyword">var</span> name <span class="token operator">=</span> sessionStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">&quot;name&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+
+<span class="token comment">// 使用属性  </span>
+<span class="token keyword">var</span> book <span class="token operator">=</span> sessionStorage<span class="token punctuation">.</span>book<span class="token punctuation">;</span>  
+</code></pre></div><p>还可以使用 sessionStorage.length 属性或 for-in 来迭代其中的值：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// 循环  </span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> sessionStorage<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>  
+    <span class="token keyword">let</span> key <span class="token operator">=</span> sessionStorage<span class="token punctuation">.</span><span class="token function">key</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    <span class="token keyword">let</span> value <span class="token operator">=</span> sessionStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>key <span class="token operator">+</span> <span class="token string">&quot;=&quot;</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>  
+
+<span class="token comment">// for-in  </span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> key <span class="token keyword">in</span> SessionStorage<span class="token punctuation">)</span><span class="token punctuation">{</span>  
+    <span class="token keyword">let</span> value <span class="token operator">=</span> sessionStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>key <span class="token operator">+</span> <span class="token string">&quot;=&quot;</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+<span class="token punctuation">}</span>  
+</code></pre></div><p>删除：</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">delete</span> sessionStorage<span class="token punctuation">.</span>name<span class="token punctuation">;</span>  
+
+sessionStorage<span class="token punctuation">.</span><span class="token function">removeItem</span><span class="token punctuation">(</span><span class="token string">&quot;book&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  
+</code></pre></div><h3 id="localstorage"><a href="#localstorage" class="header-anchor">#</a> localStorage</h3> <ul><li>遵循同源策略，不符合条件的页面不能访问其数据</li> <li>数据保留到通过 Javascript 删除或者用户清除浏览器缓存，可以用来长期存储数据。</li> <li>localStorage 同样是 Storage 的实例，所以使用和 seesionStorage 相似。</li> <li>对于 localStorage 和 sessionStorage，浏览器会限制每个来源 5MB 左右。</li></ul> <p><strong>localStorage 和 sessionStorage 区别</strong></p> <ul><li>localStorage 数据会永久存储，除非代码改变或手动删除</li> <li>sessionStorage 数据只存在当前会话中，浏览器关闭后会消失</li> <li>一般用 localStorage 情况更多</li></ul></div> <footer class="page-edit" style="display:none;"><!----> <!----></footer> <!----> <!----> <!----></main> <!----></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-c6073ba8 data-v-c6073ba8><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-c6073ba8><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-c6073ba8></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-c6073ba8></path></svg></div></div></div>
+    <script src="/myBlog/assets/js/app.940a19a6.js" defer></script><script src="/myBlog/assets/js/3.92f17e55.js" defer></script><script src="/myBlog/assets/js/1.fb090512.js" defer></script><script src="/myBlog/assets/js/57.ebb555a0.js" defer></script>
+  </body>
+</html>
