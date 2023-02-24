@@ -809,9 +809,9 @@ class Solution{
 输入: nums = [5,7,7,8,8,10], target = 8  
 输出: 2  
 **方法1：二分查找+最后计数**  
-* 二分法当mid>=target时，j=mid，这时右区间包含所有可能的target  
-* 当mid<target时，i=mid+1，这时左区间右边为target区间  
-* 最后从i位置计数  
+* 二分法当 mid >= target 时，j = mid，缩小左边界  
+* 当 mid < target 时，i = mid+1，这时左区间右边为 target 区间  
+* 最后从 i 位置计数  
 ```java  
 class Solution {  
     public int search(int[] nums, int target) {  
@@ -1108,14 +1108,14 @@ class Solution {
 }  
 ```  
 
-### 13. 0~n-1中缺失的数字  
-一个长度为n-1的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围0～n-1之内。在范围0～n-1内的n个数字中有且只有一个数字不在该数组中，请找出这个数字。  
+### 13. 0 ~ n-1 中缺失的数字  
+一个长度为 n-1 的递增排序数组中的所有数字都是唯一的，并且每个数字都在范围 0～n-1 之内。在范围 0～n-1 内的 n 个数字中有且只有一个数字不在该数组中，请找出这个数字。  
 输入: [0,1,3]  
 输出: 2  
 **方法：二分查找**  
-* 由于数字递增且唯一，所以只会出现两种情况，一种是nums[mid]=mid，另一种是mid<nums[mid]  
-* 对于第一种情况，i=mid+1，对于第二种情况，说明缺失的数字就是mid或者mid左边，因此j=mid-1  
-* 最终i的位置索引值即为缺失的数字，此时i也是小于nums[i]的  
+* 由于数字递增且唯一，所以只会出现两种情况，一种是 nums[mid] = mid，另一种是 mid < nums[mid]  
+* 对于第一种情况，i = mid+1，对于第二种情况，说明缺失的数字就是 mid 或者 mid 左边，因此 j = mid-1  
+* 最终i的位置索引值即为缺失的数字，此时i也是小于 nums[i] 的  
 ```java  
 class Solution {  
     public int missingNumber(int[] nums) {  

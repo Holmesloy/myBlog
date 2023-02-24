@@ -10,8 +10,8 @@
   },
   "scripts": {
     "dev": "vuepress dev docs",
-    "docs:build": "vuepress build docs",
-    "deploy": "./deploy.sh"
+    "build": "vuepress build docs",
+    "deploy": "deploy.sh"
   },
   "dependencies": {
     "vue": "^2.6.11",

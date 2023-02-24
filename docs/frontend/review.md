@@ -1184,5 +1184,182 @@ function defineReactive(target, key, value) {
     }
   })
 }
+
+function _new(Func, ...args) {
+  const obj = {}
+  obj.__proto__ = Func.prototype
+  const result = Func.call(obj, ...args)
+  if(res != null && typeof(res) == 'object' || typeof(res) == 'function')
+    return res
+  return obj;
+}
+
+function.prototype.call = function(context, ...args) {
+  const context = context || window
+  context.fn = this
+  const result = context.fn(...args)
+  delete context.fn
+  return result
+}
+
+function.protoype.myBind = function(context) {
+  const args = Array.prototype.slice.call(arguments, 1)
+  const _this = this
+  return function(...args) {
+    const res = _this.apply(context, args.concat(args) )
+
+  }
+}
+class EventEmitter {
+  constructor() {
+    this.events = {}
+  }
+  on(eventName, callback) {
+    if(this.events[eventName]) this.events[eventName].push(callback);
+    else this.events[eventName] = callback
+  }
+  emit(eventName) {
+    this.events[eventName].forEach(callback => callback())
+  }
+}
+
+Array.prototype.myReduce = function(fn, initValue) {
+  if(initValue ==== undefined && this.length === 0) {
+    throw new Error('error')
+  }
+  let res = initvalue ? initValue : res[0];
+  for(let i = initValue ? 0 : 1; i < this.length; i++) {}
+  res = fn(res, this[i], i, this);
+  return res;
+}
+
+function transTree(data) {
+  let result = []
+  let obj = {}
+  if(!Array.isArray(data))
+  return []
+  data.forEach(item => {
+    obj[item.id] = item
+  })
+  data.forEach(item => {
+    let parent = obj[item.parentId]
+    if(parent) {
+      (parent.children || (parent.children = [])).push(item)
+    }
+    else {}
+    result.push(item)
+    return result
+  })
+
+}
+function transArr(obj) {
+  let queue = [...obj]
+  let data = []
+  while(queue.length !== 0) {
+    let item = queue.shift()
+    data.push({
+      id: item.id,
+      parentId: item.parentId,
+      name: item.name
+    })
+    let children = item.chidren
+    if(chidren) {
+      for(let i = 0; i < children.length; i++) {
+        queue.push(children[i])
+      }
+    }
+    return data;
+  }
+}
+function Stringify(obj) {
+  if(typeof(obj) !== 'object')
+    return obj.toString()
+  let json = []
+  let arr = Array.isArray(obj)
+  for(let key in obj) {
+    let item = obj[key]
+    if(typeof(item) === 'object')
+      item = Stringify(item)
+    json.push((arr ? "": '"' + key + '":') + String(item))
+  }
+
+}
+return (arr ? "[":"{") + String(json) + (arr ? "]":"}")
+int m = text1.length();
+int n = text2.length();
+int[][] dp = new int[m+1][n+1]
+for(int i = 1; i <= m; i++) {
+  for(int j = 1; j <= n; j++) {
+    if(text1.charAt(i-1) == text2.charAt(j-1))
+      dp[i][j] = dp[i-1][j-1] + 1
+    else
+      dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
+  }
+  return dp[m][n];
+
+
+}
+function deepClone(obj) {
+  if(obj == null || obj != 'object')
+    return obj;
+  if(obj instanceof Date) {
+    const clone = new Date()
+    clone.setTime(obj.getTime())
+    return clone
+  }
+  if(obj instanceof RegExp) {
+    const Constructor = obj.constructor
+    return new Constructor(obj)
+  }
+  let clone = Array.isArray(obj) ? [] : {}
+  for(const key in obj) {
+    if(obj.hasOwnProerty(key)) {
+      clone[key] = typeof(obj[key]) == 'object' ? deepClone(obj[key]) : obj[key]
+    }
+  }
+  return clone
+}
+Array.prototype.myFlat = function() {
+  let _this = this
+  let newArr = []
+  const cycle = function(arr) {
+    for(let i = 0; i < arr.length; i++) {
+      let item = arr[i];
+      if(Array.isArray(item)) {
+        cycle(item)
+        continue;
+      }
+      else {
+        newArr.add(item)
+      }
+    }
+    cycle(_this)
+    return newArr
+  }
+}
+function myFlat(arr) {
+  return arr.reduce((pre, cur) => {
+    return pre.concat(Array.isArray(cur) ? myFlat(cur) : cur)
+  }, [])
+}
+function transTree(data) {
+  let result = []
+  let obj = {}
+  if(!Array.isArray(data)) {
+    return []
+  }
+  data.forEach(item => {
+    obj[item.id] = item
+  })
+  data.forEach(item => {
+    let parent = obj[item.parentId]
+    if(parent) {}
+    (parent.children || parent.children = []).push(item)
+    else {
+      result.push(item)
+    }
+    return result
+  })
+}
 ```
 
