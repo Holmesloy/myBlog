@@ -116,6 +116,7 @@ interface minFunc {
 }
 ```
 ### 泛型（Generics）
+泛型是允许同一个函数接受不同参数类型的一种模版。相比于使用 any 类型，使用泛型来创建可复用的组件要更好，因为泛型会保留参数类型。
 * 定义函数、接口和类时，不预先指定具体类型，使用时再指定
 * 使用时若未指定类型，TS会尝试推断
 ```js
@@ -131,8 +132,91 @@ function min<T>(arr: T[]): T | null {
 
 const a = min([9, 3, 5]);  // a is number | null
 ```
+**泛型变量**  
+比如 T、E、K 和 V 等，他们没有什么特殊含义，只是一个约定好的规范，即使用大写字母 A-Z 定义的变量都属于泛型，即使把 T 换成 A 也一样。  
+下面是一些常见泛型变量代表的意思：  
+* T（Type）：表示一个 TS 类型
+* K（Key）：表示对象中的键类型
+* V（Value）：表示对象中的值类型
+* E（Element）：表示元素类型
 
+```ts
+class GenericNumber<T> {
+  zeroValue: T;
+  add: (x: T, y: T) => T;
+}
 
+let myGenericNumber = new GenericNumber<number>();
+myGenericNumber.zeroValue = 0;
+myGenericNumber.add = function (x, y) {
+  return x + y;
+};
+```
+### Typescript 装饰器
+* 一个表达式，被执行后，返回一个函数
+* 函数的入参分别为 target、name 和 descriptor
+* 执行该函数后，可能返回 descriptor 对象，用于配置 target 对象
+**类装饰器**  
+```ts
+declare type ClassDecorator = <TFunction extends Function>(target: TFunction) => TFunction | void;
+```
+用来装饰类，接受的一个参数为 target，即被装饰的类  
+例子：
+```ts
+function Greeter(target: Function):void {
+  target.prototype.greet = function():void {
+    console.log('hi');
+  }
+}
+
+@Greeter
+class Greeting {
+  constructor() {
+    // logic
+  }
+}
+
+let myGreeting = new Greeting();
+myGreeting.greet();
+```
+以上，定义了`Greeter`类装饰器，同时使用了`@Greeter`语法糖，使用装饰器装饰 class Greeting。
+那如果要自定义输出的问候语呢？如下：
+```ts
+function Greeter(greeting: string) {
+  return function(target: Function) {
+    target.protoype.target = function():void {
+      console.log(greeting);
+    }
+  }
+}
+
+@Greeter("Hello TS")
+class Greeting {
+  constructor() {
+    // logic
+  }
+}
+
+let myGreeting = new Greeting();
+myGreeting.greet();
+```
+## 编译上下文
+### tsconfig.json 
+* 用于标识 Typescript 项目的根路径
+* 用于配置 Typescript 编译器
+* 用于指定编译的文件
+**重要字段**
+* file：设置要编译的文件的名称
+* includes：设置需要进行编译的文件，支持路径模式匹配
+* excludes：设备不需要编译的文件，支持路径模式匹配
+* compilerOptions：与编译有关的模式选项
+
+### compilerOptions 选项
+compilerOptions 支持很多选项，常见的有 baseUrl、 target、baseUrl、 moduleResolution 和 lib 等。
+
+### .d.ts 文件
+有时，我们需要引入外部的 JS 库，这时 TS 就对引入的 JS 文件里变量的具体类型不明确，
+为了告诉 TS 变量的类型，因此就有了.d.ts (d 即 declare)，ts 的声明文件
 
 ## 代码实践
 1. 使用`const`声明所有的引用，不要使用`var`，避免改变引用引起错误
